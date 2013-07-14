@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: 6b5988d756d780903bf8c9ccb3e2b3b724ccebe8
+  branch: rails4
+  specs:
+    devise (2.2.4)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      warden (~> 1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,6 +40,7 @@ GEM
     ansi (1.4.3)
     arel (4.0.0)
     atomic (1.1.10)
+    bcrypt-ruby (3.1.1)
     builder (3.1.4)
     bullet (4.6.0)
       uniform_notifier
@@ -113,6 +125,7 @@ GEM
       net-ssh (>= 2.6.5)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    orm_adapter (0.4.0)
     pg (0.15.1)
     poltergeist (1.3.0)
       capybara (~> 2.1.0)
@@ -200,6 +213,8 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uniform_notifier (1.2.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yard (0.8.6.2)
@@ -213,6 +228,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
+  devise!
   factory_girl_rails
   faker
   figaro

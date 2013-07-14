@@ -9,7 +9,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # authentication
-# gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
+gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 
 # database
 gem 'pg'
