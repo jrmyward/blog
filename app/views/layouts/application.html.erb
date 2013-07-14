@@ -1,14 +1,60 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Blog</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
 
-<%= yield %>
+    <!-- start: Meta -->
+    <meta charset="utf-8">
+    <%= csrf_meta_tags %>
+    <title><%= content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller" %></title>
+    <meta name="author" content="<%= content_for?(:meta_author) ? "#{yield(:meta_author)}" : "Jeremy Ward" %>">
+    <meta name="description" content="<%= content_for?(:description) ? "#{yield(:description)}" : ""  %>">
+    <!-- end: Meta -->
 
-</body>
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- end: Mobile Specific -->
+
+    <!-- start: Facebook Open Graph -->
+    <meta property="og:title" content="<%= content_for?(:og_title) ? "#{yield(:og_title)}" : "Jeremy Ward | The Wayward Traveller" %>" />
+    <meta property="og:description" content="<%= content_for?(:og_description) ? "#{yield(:og_description)}" : "" %>" />
+    <meta property="og:type" content="<%= content_for?(:og_type) ? "#{yield(:og_type)}" : "" %>" />
+    <meta property="og:site_name" content="Jeremy Ward | The Wayward Traveller" />
+    <meta property="og:url" content="<%= content_for?(:og_url) ? "#{yield(:og_url)}" : "http://jrmyward.com" %>" />
+    <meta property="og:image" content="<%= content_for?(:og_image) ? "#{yield(:og_image)}" : "" %>" />
+    <!-- end: Facebook Open Graph -->
+
+    <!-- start: CSS -->
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+    <!-- end: CSS -->
+
+
+    <!-- start: Java Script -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <!-- end: Java Script -->
+  </head>
+  <body>
+
+    <%= render("shared/header") %>
+
+    <%= yield(:content_top) if content_for?(:content_top) %>
+
+    <!--start: Wrapper-->
+    <div id="wrapper">
+      <div class="container">
+
+        <%= yield %>
+
+      </div><!-- .container -->
+    </div><!-- #wrapper -->
+
+    <footer class="footer">
+      <%= render("shared/footer_top") %>
+      <%= render("shared/footer_bottom") %>
+    </footer>
+
+  </body>
 </html>

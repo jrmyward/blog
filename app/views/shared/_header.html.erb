@@ -1,0 +1,36 @@
+<!--start: Header -->
+<header>
+
+  <!--start: Container -->
+  <div class="container">
+
+    <!--start: Navigation -->
+    <div class="navbar navbar-invers">
+      <div class="navbar-inner">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <%= link_to root_path, :class => "brand" do %>
+          <i class=" ico-compass ico-color circle"></i>
+          The Wayward <span>Traveller</span>
+        <% end %>
+
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><%= nav_link "About Me", about_path %></li>
+            <li><%= nav_link "Projects", projects_path %></li>
+            <li><%= nav_link "Resume", resume_path %></li>
+          </ul>
+        </div><!-- .nav-collapse collapse -->
+      </div><!-- .navbar-inner -->
+
+    </div><!-- .navbar navbar-invers -->
+
+
+  </div>
+  <!--end: Container-->
+
+</header>
+<!--end: Header-->
