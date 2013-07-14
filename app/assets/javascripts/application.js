@@ -7,10 +7,18 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
 //
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require isotope
+//= require jquery.imagesloaded
+//= require bootstrap.js
+//= require flexslider.js
+//= require carousel.js
+//= require jquery.cslider.js
+//= require slider.js
+//= require fancybox.js
+//= require twitter.js
+//= require custom.js

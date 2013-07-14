@@ -1,0 +1,57 @@
+
+/* Footer */
+.footer {
+  #footer-menu-logo {
+    a.brand {
+      font-size: 22px !important;
+      line-height: 54px !important;
+      margin-top: 0px !important;
+      margin-left: 5px !important;
+    }
+  }
+  #copyright {
+    padding-top: 10px;
+  }
+}
+
+form {
+  .control-group.measurement {
+    .controls {
+      input, select {width:auto;}
+      span {padding:0 5px 0 0px;}
+      span.option {padding:0 10px 0 5px;}
+    }
+  }
+  label.boolean.control-label {padding-top:0px;}
+  label.radio {
+    strong {color:#555;}
+    span {font-size: 11px;}
+  }
+  select.date, select.datetime, select.time {
+    width:auto;
+  }
+}
+
+
+.signin_container {
+  margin: 0 auto;
+  width: 300px;
+  .form-actions {
+    margin-bottom: 0;
+    padding: 17px 0 0;
+  }
+  .password_reset {
+    margin-bottom: 3px;
+    text-align: right;
+  }
+  .remember_me {
+    label {
+      float: left;
+      font-size: 11px;
+      margin-left: 5px;
+    }
+    input {
+      float: left;
+    }
+  }
+}
