@@ -1,0 +1,24 @@
+.bundle
+brakeman.html
+config/database.yml
+coverage/*
+coverage.data
+db/*.sqlite3*
+doc/
+log/*.log
+*.log
+tmp/
+*.swp
+*~
+.idea
+.project
+.DS_Store
+public/audio
+public/videos
+public/uploads
+public/sitemap*
+vendor/bundle
+.yard*
+
+# Ignore application configuration
+/config/application.yml
