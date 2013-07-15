@@ -1,6 +1,22 @@
 Blog::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get 'signin' => 'devise/sessions#new', as: :new_user_session
+    post 'signin' => 'devise/sessions#create', as: :user_session
+    delete 'signout' => 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  scope "/settings" do
+
+    scope :module => "admins" do
+      get 'profile' => 'users#edit', as: 'user_edit'
+      put 'profile' => 'users#update'
+    end
+
+  end
+
+  get '/dashboard' => 'admins/users#dashboard', as: :user_root
 
   # Static content
   get 'about' => 'content#about'
