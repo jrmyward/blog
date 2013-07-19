@@ -1,4 +1,10 @@
 module ApplicationHelper
+
+  def gravatar_url(user, size = 26)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    "https://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
+  end
+
   # Returns true or false based on the provided path and condition
   #
   # @param link_path [String] url of link to check
@@ -11,7 +17,6 @@ module ApplicationHelper
   #
   # @return [Boolean]
   def is_active_link?(link_path, condition = nil)
-    url = url_for(url).sub(/\?.*/, '') # ignore GET params
     case condition
     when Regexp
       !request.fullpath.match(condition).blank?
