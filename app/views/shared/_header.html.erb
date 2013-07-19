@@ -22,6 +22,21 @@
             <li><%= nav_link "About Me", about_path %></li>
             <li><%= nav_link "Projects", projects_path %></li>
             <li><%= nav_link "Resume", resume_path %></li>
+            <% if user_signed_in? %>
+              <li class="divider-vertical"></li>
+              <li id="nav-user" class="dropdown">
+                <%= link_to '#', "data-toggle" => "dropdown", :class => "dropdown-toggle"  do %>
+                  <%= image_tag gravatar_url(current_user), :class => "avatar", :width => 26 %>
+                  <span><%= current_user.full_name %></span>
+                  <b class="caret"></b>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <li><%= link_to raw('<i></i> Edit Profile'), '#', :class => 'glyphicons pencil' %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to raw('<i class="icon-off"></i> Sign Out'), destroy_user_session_path, :method => :delete %></li>
+                </ul>
+              </li>
+            <% end %>
           </ul>
         </div><!-- .nav-collapse collapse -->
       </div><!-- .navbar-inner -->

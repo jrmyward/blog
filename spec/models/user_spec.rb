@@ -1,14 +1,22 @@
 require 'spec_helper'
 
 describe User do
-  it { should respond_to(:first_name) }
-  it { should respond_to(:last_name) }
   it { should respond_to(:email) }
-  # it { should respond_to(:role) }
+  it { should respond_to(:first_name) }
+  it { should respond_to(:full_name) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:role) }
 
   describe "Validations" do
     it { should validate_presence_of(:first_name) }
     it { should validate_presence_of(:last_name) }
+
+    describe "full_name" do
+      it "should return a concatination of a user's first and last names" do
+        user = FactoryGirl.create(:user)
+        user.full_name.should == "#{user.first_name} #{user.last_name}"
+      end
+    end
 
     context "role" do
       it "should allow valid roles" do
