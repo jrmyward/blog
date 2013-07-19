@@ -3,7 +3,17 @@ require 'spec_helper'
 describe ApplicationHelper do
 
   describe "is_active_link?" do
+    it "should match the current link" do
+      helper.stub(:current_page?).and_return(true)
+      link_path = "/somepage"
+      helper.is_active_link?(link_path).should be_true
+    end
 
+    it "should match a given Regular Expression" do
+      helper.request.stub(:fullpath).and_return("/blog/some-article#comments")
+      link_path = "/blog/some-article"
+      helper.is_active_link?(link_path, /^\/blog/).should be_true
+    end
   end
 
   describe "nav_link" do
