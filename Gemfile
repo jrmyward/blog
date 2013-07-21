@@ -16,7 +16,7 @@ gem 'pg'
 
 # deployment
 gem 'capistrano', group: :development
-# gem 'unicorn'
+gem 'unicorn'
 
 # Configuration
 gem 'figaro'
