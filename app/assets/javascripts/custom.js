@@ -1,12 +1,12 @@
 /* -------------------- Twitter --------------------- */
 
-jQuery(document).ready(function($){
+// jQuery(document).ready(function($){
 
-	$.getJSON('http://api.twitter.com/1/statuses/user_timeline/jrmyward.json?count=3&callback=?', function(tweets){
-		$("#twitter").html(tz_format_twitter(tweets));
-	});
+// 	$.getJSON('http://api.twitter.com/1.1/statuses/user_timeline/jrmyward.json?count=3&callback=?', function(tweets){
+// 		$("#twitter").html(tz_format_twitter(tweets));
+// 	});
 
-});
+// });
 
 /* ------------------- Client Carousel --------------------- */
 
