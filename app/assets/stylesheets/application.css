@@ -11,6 +11,10 @@
  *= require_self
  *= require theme/bootstrap
  *= require theme/bootstrap-responsive
+ *= require theme/icons
+ *= require theme/icons-color
+ *= require theme/social-icons
+ *= require theme/fancybox
  *= require theme/style
  *= require theme/parallax-slider
  *= require jrmy
