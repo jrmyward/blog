@@ -15,10 +15,9 @@
 //= require isotope
 //= require jquery.imagesloaded
 //= require bootstrap.js
+//= require css_browser_selector
 //= require flexslider.js
 //= require carousel.js
-//= require jquery.cslider.js
 //= require slider.js
 //= require fancybox.js
-//= require twitter.js
 //= require custom.js
