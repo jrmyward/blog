@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/fnando/browser
+  revision: 1d6f073370ffc4122c58fd35b84a949a9a90c6c9
+  specs:
+    browser (0.2.0)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: 6b5988d756d780903bf8c9ccb3e2b3b724ccebe8
   branch: rails4
@@ -229,6 +235,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  browser!
   bullet
   capistrano
   capybara

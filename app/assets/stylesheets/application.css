@@ -16,6 +16,6 @@
  *= require theme/social-icons
  *= require theme/fancybox
  *= require theme/style
- *= require theme/parallax-slider
  *= require jrmy
+ *= require responsive
  */
