@@ -1,4 +1,9 @@
 
+/* Hero */
+.hero-image {
+  margin-top: -90px;
+}
+
 /* Footer */
 .footer {
   #footer-menu-logo {
@@ -52,33 +57,6 @@ form {
     }
     input {
       float: left;
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    .brand {
-      font-size: 20px !important;
-      i {
-        margin-top: -3px;
-      }
-      .circle {
-        -webkit-background-clip: padding-box; /* fix WebKit background bleed on border-radius */
-        -webkit-border-radius: 20em;
-           -moz-border-radius: 20em;
-                border-radius: 20em;
-        -webkit-box-shadow: 0 0 2px #000;
-           -moz-box-shadow: 0 0 2px #000;
-                box-shadow: 0 0 2px #000;
-
-      }
-      .ico-compass {
-        background-position: -9px -297px;
-        height: 30px;
-        line-height: 30px;
-        width: 30px;
-      }
     }
   }
 }
