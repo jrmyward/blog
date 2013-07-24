@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[admin author member]
+  ROLES = %w[admin author]
 
   validates_presence_of :first_name, :last_name
   validates_inclusion_of :role, :in => ROLES,
