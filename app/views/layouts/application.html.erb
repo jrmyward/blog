@@ -15,20 +15,20 @@
     <!-- end: Mobile Specific -->
 
     <!-- start: Facebook Open Graph -->
-    <meta property="og:title" content="<%= content_for?(:og_title) ? "#{yield(:og_title)}" : "Jeremy Ward | The Wayward Traveller" %>" />
+    <meta property="og:title" content="<%= content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller" %>" />
     <meta property="og:description" content="<%= content_for?(:description) ? "#{yield(:description)}" : "" %>" />
     <meta property="og:type" content="<%= content_for?(:og_type) ? "#{yield(:og_type)}" : "" %>" />
     <meta property="og:site_name" content="Jeremy Ward | The Wayward Traveller" />
     <meta property="og:url" content="<%= content_for?(:og_url) ? "#{yield(:og_url)}" : "http://jrmyward.com" %>" />
-    <meta property="og:image" content="<%= content_for?(:og_image) ? "#{yield(:og_image)}" : "" %>" />
+    <meta property="og:image" content="<%= content_for?(:og_image) ? "#{yield(:og_image)}" : "#{image_url 'old_salmon_creek_trail.jpg'}" %>" />
     <!-- end: Facebook Open Graph -->
 
     <!-- start: Twitter Card -->
-    <meta name="twitter:card" content="summar" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@jrmward" />
-    <meta name="twitter:title" content="<%= content_for?(:og_title) ? "#{yield(:og_title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller" %>" />
+    <meta name="twitter:title" content="<%= content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller" %>" />
     <meta name="twitter:description" content="<%= content_for?(:description) ? "#{yield(:description)}" : ""  %>" />
-    <meta name="twitter:image" content="<%= content_for?(:og_image) ? "#{yield(:og_image)}" : ""  %>" />
+    <meta name="twitter:image" content="<%= content_for?(:og_image) ? "#{yield(:og_image)}" : "#{image_url 'old_salmon_creek_trail.jpg'}"  %>" />
     <meta name="twitter:creator" content="<%= content_for?(:meta_twitter_creator) ? "#{yield(:meta_twitter_creator)}" : "" %>" />
     <!-- end: Twitter Card -->
 
