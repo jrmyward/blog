@@ -20,7 +20,7 @@ describe User do
 
     context "role" do
       it "should allow valid roles" do
-        %w(admin author member).each do |valid_role|
+        %w(admin author).each do |valid_role|
           user_with_valid_role = FactoryGirl.build(:user, :role => valid_role)
           user_with_valid_role.should be_valid
           user_with_valid_role.errors[:role].should == []
