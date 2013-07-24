@@ -109,7 +109,7 @@ describe Admins::UsersController do
 
       it "redirects to the user" do
         put :update, {:id => user.id, :user => valid_attributes}
-        response.should redirect_to(user_edit_path(user))
+        response.should redirect_to(edit_user_path(user))
       end
     end
 

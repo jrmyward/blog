@@ -7,13 +7,11 @@ Blog::Application.routes.draw do
     delete 'signout' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  scope "/settings" do
+  scope :module => "admins" do
+    resources :users
+  end
 
-    scope :module => "admins" do
-      get 'profile' => 'users#edit'
-      patch 'profile' => 'users#update'
-      put 'profile' => 'users#update'
-    end
+  scope "/settings" do
 
   end
 

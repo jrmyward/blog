@@ -38,7 +38,7 @@ class Admins::UsersController < AdminsController
   # PATCH/PUT /members/users/1
   def update
     if @user.update(user_params)
-      redirect_to user_edit_path(@user), notice: 'User was successfully updated.'
+      redirect_to edit_user_path(@user), notice: 'User was successfully updated.'
     else
       render action: 'edit'
     end
