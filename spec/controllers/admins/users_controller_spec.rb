@@ -20,7 +20,8 @@ require 'spec_helper'
 
 describe Admins::UsersController do
   let(:valid_attributes) { FactoryGirl.attributes_for(:user, first_name: "Tony", last_name: "Stark") }
-  let (:user) { FactoryGirl.create(:user) }
+  let(:valid_user) { FactoryGirl.attributes_for(:user) }
+  let(:user) { User.create(valid_user.merge({role: "admin"})) }
 
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]
@@ -95,20 +96,24 @@ describe Admins::UsersController do
   # end
 
   describe "PUT update" do
+    before(:each) do
+      @valid_params = {
+        first_name: "Steven",
+        current_password: valid_user[:password]
+      }
+    end
     describe "with valid params" do
       it "updates the requested users" do
-        valid_params = {"first_name" => "Steve"}
-        User.any_instance.should_receive(:update).with(valid_params)
-        put :update, {:id => user.id, :user => valid_params}
+        put :update, {:id => user.id, :user => @valid_params}
       end
 
       it "assigns the requested users as @user" do
-        put :update, {:id => user.id, :user => valid_attributes}
+        put :update, {:id => user.id, :user => @valid_params}
         assigns(:user).should eq(user)
       end
 
       it "redirects to the user" do
-        put :update, {:id => user.id, :user => valid_attributes}
+        put :update, {:id => user.id, :user => @valid_params}
         response.should redirect_to(edit_user_path(user))
       end
     end
@@ -117,14 +122,14 @@ describe Admins::UsersController do
       it "assigns the user as @user" do
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)
-        put :update, {:id => user.id, :user => valid_attributes}
+        put :update, {:id => user.id, :user => @valid_params}
         assigns(:user).should eq(user)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)
-        put :update, {:id => user.id, :user => valid_attributes}
+        put :update, {:id => user.id, :user => @valid_params}
         response.should render_template("edit")
       end
     end

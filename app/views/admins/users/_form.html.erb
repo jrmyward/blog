@@ -1,17 +1,22 @@
-<%= form_for(@admins_user) do |f| %>
-  <% if @admins_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admins_user.errors.count, "error") %> prohibited this admins_user from being saved:</h2>
-
-      <ul>
-      <% @admins_user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+<% if @user.errors.any? %>
+  <div class="alert alert-block alert-error">
+    <a class="close" data-dismiss="alert">×</a>
+    <h4 class="alert-heading">Oh Snap!</h4>
+    We found <%= pluralize(@user.errors.count, "problem") %> with the form:
   </div>
 <% end %>
+<%= f.input :first_name %>
+<%= f.input :last_name %>
+<%= f.input :email %>
+
+<div class="legend-cont">
+  <legend>Change Password <small>Leave blank to keep your current password</small></legend>
+</div><!-- .legend-cont -->
+<%= f.input :password, :autocomplete => "off" %>
+<%= f.input :password_confirmation, :label =>"Confirm Password" %>
+
+<div class="alert alert-warning">
+  Enter your current password to confirm changes
+</div><!-- .alert alert-warning -->
+
+<%= f.input :current_password, :hint => "We need to your current password to confirm your changes", input_html: { autocomplete: 'off' } %>
