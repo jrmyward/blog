@@ -1,0 +1,23 @@
+<% content_for :title,  "Forgot Password" %>
+
+<%= render :partial => "shared/page_title",
+  :locals => {:title => "Forgot Password?", :icon_class => "ico-circle-question-mark"} %>
+
+<div class="row">
+  <div class="signin_container">
+    <div class="password_reset">
+      <%= link_to "Sign in", new_session_path(resource_name) %>
+    </div><!-- .password_reset -->
+    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "well" }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="inputs">
+        <%= f.input :email, :required => true %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Send Reset Instructions", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div><!-- .signin_container -->
+</div><!-- .row -->
