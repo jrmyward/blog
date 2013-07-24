@@ -18,8 +18,11 @@ gem 'pg'
 gem 'capistrano', group: :development
 gem 'unicorn'
 
-# Configuration
+# configuration
 gem 'figaro'
+
+# forms
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
 # javascript
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
