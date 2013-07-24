@@ -1,6 +1,6 @@
 Blog::Application.routes.draw do
 
-  devise_for :users, :skip => [:sessions]
+  devise_for :users, :skip => [:sessions, :registrations]
   as :user do
     get 'signin' => 'devise/sessions#new', as: :new_user_session
     post 'signin' => 'devise/sessions#create', as: :user_session
@@ -10,7 +10,8 @@ Blog::Application.routes.draw do
   scope "/settings" do
 
     scope :module => "admins" do
-      get 'profile' => 'users#edit', as: 'user_edit'
+      get 'profile' => 'users#edit'
+      patch 'profile' => 'users#update'
       put 'profile' => 'users#update'
     end
 
