@@ -5,7 +5,9 @@ describe User do
   it { should respond_to(:first_name) }
   it { should respond_to(:full_name) }
   it { should respond_to(:last_name) }
+  it { should respond_to(:gplus) }
   it { should respond_to(:role) }
+  it { should respond_to(:twitter_handle) }
 
   describe "Validations" do
     it { should validate_presence_of(:first_name) }
@@ -21,18 +23,25 @@ describe User do
     context "role" do
       it "should allow valid roles" do
         %w(admin author).each do |valid_role|
-          user_with_valid_role = FactoryGirl.build(:user, :role => valid_role)
+          user_with_valid_role = FactoryGirl.build(:user, role: valid_role)
           user_with_valid_role.should be_valid
           user_with_valid_role.errors[:role].should == []
         end
       end
 
       it "should not allow false roles" do
-        bad_role = FactoryGirl.build(:user, :role => "invalid")
+        bad_role = FactoryGirl.build(:user, role: "invalid")
         bad_role.should_not be_valid
         bad_role.errors[:role].should_not be_nil
       end
     end
 
+    context "twitter handle" do
+      it "should start with an @ symbol" do
+        bad_twitter_handle = FactoryGirl.build(:user, twitter_handle: "someone.somewhere")
+        bad_twitter_handle.should_not be_valid
+        bad_twitter_handle.errors[:twitter_handle].should_not be_nil
+      end
+    end
   end
 end

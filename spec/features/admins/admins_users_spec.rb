@@ -22,9 +22,11 @@ describe "Admins::Users" do
         page.should have_content "First name"
         page.should have_content "Last name"
         page.should have_content "Email"
+        page.should have_css "#user_gplus"
+        page.should have_css "#user_twitter_handle"
         fill_in 'Email', with: ""
         click_on "Save Profile"
-        page.should have_content("Oh Snap")
+        page.should have_content "Oh Snap"
       end
     end
 
@@ -33,7 +35,7 @@ describe "Admins::Users" do
         fill_in 'First name', with: "Steven"
         fill_in 'Current password', with: valid_user[:password]
         click_on "Save Profile"
-        page.should_not have_content("Oh Snap")
+        page.should_not have_content "Oh Snap"
         page.should have_content "Steven"
       end
     end

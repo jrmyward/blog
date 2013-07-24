@@ -10,6 +10,12 @@
 <%= f.input :email %>
 
 <div class="legend-cont">
+  <legend>Authorship</legend>
+</div><!-- .legend-cont -->
+<%= f.input :gplus, label: "Google Plus" %>
+<%= f.input :twitter_handle %>
+
+<div class="legend-cont">
   <legend>Change Password <small>Leave blank to keep your current password</small></legend>
 </div><!-- .legend-cont -->
 <%= f.input :password, :autocomplete => "off" %>
