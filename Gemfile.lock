@@ -15,6 +15,14 @@ GIT
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.1)
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 87323fd625802f3aea7fd7d8a2fd64016b18cdaa
+  specs:
+    simple_form (3.0.0.rc)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -259,6 +267,7 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
   shoulda-matchers
+  simple_form!
   simplecov (>= 0.4.2)
   timecop
   turbolinks
