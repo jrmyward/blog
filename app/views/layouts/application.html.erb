@@ -29,7 +29,7 @@
     <meta name="twitter:title" content="<%= content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller" %>" />
     <meta name="twitter:description" content="<%= content_for?(:description) ? "#{yield(:description)}" : ""  %>" />
     <meta name="twitter:image" content="<%= content_for?(:og_image) ? "#{yield(:og_image)}" : "#{image_url 'old_salmon_creek_trail.jpg'}"  %>" />
-    <meta name="twitter:creator" content="<%= content_for?(:meta_twitter_creator) ? "#{yield(:meta_twitter_creator)}" : "" %>" />
+    <meta name="twitter:creator" content="<%= content_for?(:meta_twitter_creator) ? "#{yield(:meta_twitter_creator)}" : "@jrmyward" %>" />
     <!-- end: Twitter Card -->
 
     <link rel="canonical" href="<%= content_for?(:canonical) ? "#{yield(:canonical)}" : "#{request.fullpath}" %>">
