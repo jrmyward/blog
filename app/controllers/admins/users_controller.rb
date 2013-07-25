@@ -37,10 +37,12 @@ class Admins::UsersController < AdminsController
 
   # PATCH/PUT /members/users/1
   def update
-    if @user.update(user_params)
-      redirect_to user_edit_path(@user), notice: 'User was successfully updated.'
+    if @user.update_with_password(user_params)
+      # Sign in the user by passing validation in case his password changed
+      sign_in @user, :bypass => true if @user.id == current_user.id
+      redirect_to edit_user_path(@user), :notice => "User was successfully updated."
     else
-      render action: 'edit'
+      render "edit"
     end
   end
 
@@ -60,7 +62,7 @@ class Admins::UsersController < AdminsController
     def user_params
       params.require(:user).permit(
         :first_name, :last_name, :email,
-        :password, :password_confirm
+        :password, :password_confirm, :current_password
       )
     end
 end
