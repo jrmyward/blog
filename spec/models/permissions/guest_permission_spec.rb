@@ -4,9 +4,9 @@ describe Permissions::GuestPermission do
   subject { Permissions.permission_for(nil) }
 
   it "allows sessions" do
-    should authorize(:sessions, :new)
-    should authorize(:sessions, :create)
-    should authorize(:sessions, :destroy)
+    should authorize("devise/sessions", :new)
+    should authorize("devise/sessions", :create)
+    should authorize("devise/sessions", :destroy)
   end
 
   it "allows posts" do
