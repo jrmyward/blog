@@ -1,7 +1,5 @@
 Blog::Application.routes.draw do
 
-  resources :posts
-
   devise_for :users, :skip => [:sessions, :registrations]
   as :user do
     get 'signin' => 'devise/sessions#new', as: :new_user_session
@@ -18,6 +16,10 @@ Blog::Application.routes.draw do
   end
 
   get '/dashboard' => 'admins/users#dashboard', as: :user_root
+
+  scope "blog" do
+    resources :posts
+  end
 
   # Static content
   get 'about' => 'content#about'

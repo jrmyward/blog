@@ -2,11 +2,10 @@
 
 FactoryGirl.define do
   factory :post do
-    title "MyString"
-    slug "MyString"
-    description "MyText"
-    abstract "MyText"
-    body "MyText"
-    published_at "2013-07-26 10:52:50"
+    title "Hello World"
+    description "The world is round."
+    abstract "People used to think the world was flat."
+    body "People used to think the world was flat. The world is actually a sphere."
+    published_at Time.now.utc
   end
 end
