@@ -1,8 +1,9 @@
 module Permissions
-  class GuestPermission < BasePermission
-    def initialize
+  class AuthorPermission < BasePermission
+    def initialize(user)
       allow "devise/sessions", [:new, :create, :destroy]
       allow :content, [:index]
+      allow :users, [:edit, :update]
     end
   end
 end
