@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe Permissions::GuestPermission do
-  subject { Permissions.permission_for(nil) }
+describe Permissions::AuthorPermission do
+  subject { Permissions.permission_for(build(:user, role: "author")) }
 
   it "allows sessions" do
     should authorize("devise/sessions", :new)
@@ -12,8 +12,8 @@ describe Permissions::GuestPermission do
   it "allows users" do
     should_not authorize(:users, :new)
     should_not authorize(:users, :create)
-    should_not authorize(:users, :edit)
-    should_not authorize(:users, :update)
+    should authorize(:users, :edit)
+    should authorize(:users, :update)
     should_not authorize(:users, :destroy)
   end
 end
