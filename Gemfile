@@ -11,6 +11,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # authentication
 gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 
+# blog
+gem 'friendly_id', git: 'https://github.com/FriendlyId/friendly_id'
+gem 'redcarpet'
+
 # database
 gem 'pg'
 
