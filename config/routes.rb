@@ -1,5 +1,7 @@
 Blog::Application.routes.draw do
 
+  resources :posts
+
   devise_for :users, :skip => [:sessions, :registrations]
   as :user do
     get 'signin' => 'devise/sessions#new', as: :new_user_session
