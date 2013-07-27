@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  prepend_before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
