@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  has_many :posts, :foreign_key => "author_id"
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -15,6 +18,10 @@ class User < ActiveRecord::Base
 
   def admin?
     role === "admin"
+  end
+
+  def author?
+    role === "author"
   end
 
   def full_name

@@ -17,6 +17,10 @@ Blog::Application.routes.draw do
 
   get '/dashboard' => 'admins/users#dashboard', as: :user_root
 
+  scope "blog" do
+    resources :posts
+  end
+
   # Static content
   get 'about' => 'content#about'
   get 'projects' => 'content#projects'
