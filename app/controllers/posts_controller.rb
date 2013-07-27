@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(params[:post])
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    if @post.update(post_params)
+    if @post.update(params[:post])
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render action: 'edit'
@@ -52,8 +52,4 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def post_params
-      params.require(:post).permit(:title, :slug, :description, :abstract, :body, :published_at)
-    end
 end
