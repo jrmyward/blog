@@ -24,7 +24,7 @@ describe "Blog" do
 
     it "should redirect with an error" do
       visit edit_post_path(@post.id)
-      page.should have_content("You are ot authorized.")
+      page.should have_content("You are not authorized.")
     end
   end
 end
