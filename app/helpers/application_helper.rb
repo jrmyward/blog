@@ -25,6 +25,16 @@ module ApplicationHelper
     end
   end
 
+  def markdown
+    renderer    = Redcarpet::Render::HTML.new(:hard_wrap => true)
+    extensions  = {:autolink => true, :no_intra_emphasis => true}
+    @markdown ||= Redcarpet::Markdown.new(renderer, extensions)
+  end
+
+  def markdown_render(text)
+    markdown.render(text).html_safe
+  end
+
   def nav_link(link_text, link_path, condition = nil)
     class_name = is_active_link?(link_path, condition) ? 'active' : ''
 

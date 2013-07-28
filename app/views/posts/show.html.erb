@@ -1,34 +1,44 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title,  @post.title %>
+<% content_for :description, @post.description %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<%= render :partial => "shared/page_title",
+  :locals => {:title => @post.title, :icon_class => "ico-pencil"} %>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @post.slug %>
-</p>
+<div class="row">
+  <div class="span9">
 
-<p>
-  <strong>Description:</strong>
-  <%= @post.description %>
-</p>
+    <div class="post post-page">
 
-<p>
-  <strong>Abstract:</strong>
-  <%= @post.abstract %>
-</p>
+      <!-- TODO: image -->
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+      <!-- TODO: post-icon should be a helper -->
+      <span class="post-icon standard"><i class="ico-pen circle"></i></span>
 
-<p>
-  <strong>Published at:</strong>
-  <%= @post.published_at %>
-</p>
+      <div class="post-content">
+        <div class="post-title">
+          <h2><%= @post.title.titleize %></h2>
+        </div><!-- .post-title -->
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+        <div class="post-description">
+          <%= markdown_render(@post.body) %>
+        </div><!-- .post-description -->
+
+        <div class="post-meta">
+          <span><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </span>
+          <span><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></span>
+        </div>
+      </div><!-- .post-content -->
+
+    </div><!-- .post post-page -->
+
+    <hr>
+
+    <div class="title-out"><h3>Leave a Comment</h3></div>
+
+    <hr>
+  </div><!-- .span9 -->
+
+  <div class="span3">
+
+  </div><!-- .span3 -->
+</div><!-- .row -->
