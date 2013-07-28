@@ -1,3 +1,10 @@
+div.at-share-open-control-left.ats-dark,
+div.at-share-open-control-right.ats-dark,
+.at-vertical-menu.ats-dark a,
+.at-vertical-menu.ats-dark div.at-share-close-control {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
+}
+
 .navbar {
   .divider-vertical {
     border-left: 1px solid #E5E5E5;
@@ -69,6 +76,29 @@ form {
     }
     input {
       float: left;
+    }
+  }
+}
+
+.post {
+  padding-top: 0px;
+  .post-meta {
+    margin: 0px -10px;
+    ul.post-meta-items {
+      float: left;
+      li {
+        float: left;
+        margin-right: 10px;
+      }
+    }
+  }
+  .post-content {
+    .post-meta {
+      background: #fcfcfc;
+      color: #666;
+      margin: 10px -20px 0px -20px;
+      padding: 10px 25px;
+      border-top: 1px solid #f6f6f6;
     }
   }
 }
