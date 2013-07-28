@@ -8,6 +8,12 @@
   <div class="span9">
 
     <div class="post post-page">
+      <div class="post-meta clearfix">
+        <ul class="post-meta-items clearfix">
+          <li><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </li>
+          <li><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></li>
+        </ul>
+      </div>
 
       <!-- TODO: image -->
 
@@ -23,9 +29,11 @@
           <%= markdown_render(@post.body) %>
         </div><!-- .post-description -->
 
-        <div class="post-meta">
-          <span><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </span>
-          <span><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></span>
+        <div class="post-meta clearfix">
+          <ul class="post-meta-items clearfix">
+            <li><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </li>
+            <li><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></li>
+          </ul>
         </div>
       </div><!-- .post-content -->
 
