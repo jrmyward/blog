@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
+    page   = Sanitize.clean(params[:page])
+    @posts = Post.paginate(:page => page, :per_page => 10).order("published_at desc")
   end
 
   # GET /posts/1
