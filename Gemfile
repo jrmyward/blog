@@ -14,9 +14,11 @@ gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 # blog
 gem 'friendly_id', git: 'https://github.com/FriendlyId/friendly_id'
 gem 'redcarpet'
+gem 'will_paginate'
 
 # database
 gem 'pg'
+gem 'sanitize'
 
 # deployment
 gem 'capistrano', group: :development
