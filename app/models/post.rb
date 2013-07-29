@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
 
+  mount_uploader :image, ImageUploader
+
   validates_presence_of :abstract, :body, :description, :published_at, :title
 
   def editable_by?(user)
