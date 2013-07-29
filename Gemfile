@@ -30,6 +30,10 @@ gem 'figaro'
 # forms
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
+# image manipulation
+gem 'rmagick'
+gem 'carrierwave'
+
 # javascript
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
