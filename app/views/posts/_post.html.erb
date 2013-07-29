@@ -1,0 +1,22 @@
+<div class="post">
+  <div class="post-img picture">
+    <!-- TODO: link to post thru related poster -->
+  </div><!-- .post-img -->
+  <!-- TODO: post icon should be moved to a helper -->
+  <span class="post-icon standard"><i class="ico-pen circle"></i></span>
+  <div class="post-content">
+    <div class="post-title">
+      <h2><%= link_to post.title.titleize, post_path(post) %></h2>
+    </div><!-- .post-title -->
+    <div class="post-description">
+      <%= markdown_render(post.abstract) %>
+    </div><!-- .post-description -->
+    <%= link_to "Read More", post_path(post), class: "post-entry" %>
+    <div class="post-meta clearfix">
+      <ul class="post-meta-items clearfix">
+        <li><i class="mini-ico-calendar"></i>On <%= post.published_at.strftime("%d %B, %Y") %> </li>
+        <li><i class="mini-ico-user"></i>By <%= link_to post.author.full_name, "#" %></li>
+      </ul>
+    </div><!-- .post-meta -->
+  </div><!-- .post-content -->
+</div><!-- .post -->

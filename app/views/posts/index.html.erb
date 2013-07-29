@@ -4,27 +4,27 @@
   :locals => {:title => "Blog", :icon_class => "ico-pencil"} %>
 
 <div class="row">
-  <div class="span12">
-    <%= link_to raw('<i class="icon-plus icon-white"></i> New Post'), new_post_path, class: "btn btn-primary pull-right" %>
+  <div class="span12 ">
+    <%= link_to raw('<i class="icon-plus icon-white"></i> New Post'), new_post_path, class: "btn btn-primary pull-left" %>
   </div><!-- .span12 -->
 </div><!-- .row -->
+<hr />
+<div class="row">
+  <div class="span9">
+    <% if @posts.count > 0 %>
+      <% @posts.each do |post| %>
+        <%= render partial: "post", locals: {:post => post} %>
+      <% end %>
+    <% else %>
+      <div class="alert alert-info">
+        No posts were found.
+      </div><!-- .alert alert-info -->
+    <% end %>
 
-<% if @posts.count > 0 %>
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.slug %></td>
-      <td><%= post.description %></td>
-      <td><%= post.abstract %></td>
-      <td><%= post.body %></td>
-      <td><%= post.published_at %></td>
-      <td><%= link_to 'Show', post %></td>
-      <td><%= link_to 'Edit', edit_post_path(post) %></td>
-      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-<% else %>
-  <div class="alert alert-info">
-    No posts were found.
-  </div><!-- .alert alert-info -->
-<% end %>
+    <section>
+      <%= page_navigation_links(@posts) %>
+    </section>
+  </div><!-- .span9 -->
+</div><!-- .row -->
+
+
