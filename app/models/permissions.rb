@@ -6,6 +6,8 @@ module Permissions
       AuthorPermission.new(user)
     elsif user.admin?
       AdminPermission.new(user)
+    else
+      GuestPermission.new
     end
   end
 end

@@ -1,37 +1,21 @@
-<h1>Listing posts</h1>
+<% content_for :title,  "Blog" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Slug</th>
-      <th>Description</th>
-      <th>Abstract</th>
-      <th>Body</th>
-      <th>Published at</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= render :partial => "shared/page_title",
+  :locals => {:title => "Blog", :icon_class => "ico-pencil"} %>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.slug %></td>
-        <td><%= post.description %></td>
-        <td><%= post.abstract %></td>
-        <td><%= post.body %></td>
-        <td><%= post.published_at %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="span12 ">
+    <%= link_to raw('<i class="icon-plus icon-white"></i> New Post'), new_post_path, class: "btn btn-primary pull-left" %>
+  </div><!-- .span12 -->
+</div><!-- .row -->
+<hr />
+<div class="row">
+  <div class="span9">
+    <%= render @posts %>
+    <section>
+      <%= page_navigation_links(@posts) %>
+    </section>
+  </div><!-- .span9 -->
+</div><!-- .row -->
 
-<br>
 
-<%= link_to 'New Post', new_post_path %>

@@ -46,6 +46,9 @@
     <!-- start: Java Script -->
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
+    <!-- AddThis Smart Layers -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=jrmyward"></script>
+
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-42612993-1']);
@@ -56,6 +59,12 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+    </script>
+
+    <script type="text/javascript">
+      var addthis_config = {
+        data_ga_property: 'UA-42612993-1'
+      };
     </script>
     <!-- end: Java Script -->
   </head>
@@ -89,6 +98,23 @@
       <%= render("shared/footer_top") %>
       <%= render("shared/footer_bottom") %>
     </footer>
+
+    <script type="text/javascript">
+      addthis.layers({
+        'theme' : 'dark',
+        'domain' : 'jrmyward.com',
+        'linkFilter' : function(link, layer) {
+            console.log(link.title + ' - ' + link.url + " - " + layer);
+            return link;
+        },
+        'share' : {
+          'position' : 'left',
+          'services' : 'facebook,google_plusone_share,linkedin,twitter,more',
+          'numPreferredServices' : 5
+        },
+        'whatsnext' : {}
+      });
+    </script>
 
   </body>
 </html>

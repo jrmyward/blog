@@ -16,6 +16,13 @@ describe ApplicationHelper do
     end
   end
 
+  describe "markdown_render" do
+    it "should convert markdown formatted text to html" do
+      text = "# This should be an H1"
+      helper.markdown_render(text).should == "<h1>This should be an H1</h1>\n"
+    end
+  end
+
   describe "nav_link" do
     it "should return an active link" do
       helper.stub(:is_active_link?).and_return(true)
