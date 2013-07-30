@@ -60,6 +60,10 @@ describe Post do
     it "should not allow a different author to edit" do
       @post.editable_by?(@author_2).should be_false
     end
+
+    it "should handle nil users" do
+      @post.editable_by?(nil).should be_false
+    end
   end
 
   # it "assigns tags to a post" do
