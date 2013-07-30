@@ -1,41 +1,13 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :slug %><br>
-    <%= f.text_field :slug %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :abstract %><br>
-    <%= f.text_area :abstract %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :published_at %><br>
-    <%= f.datetime_select :published_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= f.input :title %>
+<%= f.input :description, :as => :text, :input_html => {:class => 'span9', :rows => 5} %>
+<%= f.input :abstract, :as => :text, :input_html => {:class => 'span9', :rows => 5} %>
+<%= f.input :body, :as => :text, :input_html => {:class => 'span9', :rows => 30} %>
+<%= f.input :image, :as => :file, :label => "Upload an image." %>
+<%= f.input :published_at,
+    :as => :datetime, :required => true, :ampm => true,
+    :order => [:month, :day, :year],
+    :start_year => Time.now.year,
+    :end_year => Time.now.year - 6,
+    :default => Time.now.localtime
+%>
+<%= f.association :author, label_method: :full_name, value_method: :id, include_blank: false %>

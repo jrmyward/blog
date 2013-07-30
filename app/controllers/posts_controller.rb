@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
+    page   = Sanitize.clean(params[:page])
+    @posts = Post.paginate(:page => page, :per_page => 10).order("published_at desc")
   end
 
   # GET /posts/1
@@ -49,7 +50,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
     end
 
 end
