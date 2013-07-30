@@ -15,7 +15,11 @@
         </ul>
       </div>
 
-      <!-- TODO: image -->
+      <% if @post.image? %>
+        <div class="post-img picture">
+          <%= image_tag @post.image %>
+        </div>
+      <% end %>
 
       <!-- TODO: post-icon should be a helper -->
       <span class="post-icon standard"><i class="ico-pen circle"></i></span>
@@ -33,6 +37,9 @@
           <ul class="post-meta-items clearfix">
             <li><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </li>
             <li><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></li>
+            <% if @post.editable_by?(current_user) %>
+              <li><%= link_to raw('<i class="icon-pencil"></i> Edit'), edit_post_path(@post), class: "btn btn-small" %></li>
+            <% end %>
           </ul>
         </div>
       </div><!-- .post-content -->

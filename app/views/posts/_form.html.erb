@@ -2,6 +2,7 @@
 <%= f.input :description, :as => :text, :input_html => {:class => 'span9', :rows => 5} %>
 <%= f.input :abstract, :as => :text, :input_html => {:class => 'span9', :rows => 5} %>
 <%= f.input :body, :as => :text, :input_html => {:class => 'span9', :rows => 30} %>
+<%= f.input :image, :as => :file, :label => "Upload an image." %>
 <%= f.input :published_at,
     :as => :datetime, :required => true, :ampm => true,
     :order => [:month, :day, :year],
