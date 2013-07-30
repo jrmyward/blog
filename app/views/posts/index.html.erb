@@ -11,16 +11,7 @@
 <hr />
 <div class="row">
   <div class="span9">
-    <% if @posts.count > 0 %>
-      <% @posts.each do |post| %>
-        <%= render partial: "post", locals: {:post => post} %>
-      <% end %>
-    <% else %>
-      <div class="alert alert-info">
-        No posts were found.
-      </div><!-- .alert alert-info -->
-    <% end %>
-
+    <%= render @posts %>
     <section>
       <%= page_navigation_links(@posts) %>
     </section>

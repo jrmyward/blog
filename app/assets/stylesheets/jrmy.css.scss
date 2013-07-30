@@ -100,7 +100,11 @@ form {
       }
     }
   }
+  .picture {
+    margin-bottom: 20px;
+  }
   .post-content {
+    margin:0;
     .post-meta {
       background: #fcfcfc;
       color: #666;
@@ -109,4 +113,11 @@ form {
       border-top: 1px solid #f6f6f6;
     }
   }
+  .post-icon {
+    margin-top: 20px;
+  }
+}
+
+.post-summary {
+  padding-top: 10px;
 }

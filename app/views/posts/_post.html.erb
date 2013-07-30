@@ -1,7 +1,12 @@
-<div class="post">
-  <div class="post-img picture">
-    <!-- TODO: link to post thru related poster -->
-  </div><!-- .post-img -->
+<div class="post post-summary">
+  <% if post.image? %>
+    <div class="post-img picture">
+      <%= link_to post_path(post) do %>
+        <%= image_tag post.image %>
+        <div class="image-overlay-link"></div>
+      <% end %>
+    </div>
+  <% end %>
   <!-- TODO: post icon should be moved to a helper -->
   <span class="post-icon standard"><i class="ico-pen circle"></i></span>
   <div class="post-content">
@@ -16,6 +21,9 @@
       <ul class="post-meta-items clearfix">
         <li><i class="mini-ico-calendar"></i>On <%= post.published_at.strftime("%d %B, %Y") %> </li>
         <li><i class="mini-ico-user"></i>By <%= link_to post.author.full_name, "#" %></li>
+        <% if post.editable_by?(current_user) %>
+          <li><%= link_to raw('<i class="icon-pencil"></i> Edit'), edit_post_path(post), class: "btn btn-small" %></li>
+        <% end %>
       </ul>
     </div><!-- .post-meta -->
   </div><!-- .post-content -->
