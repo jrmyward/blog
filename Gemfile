@@ -69,6 +69,7 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'pry'
+  gem 'pry-debugger'
   gem 'rack-mini-profiler'
   gem 'rb-fsevent'
 end
