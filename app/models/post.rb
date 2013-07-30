@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :abstract, :body, :description, :published_at, :title
 
   def editable_by?(user)
+    return false if user.nil?
     user.admin? or user.id == author_id
   end
 
