@@ -1,5 +1,5 @@
 class Admins::UsersController < AdminsController
-  prepend_before_filter :authenticate_user!, :except => [:show]
+  prepend_before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update]
 
   # GET /members/users
@@ -55,7 +55,7 @@ class Admins::UsersController < AdminsController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = current_user
+      @user ||= User.find(params[:id])
     end
 
 end

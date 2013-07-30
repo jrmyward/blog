@@ -13,19 +13,19 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_permission
-    @current_permission ||= Permissions.permission_for(current_user)
-  end
-
-  def current_resource
-    nil
-  end
-
   def authorize
     if current_permission.allow?(params[:controller], params[:action], current_resource)
       current_permission.permit_params! params
     else
       redirect_to root_url, alert: "You are not authorized."
     end
+  end
+
+  def current_permission
+    @current_permission ||= Permissions.permission_for(current_user)
+  end
+
+  def current_resource
+    nil
   end
 end
