@@ -133,6 +133,7 @@ describe Admins::UsersController do
         response.should render_template("edit")
       end
     end
+
   end
 
   # describe "DELETE destroy" do

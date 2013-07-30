@@ -8,6 +8,9 @@
 <%= f.input :first_name %>
 <%= f.input :last_name %>
 <%= f.input :email %>
+<% if current_user.admin? %>
+  <%= f.input :role, collection: User::ROLES %>
+<% end %>
 
 <div class="legend-cont">
   <legend>Authorship</legend>
