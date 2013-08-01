@@ -29,6 +29,13 @@ GIT
   specs:
     friendly_id (5.0.0.alpha1)
 
+GIT
+  remote: https://github.com/mbleigh/acts-as-taggable-on.git
+  revision: 2f2768f854324000ea28d441ef3c0a378158ed40
+  specs:
+    acts-as-taggable-on (2.4.2.pre)
+      rails (>= 3, < 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -269,6 +276,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on!
   browser!
   bullet
   capistrano

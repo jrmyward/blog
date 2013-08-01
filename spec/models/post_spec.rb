@@ -8,6 +8,7 @@ describe Post do
   it { should respond_to(:image) }
   it { should respond_to(:published_at) }
   it { should respond_to(:slug) }
+  it { should respond_to(:tag_list) }
   it { should respond_to(:title) }
 
   describe "Lists" do
@@ -66,11 +67,10 @@ describe Post do
     end
   end
 
-  # it "assigns tags to a post" do
-  #   post = create(:post, :tag_list => 'foo, bar')
-  #   post.tag_list.should eq(%w[foo bar])
-
-  # end
+  it "assigns tags to a post" do
+    post = create(:post, :tag_list => 'foo, bar')
+    post.tag_list.should eq(%w[foo bar])
+  end
 
   describe "Validations" do
     [:abstract, :body, :description, :published_at, :title].each do |attr|
