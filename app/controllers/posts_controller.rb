@@ -5,7 +5,13 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     page   = Sanitize.clean(params[:page])
-    @posts = Post.paginate(:page => page, :per_page => 10).order("published_at desc")
+    if params[:tag]
+      unclean_tag = (params[:tag].include? "-") ? params[:tag].gsub!('-', ' ') : params[:tag]
+      @tag   = Sanitize.clean(unclean_tag)
+      @posts = Post.tagged_with(@tag).paginate(:page => page, :per_page => 10).order("published_at desc")
+    else
+      @posts = Post.paginate(:page => page, :per_page => 10).order("published_at desc")
+    end
   end
 
   # GET /posts/1

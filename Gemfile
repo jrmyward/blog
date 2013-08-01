@@ -12,6 +12,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 
 # blog
+gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git'
 gem 'friendly_id', git: 'https://github.com/FriendlyId/friendly_id'
 gem 'redcarpet'
 gem 'will_paginate'
