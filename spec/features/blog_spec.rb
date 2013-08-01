@@ -56,4 +56,17 @@ describe "Blog" do
     end
   end
 
+  describe "Tags" do
+    before(:each) do
+      @post.update_attribute(:tag_list, 'test, Press Release')
+    end
+
+    ['test', 'press-release'].each do |tagname|
+      it "filters articles by tag name" do
+        visit "/blog/tags/#{tagname}"
+        page.should have_content("#{@post.title.titleize}")
+      end
+    end
+  end
+
 end
