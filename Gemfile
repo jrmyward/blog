@@ -13,6 +13,7 @@ gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 
 # blog
 gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git'
+gem 'awesome_nested_set', git: 'https://github.com/collectiveidea/awesome_nested_set.git'
 gem 'friendly_id', git: 'https://github.com/FriendlyId/friendly_id'
 gem 'redcarpet'
 gem 'will_paginate'
