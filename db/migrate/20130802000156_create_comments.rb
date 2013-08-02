@@ -2,8 +2,9 @@ class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
       t.belongs_to :commentable, polymorphic: true
-      t.text :body
+      t.string :name
       t.string :email
+      t.text :body
       t.string :site_url
       t.string :user_ip
       t.string :user_agent
