@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20130802000156) do
   create_table "comments", force: true do |t|
     t.integer  "commentable_id"
     t.string   "commentable_type"
-    t.text     "body"
+    t.string   "name"
     t.string   "email"
+    t.text     "body"
     t.string   "site_url"
     t.string   "user_ip"
     t.string   "user_agent"
