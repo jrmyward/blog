@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  prepend_before_filter :authenticate_user!, :except => [:index, :new, :create]
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
@@ -46,13 +47,13 @@ class CommentsController < ApplicationController
   end
 
   private
+    def load_commentable
+      resource, id = request.path.split('/')[2, 3] # /blog/article/1
+      @commentable = resource.singularize.classify.constantize.find(id)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def comment_params
-      params.require(:comment).permit(:body, :email, :site_url, :user_ip, :user_agent, :referrer, :approved)
     end
 end
