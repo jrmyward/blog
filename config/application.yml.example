@@ -3,3 +3,4 @@
 APP_SECRET_TOKEN: 'SomeRandomString'
 GMAIL_USERNAME: 'user@example.com'
 GMAIL_PASSWORD: 'sekret'
+AKISMET_KEY: 'sekret'
