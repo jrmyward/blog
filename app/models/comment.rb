@@ -1,8 +1,11 @@
 class Comment < ActiveRecord::Base
+  include Rakismet::Model
   belongs_to :commentable, polymorphic: true
 
   scope :published, lambda { where(:approved => true) }
   scope :unapproved, lambda { where(:approved => false) }
+
+  rakismet_attrs :author => :name, :author_email => :email, :author_url => :site_url
 
   validates_presence_of :body, :email, :name
   validates_format_of :email,
