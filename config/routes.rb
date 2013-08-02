@@ -1,7 +1,5 @@
 Blog::Application.routes.draw do
 
-  resources :comments
-
   devise_for :users, :skip => [:sessions, :registrations]
   as :user do
     get 'signin' => 'devise/sessions#new', as: :new_user_session
@@ -21,7 +19,9 @@ Blog::Application.routes.draw do
 
   scope "blog" do
     get 'tags/:tag', to: 'posts#index', as: :tag
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
 
   # Static content
