@@ -36,5 +36,9 @@ module Blog
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
       g.view_specs false
     end
+
+    # Fight Spam
+    config.rakismet.key = ENV['AKISMET_KEY']
+    config.rakismet.url = 'http://jrmyward.com/'
   end
 end
