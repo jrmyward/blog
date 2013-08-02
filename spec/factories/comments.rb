@@ -2,12 +2,9 @@
 
 FactoryGirl.define do
   factory :comment do
-    body "MyText"
-    email "MyString"
-    site_url "MyString"
-    user_ip "MyString"
-    user_agent "MyString"
-    referrer "MyString"
-    approved false
+    name "Doctor Doom"
+    email Faker::Internet.email
+    body "Hello World"
+    site_url 'example.com'
   end
 end
