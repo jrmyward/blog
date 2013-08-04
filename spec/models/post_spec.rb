@@ -6,6 +6,7 @@ describe Post do
   it { should respond_to(:body) }
   it { should respond_to(:description) }
   it { should respond_to(:image) }
+  it { should respond_to(:is_commentable) }
   it { should respond_to(:published_at) }
   it { should respond_to(:slug) }
   it { should respond_to(:tag_list) }

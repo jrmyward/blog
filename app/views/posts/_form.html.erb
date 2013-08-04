@@ -16,3 +16,4 @@
 <% elsif current_user.author? %>
   <%= f.hidden_field :author_id, value: current_user.id %>
 <% end %>
+<%= f.input :is_commentable, :label => "Commentable?", :hint => "check to allow comments" %>
