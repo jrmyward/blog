@@ -19,6 +19,10 @@ class Post < ActiveRecord::Base
     user.admin? or user.id == author_id
   end
 
+  def is_commentable?
+    is_commentable
+  end
+
   def last_published?
     self == self.class.published.last
   end
