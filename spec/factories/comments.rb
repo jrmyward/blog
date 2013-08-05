@@ -6,6 +6,5 @@ FactoryGirl.define do
     email Faker::Internet.email
     body "Hello World"
     site_url 'example.com'
-    is_commentable true
   end
 end
