@@ -51,9 +51,13 @@
 
     <hr>
 
-    <div class="title-out"><h3>Leave a Comment</h3></div>
+    <% if @post.is_commentable %>
+      <div class="title-out"><h3>Leave a Comment</h3></div>
 
-    <hr>
+      <hr>
+
+      <%= render "comments/form" %>
+    <% end %>
   </div><!-- .span9 -->
 
   <div class="span3">

@@ -16,6 +16,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    @commentable = @post
+    @comment = Comment.new
   end
 
   # GET /posts/new
