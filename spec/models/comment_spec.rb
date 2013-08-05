@@ -10,26 +10,21 @@ describe Comment do
   it { should respond_to(:referrer) }
   it { should respond_to(:approved) }
 
-  it "sets request based attributes" do
-    comment = FactoryGirl.build(:comment)
-    comment.request = OpenStruct.new(remote_ip: 'ip', env: { 'HTTP_USER_AGENT' => 'agent', 'HTTP_REFERER' => 'referrer' })
-    comment.user_ip.should eq('ip')
-    comment.user_agent.should eq('agent')
-    comment.referrer.should eq('referrer')
-  end
-
   describe "Akismet" do
+    let(:request) { OpenStruct.new(remote_ip: '127.0.0.1', env: { 'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/20100101 Firefox/17.0', 'HTTP_REFERER' => 'http://jrmyward.dev/blog/posts/hello-world' }) }
+
     it "should identify spam" do
-      comment = FactoryGirl.build(:comment, name: "Porn Master", body: "Porn plus Viagra is awesome!")
-      comment.request = OpenStruct.new(remote_ip: '127.0.0.1', env: { 'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/20100101 Firefox/17.0', 'HTTP_REFERER' => 'https://myfitrx.dev/blog/articles/hello-world' })
+      comment = FactoryGirl.build(:comment, name: "Porn Master", site_url: "http://pornmasters.com", body: "Porn plus Viagra is awesome!",
+                                  user_ip: request.remote_ip, user_agent: request.env['HTTP_USER_AGENT'],
+                                  referrer: request.env['HTTP_REFERER'])
       comment.spam?.should be_true
       comment.save
       comment.approved.should be_false
     end
 
     it "should identify ham" do
-      comment = FactoryGirl.build(:comment)
-      comment.request = OpenStruct.new(remote_ip: '127.0.0.1', env: { 'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/20100101 Firefox/17.0', 'HTTP_REFERER' => 'https://myfitrx.dev/blog/articles/hello-world' })
+      comment = FactoryGirl.build(:comment, user_ip: request.remote_id, user_ip: request.remote_ip,
+                                  user_agent: request.env['HTTP_USER_AGENT'], referrer: request.env['HTTP_REFERER'])
       comment.spam?.should be_false
       comment.save
       comment.approved.should be_true

@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   scope :published, lambda { where(:approved => true) }
   scope :unapproved, lambda { where(:approved => false) }
 
-  rakismet_attrs :author => :name, :author_email => :email, :author_url => :site_url
+  rakismet_attrs :author => :name, :author_email => :email, :author_url => :site_url, :author_ip => :user_ip
 
   validates_presence_of :body, :email, :name
   validates_format_of :email,
@@ -14,12 +14,6 @@ class Comment < ActiveRecord::Base
     :if => "email.present?"
 
   before_create :check_for_spam
-
-  def request=(request)
-    self.user_ip    = request.remote_ip
-    self.user_agent = request.env['HTTP_USER_AGENT']
-    self.referrer   = request.env['HTTP_REFERER']
-  end
 
   private
 

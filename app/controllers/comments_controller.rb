@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  prepend_before_filter :authenticate_user!, :except => [:index, :new, :create]
+  prepend_before_action :authenticate_user!, :except => [:index, :new, :create]
+  prepend_before_action :load_commentable, only: [:create, :update]
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
@@ -8,8 +9,8 @@ class CommentsController < ApplicationController
   end
 
   # GET /comments/1
-  def show
-  end
+  # def show
+  # end
 
   # GET /comments/new
   def new
@@ -22,13 +23,20 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    @comment = Comment.new(params[:comment].to_h)
 
     if @comment.save
-      redirect_to @comment, notice: 'Comment was successfully created.'
+      if @comment.approved?
+        flash[:notice] = "Thanks for the comment!"
+      else
+        flash[:error] = "Unfortunately this comment is considered spam by Akismet. " +
+                      "It will show up once it has been approved by the administrator."
+      end
+      redirect_to @commentable
     else
-      render action: 'new'
+      redirect_to @commentable
     end
+
   end
 
   # PATCH/PUT /comments/1
@@ -47,9 +55,22 @@ class CommentsController < ApplicationController
   end
 
   private
+
+    def merge_params
+      params[:comment].merge!({
+        user_ip: request.remote_ip,
+        user_agent: request.env['HTTP_USER_AGENT'],
+        referrer: request.env['HTTP_REFERER'],
+        approved: false,
+        commentable_id: @commentable.id,
+        commentable_type: @commentable.class.to_s
+      })
+    end
+
     def load_commentable
       resource, id = request.path.split('/')[2, 3] # /blog/article/1
-      @commentable = resource.singularize.classify.constantize.find(id)
+      @commentable = resource.singularize.classify.constantize.friendly.find(id)
+      merge_params
     end
 
     # Use callbacks to share common setup or constraints between actions.
