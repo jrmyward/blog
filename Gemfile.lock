@@ -30,13 +30,6 @@ GIT
     friendly_id (5.0.0.alpha1)
 
 GIT
-  remote: https://github.com/collectiveidea/awesome_nested_set.git
-  revision: 3afc06f540613b0dc850da90786cff7a86a3ef4b
-  specs:
-    awesome_nested_set (3.0.0.rc.1)
-      activerecord (~> 4.0.0)
-
-GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
   revision: 2f2768f854324000ea28d441ef3c0a378158ed40
   specs:
@@ -71,6 +64,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     ansi (1.4.3)
     arel (4.0.0)
     atomic (1.1.10)
@@ -285,7 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on!
-  awesome_nested_set!
+  ancestry
   browser!
   bullet
   capistrano
