@@ -121,3 +121,31 @@ form {
 .post-summary {
   padding-top: 10px;
 }
+
+.comments {
+  float:left;
+  width:100%;
+  line-height: 20px;
+  background: #fff;
+  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.35);
+     -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.35);
+        box-shadow: 0px 1px 1px rgba(0,0,0,.35);
+  .comment {
+    border-top: 1px solid #E7E7E7;
+    margin:20px;
+    padding-top: 20px;
+    position: relative;
+    .avatar {
+      float:left;
+    }
+    .main {
+      margin-left: 80px;
+      .headline {
+        padding: 5px 0 8px 0;
+      }
+    }
+  }
+  .nested_comments {
+    margin-left: 80px;
+  }
+}

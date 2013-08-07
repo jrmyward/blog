@@ -59,9 +59,9 @@
       <% if @post.comments.count > 0 %>
         <hr>
 
-        <div class="comments-sec">
+        <div class="comments">
           <%= nested_comments @post.comments.arrange(:order => "created_at asc") %>
-        </div><!-- .comments-sec -->
+        </div><!-- .comments -->
 
         <div class="clear"></div>
       <% end %>
