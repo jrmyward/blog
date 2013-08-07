@@ -1,0 +1,16 @@
+<%= div_for comment do %>
+  <div class="avatar">
+    <%= image_tag gravatar_url(comment), :size => "64x64", :alt => "Avatar" %>
+  </div>
+  <div class="main">
+    <%= render "comments/comment_headline", :comment => comment %>
+    <div class="comment_content">
+      <%= format_comment(comment) %>
+      <div class="actions">
+        <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment) %>
+        <%= link_to "Delete", polymorphic_path([@commentable, comment]), :method => :delete, :remote => true  %>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+<% end %>
