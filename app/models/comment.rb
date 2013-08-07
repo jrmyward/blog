@@ -1,5 +1,7 @@
 class Comment < ActiveRecord::Base
   include Rakismet::Model
+  has_ancestry
+
   belongs_to :commentable, polymorphic: true
 
   scope :published, lambda { where(:approved => true) }
