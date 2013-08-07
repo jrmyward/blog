@@ -149,3 +149,8 @@ form {
     margin-left: 80px;
   }
 }
+
+.comments:first-child {
+  border-top:none;
+  padding-top: 0px;
+}
