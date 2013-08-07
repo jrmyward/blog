@@ -7,5 +7,6 @@ FactoryGirl.define do
     abstract "People used to think the world was flat."
     body "People used to think the world was flat. The world is actually a sphere."
     published_at Time.now.utc
+    is_commentable true
   end
 end

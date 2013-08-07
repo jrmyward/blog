@@ -6,10 +6,13 @@ describe Permissions::AuthorPermission do
   let(:other_post) { build(:post, author_id: 357) }
   subject { Permissions.permission_for(user) }
 
-  it "allows sessions" do
-    should authorize("devise/sessions", :new)
-    should authorize("devise/sessions", :create)
-    should authorize("devise/sessions", :destroy)
+  it "allows comments" do
+    should authorize(:comments, :index)
+    should authorize(:comments, :new)
+    should authorize(:comments, :create)
+    should_not authorize(:comments, :edit)
+    should_not authorize(:comments, :update)
+    should_not authorize(:comments, :destroy)
   end
 
   it "allows posts" do
@@ -27,6 +30,13 @@ describe Permissions::AuthorPermission do
     # should allow_param(:topic, :name)
     # should_not allow_param(:topic, :sticky)
   end
+
+  it "allows sessions" do
+    should authorize("devise/sessions", :new)
+    should authorize("devise/sessions", :create)
+    should authorize("devise/sessions", :destroy)
+  end
+
 
   it "allows users" do
     should_not authorize("admins/users", :new)

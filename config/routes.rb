@@ -19,7 +19,9 @@ Blog::Application.routes.draw do
 
   scope "blog" do
     get 'tags/:tag', to: 'posts#index', as: :tag
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
 
   # Static content
