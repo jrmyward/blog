@@ -1,7 +1,5 @@
 <%= div_for comment do %>
-  <div class="avatar">
-    <%= image_tag gravatar_url(comment), :size => "64x64", :alt => "Avatar" %>
-  </div>
+  <%= image_tag gravatar_url(comment, 50), alt: "Avatar", class: "avatar img-polaroid" %>
   <div class="main">
     <%= render "comments/comment_headline", :comment => comment %>
     <div class="comment_content">
