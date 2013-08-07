@@ -1,0 +1,21 @@
+<% content_for :title,  "Blog" %>
+
+<%= render :partial => "shared/page_title",
+  :locals => {:title => "Blog", :icon_class => "ico-pencil"} %>
+
+<div class="row">
+  <div class="span12 ">
+    <%= link_to raw('<i class="icon-plus icon-white"></i> New Post'), new_post_path, class: "btn btn-primary pull-left" %>
+  </div><!-- .span12 -->
+</div><!-- .row -->
+<hr />
+<div class="row">
+  <div class="span9">
+    <%= render @posts %>
+    <section>
+      <%= page_navigation_links(@posts) %>
+    </section>
+  </div><!-- .span9 -->
+</div><!-- .row -->
+
+

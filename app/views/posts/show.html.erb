@@ -1,0 +1,80 @@
+<% content_for :title,  @post.title %>
+<% content_for :description, @post.description %>
+
+<%= render :partial => "shared/page_title",
+  :locals => {:title => @post.title, :icon_class => "ico-pencil"} %>
+
+<div class="row">
+  <div class="span9">
+
+    <div class="post post-page">
+      <div class="post-meta clearfix">
+        <ul class="post-meta-items clearfix">
+          <li><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </li>
+          <li><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></li>
+        </ul>
+      </div>
+
+      <% if @post.image? %>
+        <div class="post-img picture">
+          <%= image_tag @post.image %>
+        </div>
+      <% end %>
+
+      <!-- TODO: post-icon should be a helper -->
+      <span class="post-icon standard"><i class="ico-pen circle"></i></span>
+
+      <div class="post-content">
+        <div class="post-title">
+          <h2><%= @post.title.titleize %></h2>
+        </div><!-- .post-title -->
+
+        <div class="post-description">
+          <%= markdown_render(@post.body) %>
+        </div><!-- .post-description -->
+
+        <div class="post-meta clearfix">
+          <ul class="post-meta-items clearfix">
+            <li><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </li>
+            <li><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></li>
+            <% if @post.tag_list.count > 0 %>
+              <li><i class="mini-ico-tags"></i> <%= raw @post.tag_list.map { |t| link_to t, tag_path(t.parameterize) }.join(', ') %></li>
+            <% end %>
+            <% if @post.editable_by?(current_user) %>
+              <li><%= link_to raw('<i class="icon-pencil"></i> Edit'), edit_post_path(@post), class: "btn btn-small" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div><!-- .post-content -->
+
+    </div><!-- .post post-page -->
+
+    <hr>
+
+    <% if @post.is_commentable %>
+      <div class="title-out">
+        <h3><%= 'Comment'.pluralize(@post.comments.count) %> <span class="comments-amount">(<%= @post.comments.count %>)</span></h3>
+      </div>
+
+      <% if @post.comments.count > 0 %>
+        <hr>
+
+        <div class="comments">
+          <%= nested_comments @post.comments.arrange(:order => "created_at asc") %>
+        </div><!-- .comments -->
+
+        <div class="clear"></div>
+      <% end %>
+
+      <hr>
+
+      <div class="title-out"><h3>Leave a Comment</h3></div>
+
+      <%= render "comments/form" %>
+    <% end %>
+  </div><!-- .span9 -->
+
+  <div class="span3">
+
+  </div><!-- .span3 -->
+</div><!-- .row -->

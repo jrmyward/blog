@@ -1,5 +1,5 @@
 class Admins::UsersController < AdminsController
-  prepend_before_filter :authenticate_user!, :except => [:show]
+  prepend_before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update]
 
   # GET /members/users
@@ -37,7 +37,7 @@ class Admins::UsersController < AdminsController
 
   # PATCH/PUT /members/users/1
   def update
-    if @user.update_with_password(user_params)
+    if @user.update_with_password(params[:user])
       # Sign in the user by passing validation in case his password changed
       sign_in @user, :bypass => true if @user.id == current_user.id
       redirect_to edit_user_path(@user), :notice => "User was successfully updated."
@@ -55,14 +55,7 @@ class Admins::UsersController < AdminsController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = current_user
+      @user ||= User.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(
-        :first_name, :last_name, :email,
-        :password, :password_confirm, :current_password
-      )
-    end
 end

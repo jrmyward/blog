@@ -23,6 +23,21 @@
 
         <div class="nav-collapse collapse">
           <ul class="nav">
+            <% if user_signed_in? and (current_user.author? or current_user.admin?) %>
+              <li class="dropdown">
+                <%= link_to '#', "data-toggle" => "dropdown", :class => "dropdown-toggle"  do %>
+                  <span>Blog</span>
+                  <b class="caret"></b>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <li><%= nav_link "Post List", posts_path %></li>
+                  <li class="divider"></li>
+                  <li><%= nav_link "New Post", new_post_path %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= nav_link "Blog", posts_path, /\Ablog/ %></li>
+            <% end %>
             <% if user_signed_in? %>
               <li class="divider-vertical"></li>
               <li id="nav-user" class="dropdown">
