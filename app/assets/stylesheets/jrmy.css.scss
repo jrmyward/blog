@@ -145,12 +145,20 @@ form {
       }
     }
   }
+  .comment:first-child {
+    border-top:none;
+    padding-top: 0px;
+  }
   .nested_comments {
     margin-left: 80px;
+    .comment:first-child{
+      border-top: 1px solid #E7E7E7;
+      padding-top: 20px;
+    }
   }
 }
 
-.comments:first-child {
+.comments .comment:first-child {
   border-top:none;
   padding-top: 0px;
 }
