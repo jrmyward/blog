@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
-  prepend_before_action :authenticate_user!, :except => [:index, :new, :create]
-  prepend_before_action :load_commentable, only: [:create, :update]
+  prepend_before_action :merge_params, only: [:create, :update]
+  prepend_before_action :load_commentable, only: [:new, :create, :edit, :update]
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  prepend_before_action :authenticate_user!, :except => [:index, :new, :create]
 
   # GET /comments
   def index
@@ -14,7 +15,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @comment = Comment.new(parent_id: params[:parent_id])
   end
 
   # GET /comments/1/edit
@@ -70,7 +71,6 @@ class CommentsController < ApplicationController
     def load_commentable
       resource, id = request.path.split('/')[2, 3] # /blog/article/1
       @commentable = resource.singularize.classify.constantize.friendly.find(id)
-      merge_params
     end
 
     # Use callbacks to share common setup or constraints between actions.
