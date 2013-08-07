@@ -1,0 +1,17 @@
+<%= simple_form_for [@commentable, @comment], :html => { :class => 'well form-horizontal' } do |f| %>
+  <% if @comment.errors.any? %>
+    <div class="alert alert-block alert-error">
+      <a class="close" data-dismiss="alert">×</a>
+      <h4 class="alert-heading">Oh Snap!</h4>
+      We found <%= pluralize(@comment.errors.count, "problem") %> with the form:
+    </div>
+  <% end %>
+  <%= f.hidden_field :parent_id %>
+  <%= f.input :name, :required => true %>
+  <%= f.input :email, :required => true, :hint => 'Not published' %>
+  <%= f.input :site_url %>
+  <%= f.input :body, :label => "Comment", :as => :text, :input_html => {:class => 'span6', :rows => 10} %>
+  <div class="form-actions">
+    <%= f.submit "Submit Comment", :class => "btn btn-primary" %>
+  </div>
+<% end %>

@@ -11,8 +11,17 @@ gem 'coffee-rails', '~> 4.0.0'
 # authentication
 gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 
+# blog
+gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git'
+gem 'ancestry'
+gem 'friendly_id', git: 'https://github.com/FriendlyId/friendly_id'
+gem 'rakismet'
+gem 'redcarpet'
+gem 'will_paginate'
+
 # database
 gem 'pg'
+gem 'sanitize'
 
 # deployment
 gem 'capistrano', group: :development
@@ -23,6 +32,10 @@ gem 'figaro'
 
 # forms
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
+
+# image manipulation
+gem 'rmagick'
+gem 'carrierwave'
 
 # javascript
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -59,6 +72,7 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'pry'
+  gem 'pry-debugger'
   gem 'rack-mini-profiler'
   gem 'rb-fsevent'
 end
