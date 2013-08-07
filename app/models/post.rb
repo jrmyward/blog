@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :author, :class_name => "User"
+  has_many :comments, as: :commentable, :dependent => :destroy
 
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -16,6 +17,10 @@ class Post < ActiveRecord::Base
   def editable_by?(user)
     return false if user.nil?
     user.admin? or user.id == author_id
+  end
+
+  def is_commentable?
+    is_commentable
   end
 
   def last_published?

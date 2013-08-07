@@ -13,7 +13,9 @@ gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 
 # blog
 gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git'
+gem 'ancestry'
 gem 'friendly_id', git: 'https://github.com/FriendlyId/friendly_id'
+gem 'rakismet'
 gem 'redcarpet'
 gem 'will_paginate'
 

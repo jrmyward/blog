@@ -51,9 +51,27 @@
 
     <hr>
 
-    <div class="title-out"><h3>Leave a Comment</h3></div>
+    <% if @post.is_commentable %>
+      <div class="title-out">
+        <h3><%= 'Comment'.pluralize(@post.comments.count) %> <span class="comments-amount">(<%= @post.comments.count %>)</span></h3>
+      </div>
 
-    <hr>
+      <% if @post.comments.count > 0 %>
+        <hr>
+
+        <div class="comments">
+          <%= nested_comments @post.comments.arrange(:order => "created_at asc") %>
+        </div><!-- .comments -->
+
+        <div class="clear"></div>
+      <% end %>
+
+      <hr>
+
+      <div class="title-out"><h3>Leave a Comment</h3></div>
+
+      <%= render "comments/form" %>
+    <% end %>
   </div><!-- .span9 -->
 
   <div class="span3">

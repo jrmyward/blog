@@ -16,6 +16,7 @@ module Permissions
       allow :posts, [:edit, :update] do |post|
         post.author_id == user.id
       end
+      allow :comments, [:index, :new, :create]
     end
   end
 end
