@@ -11,7 +11,7 @@
       <div class="post-meta clearfix">
         <ul class="post-meta-items clearfix">
           <li><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </li>
-          <li><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></li>
+          <li><i class="mini-ico-user"></i>By <%= link_to_author(@post.author) %></li>
         </ul>
       </div>
 
@@ -36,7 +36,7 @@
         <div class="post-meta clearfix">
           <ul class="post-meta-items clearfix">
             <li><i class="mini-ico-calendar"></i>On <%= @post.published_at.strftime("%d %B, %Y") %> </li>
-            <li><i class="mini-ico-user"></i>By <%= link_to @post.author.full_name, "#" %></li>
+            <li><i class="mini-ico-user"></i>By <%= link_to_author(@post.author) %></li>
             <% if @post.tag_list.count > 0 %>
               <li><i class="mini-ico-tags"></i> <%= raw @post.tag_list.map { |t| link_to t, tag_path(t.parameterize) }.join(', ') %></li>
             <% end %>
