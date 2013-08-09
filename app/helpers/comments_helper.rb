@@ -1,5 +1,9 @@
 module CommentsHelper
 
+  def append_new_comment(comment)
+    render(comment) + content_tag(:div, "", :class => "nested_comments")
+  end
+
   def fix_url(url)
     if url =~ /^https?\:\/\//
       url
@@ -25,4 +29,5 @@ module CommentsHelper
       render(comment) + content_tag(:div, nested_comments(sub_comments), :class => "nested_comments")
     end.join.html_safe
   end
+
 end

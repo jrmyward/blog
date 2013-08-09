@@ -1,12 +1,18 @@
 <% if @comment.parent_id.present? %>
   var container = $("#<%= dom_id(@comment.parent) %>").next(".nested_comments");
 <% else %>
-  var container = $("#comments");
+  var container = $(".comments");
 <% end %>
 
 <% if @comment.errors.present? %>
   $(".alert.alert-block.alert-error").remove();
-  container.find("form").prepend("<%= escape_javascript error_messages_for(@comment) %>");
+  container.find("form").prepend("<%= j error_messages_for(@comment) %>");
 <% else %>
-  container.children("#new_comment").replaceWith("<%= escape_javascript render(@comment) %>");
+  $(".nested_comments form, .alert.alert-block.alert-warn").remove();
+  $("#comment_form_prime form")[0].reset();
+  <% if @comment.approved? %>
+    container.append("<%= j append_new_comment(@comment) %>");
+  <% else %>
+    container.append("<%= j marked_as_spam(@comment) %>");
+  <% end %>
 <% end %>
