@@ -59,28 +59,28 @@ describe "Blog" do
   describe "Comments" do
     it "allows valid comments" do
       visit post_path(@post)
-      fill_in "Name", :with => "Jon Test"
-      fill_in "Email", :with => "jd@example.com"
-      fill_in "Comment", :with => "Great Job! I learned a lot."
+      fill_in "Name", with: "Jon Test"
+      fill_in "Email", with: "jd@example.com"
+      fill_in "Comment", with: "Great Job! I learned a lot."
       click_on "Submit Comment"
-      page.should have_content("Thanks for the comment!")
+      page.should have_content("Great Job! I learned a lot.")
     end
 
     it "blocks spammy comments" do
       visit post_path(@post)
-      fill_in "Name", :with => "Jon Test"
-      fill_in "Email", :with => "jd@example.com"
-      fill_in "Site url", :with => "eroticbeauties.net"
-      fill_in "Comment", :with => "Porn with Viagra is awesome!"
+      fill_in "Name", with: "Jon Test"
+      fill_in "Email", with: "jd@example.com"
+      fill_in "Site url", with: "eroticbeauties.net"
+      fill_in "Comment", with: "Porn with Viagra is awesome!"
       click_on "Submit Comment"
       page.should have_content("Unfortunately this comment is considered spam by Akismet.")
     end
 
-    # it "displays error with invalid comment", focus:true do
-    #   visit article_path(@post)
-    #   click_on "Submit Comment"
-    #   page.should have_content("Oh Snap")
-    # end
+    it "displays error with invalid comment" do
+      visit post_path(@post)
+      click_on "Submit Comment"
+      page.should have_content("Oh Snap")
+    end
   end
 
   describe "Tags" do

@@ -5,7 +5,7 @@
     <div class="comment_content">
       <%= format_comment(comment) %>
       <div class="actions">
-        <%= link_to raw('<i class="mini-ico-share-alt"></i> Reply'), new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class: "btn btn-mini" %>
+        <%= link_to raw('<i class="mini-ico-share-alt"></i> Reply'), new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class: "btn btn-mini", remote: true %>
       </div>
     </div>
   </div>

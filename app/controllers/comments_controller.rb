@@ -28,14 +28,22 @@ class CommentsController < ApplicationController
 
     if @comment.save
       if @comment.approved?
-        flash[:notice] = "Thanks for the comment!"
+        # @comment.notify_other_commenters
       else
         flash[:error] = "Unfortunately this comment is considered spam by Akismet. " +
                       "It will show up once it has been approved by the administrator."
       end
-      redirect_to @commentable
-    else
-      redirect_to @commentable
+    end
+
+    respond_to do |format|
+      format.html do
+        if @comment.errors.present?
+          render :new
+        else
+          redirect_to @commentable, :view => "comments"
+        end
+      end
+      format.js
     end
 
   end

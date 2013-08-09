@@ -56,6 +56,13 @@ form {
   }
 }
 
+.alert.alert-error {
+  ul {
+    list-style: disc inside;
+    margin-left: 10px;
+  }
+}
+
 
 .signin_container {
   margin: 0 auto;
@@ -154,6 +161,22 @@ form {
     .comment:first-child{
       border-top: 1px solid #E7E7E7;
       padding-top: 20px;
+    }
+    form {
+      margin-right: 20px;
+      textarea.span6 {
+        width:446px;
+      }
+    }
+    .nested_comments {
+      form {
+        textarea.span6 {
+          max-width:375px;
+        }
+      }
+      .nested_comments {
+        margin-left: 0px;
+      }
     }
   }
 }
