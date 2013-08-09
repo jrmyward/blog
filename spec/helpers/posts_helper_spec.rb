@@ -11,5 +11,25 @@ require 'spec_helper'
 #   end
 # end
 describe PostsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "link_to_author" do
+    before(:each) do
+      @author = FactoryGirl.create(:user, role: "author")
+    end
+
+    describe "when they have a google plus page" do |variable|
+      it "should link to an author's google plus page" do
+        @author.update_attribute(:gplus, '12345')
+        helper.link_to_author(@author).should == "<a href=\"https://plus.google.com/#{@author.gplus}?rel=author\" target=\"_blank\">#{@author.full_name}</a>"
+      end
+    end
+
+    describe "when they don't have a google plus page" do
+      it "should NOT link to an author's google plus page" do
+        @author.update_attribute(:gplus, nil)
+        helper.link_to_author(@author).should == "#{@author.full_name}"
+      end
+    end
+  end
+
 end
