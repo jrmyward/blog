@@ -25,25 +25,21 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(params[:comment].to_h)
-    @comment.save
-    # if @comment.save
-    #   if @comment.approved?
-    #     flash[:notice] = "Thanks for the comment!"
-    #   else
-    #     flash[:error] = "Unfortunately this comment is considered spam by Akismet. " +
-    #                   "It will show up once it has been approved by the administrator."
-    #   end
-    #   redirect_to @commentable
-    # else
-    #   redirect_to @commentable
-    # end
+
+    if @comment.save
+      if @comment.approved?
+        # @comment.notify_other_commenters
+      else
+        flash[:error] = "Unfortunately this comment is considered spam by Akismet. " +
+                      "It will show up once it has been approved by the administrator."
+      end
+    end
 
     respond_to do |format|
       format.html do
         if @comment.errors.present?
           render :new
         else
-          # @comment.notify_other_commenters
           redirect_to @commentable, :view => "comments"
         end
       end
