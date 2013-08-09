@@ -9,7 +9,7 @@
       <%= comment.name %>
     <% end %>
     <% if params[:controller] != "posts" %>
-      on <%= link_to comment.post.title, posts_path(comment.commentable, :view => "comments", :anchor => "comment_#{comment.id}") %>
+      on <%= link_to comment.commentable.title, posts_path(comment.commentable, :view => "comments", :anchor => "comment_#{comment.id}") %>
     <% end %>
   </span>
   <span class="pull-right">
