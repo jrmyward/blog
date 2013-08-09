@@ -60,7 +60,7 @@
         <hr>
 
         <div class="comments">
-          <%= nested_comments @post.comments.arrange(:order => "created_at asc") %>
+          <%= nested_comments @post.comments.published.arrange(:order => "created_at asc") %>
         </div><!-- .comments -->
 
         <div class="clear"></div>
@@ -70,7 +70,9 @@
 
       <div class="title-out"><h3>Leave a Comment</h3></div>
 
-      <%= render "comments/form" %>
+      <div id="comment_form_prime">
+        <%= render "comments/form" %>
+      </div><!-- #comment_form_prime -->
     <% end %>
   </div><!-- .span9 -->
 
