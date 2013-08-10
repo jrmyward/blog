@@ -1,7 +1,7 @@
 <% if @comment.parent_id.present? %>
   var container = $("#<%= dom_id(@comment.parent) %>").next(".nested_comments");
 <% else %>
-  var container = $(".comments");
+  var container = $("#comments");
 <% end %>
 
 <% if @comment.errors.present? %>
