@@ -89,6 +89,7 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+    chronic (0.9.1)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -237,6 +238,8 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
+    sitemap_generator (4.1.1)
+      builder
     slop (3.4.5)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -270,6 +273,9 @@ GEM
     uniform_notifier (1.2.0)
     warden (1.2.3)
       rack (>= 1.0)
+    whenever (0.8.4)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
     will_paginate (3.0.4)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -314,10 +320,12 @@ DEPENDENCIES
   shoulda-matchers
   simple_form!
   simplecov (>= 0.4.2)
+  sitemap_generator
   timecop
   turbolinks
   turn
   uglifier (>= 1.3.0)
   unicorn
+  whenever
   will_paginate
   yard

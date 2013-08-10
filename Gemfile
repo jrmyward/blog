@@ -30,6 +30,9 @@ gem 'unicorn'
 # configuration
 gem 'figaro'
 
+# cron
+gem 'whenever', :require => false
+
 # forms
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
@@ -47,6 +50,9 @@ gem 'turbolinks'
 # json
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 1.2'
+
+# sitemap
+gem 'sitemap_generator'
 
 # views
 gem 'browser', :git => 'git://github.com/fnando/browser'
