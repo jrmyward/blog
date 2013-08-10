@@ -86,6 +86,8 @@ end
 group :test do
   # gem 'guard-spork'
   gem 'shoulda-matchers'
+  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
   gem 'poltergeist'
   gem 'factory_girl_rails'
   gem 'faker'
