@@ -1,4 +1,4 @@
-<%= simple_form_for [@commentable, @comment], :html => { :class => 'well form-horizontal' } do |f| %>
+<%= simple_form_for [@commentable, @comment], :html => { id: nil, class: 'well form-horizontal', remote: true } do |f| %>
   <% if @comment.errors.any? %>
     <div class="alert alert-block alert-error">
       <a class="close" data-dismiss="alert">×</a>

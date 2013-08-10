@@ -23,4 +23,14 @@ class Comment < ActiveRecord::Base
     self.approved = !self.spam?
     true
   end
+
+  # def notify_other_commenters
+  #   users_to_notify.each do |user|
+  #     Mailer.comment_response(self, user).deliver
+  #   end
+  # end
+
+  # def users_to_notify
+  #   ancestors.map(&:user).compact.select { |u| u.email.present? && u.email_on_reply? && u != user }
+  # end
 end

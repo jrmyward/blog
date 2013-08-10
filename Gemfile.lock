@@ -85,10 +85,16 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.0.0)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
+    chronic (0.9.1)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -224,6 +230,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    rubyzip (0.9.9)
     sanitize (2.0.6)
       nokogiri (>= 1.4.4)
     sass (3.2.9)
@@ -231,12 +238,19 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    selenium-webdriver (2.34.0)
+      childprocess (>= 0.2.5)
+      multi_json (~> 1.0)
+      rubyzip
+      websocket (~> 1.0.4)
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
+    sitemap_generator (4.1.1)
+      builder
     slop (3.4.5)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -270,6 +284,10 @@ GEM
     uniform_notifier (1.2.0)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket (1.0.7)
+    whenever (0.8.4)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
     will_paginate (3.0.4)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -285,6 +303,7 @@ DEPENDENCIES
   bullet
   capistrano
   capybara
+  capybara-webkit
   carrierwave
   coffee-rails (~> 4.0.0)
   database_cleaner
@@ -311,13 +330,16 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   sanitize
   sass-rails (~> 4.0.0)
+  selenium-webdriver
   shoulda-matchers
   simple_form!
   simplecov (>= 0.4.2)
+  sitemap_generator
   timecop
   turbolinks
   turn
   uglifier (>= 1.3.0)
   unicorn
+  whenever
   will_paginate
   yard

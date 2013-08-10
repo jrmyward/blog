@@ -68,6 +68,13 @@ describe Post do
     end
   end
 
+  describe "is_commentable?" do
+    it "should allow comments" do
+      allows_comments = create(:post, is_commentable: true)
+      allows_comments.is_commentable?.should be_true
+    end
+  end
+
   it "assigns tags to a post" do
     post = create(:post, :tag_list => 'foo, bar')
     post.tag_list.should eq(%w[foo bar])
