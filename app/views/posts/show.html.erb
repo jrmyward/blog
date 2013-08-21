@@ -1,5 +1,8 @@
 <% content_for :title,  @post.title %>
 <% content_for :description, @post.description %>
+<% content_for :og_image, "#{image_url @post.image}" if @post.image? %>
+<% content_for :meta_author, @post.author.full_name %>
+<% content_for :meta_twitter_creator, @post.author.twitter_handle %>
 
 <%= render :partial => "shared/page_title",
   :locals => {:title => @post.title, :icon_class => "ico-pencil"} %>
