@@ -17,5 +17,6 @@
  *= require theme/fancybox
  *= require theme/style
  *= require jrmy
+ *= require posts
  *= require responsive
  */
