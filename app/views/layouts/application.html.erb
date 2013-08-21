@@ -32,7 +32,7 @@
     <meta name="twitter:creator" content="<%= content_for?(:meta_twitter_creator) ? "#{yield(:meta_twitter_creator)}" : "@jrmyward" %>" />
     <!-- end: Twitter Card -->
 
-    <link rel="canonical" href="<%= content_for?(:canonical) ? "#{yield(:canonical)}" : "#{request.fullpath}" %>">
+    <link rel="canonical" href="<%= content_for?(:canonical) ? "#{yield(:canonical)}" : "#{request.original_url}" %>">
 
     <!-- start: CSS -->
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
