@@ -1,5 +1,6 @@
 <% content_for :title,  @post.title %>
 <% content_for :description, @post.description %>
+<% content_for :og_url, request.original_url %>
 <% content_for :og_image, "#{image_url @post.image}" if @post.image? %>
 <% content_for :meta_author, @post.author.full_name %>
 <% content_for :meta_twitter_creator, @post.author.twitter_handle %>
