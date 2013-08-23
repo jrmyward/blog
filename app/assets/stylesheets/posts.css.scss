@@ -7,4 +7,10 @@
     list-style: disc outside;
     margin-left: 30px;
   }
+  .post-meta {
+    ul.post-meta-items {
+      list-style: none;
+      margin-left: 0px;
+    }
+  }
 }
