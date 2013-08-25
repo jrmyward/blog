@@ -385,7 +385,7 @@ header {
 	background: asset-url('theme/bg-wrapper.jpg');
 	position: relative;
 	z-index: 1;
-	height: 100px;
+	min-height: 100px;
 	margin-top: -90px;
 	padding-top: 90px;
 }
