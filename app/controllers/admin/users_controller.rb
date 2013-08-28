@@ -1,4 +1,4 @@
-class Admins::UsersController < AdminsController
+class Admin::UsersController < AdminController
   prepend_before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update]
 
@@ -8,7 +8,8 @@ class Admins::UsersController < AdminsController
   # end
 
   def dashboard
-
+    page      = Sanitize.clean(params[:page])
+    @comments = Comment.paginate(:page => page, :per_page => 10).order("created_at desc")
   end
 
   # GET /members/users/1

@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe Admins::UsersController do
+describe Admin::UsersController do
   let(:valid_attributes) { FactoryGirl.attributes_for(:user, first_name: "Tony", last_name: "Stark") }
   let(:valid_user) { FactoryGirl.attributes_for(:user) }
   let(:user) { User.create(valid_user.merge({role: "admin"})) }
