@@ -7,8 +7,9 @@ Blog::Application.routes.draw do
     delete 'signout' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  scope :module => "admins" do
+  scope :module => "admin" do
     resources :comments
+    delete '/comments/destroy_batch' => "comments#destroy_batch", as: "destroy_batch_comments"
     resources :users
   end
 
@@ -16,7 +17,7 @@ Blog::Application.routes.draw do
 
   end
 
-  get '/dashboard' => 'admins/users#dashboard', as: :user_root
+  get '/dashboard' => 'admin/users#dashboard', as: :user_root
 
   scope "blog" do
     get 'tags/:tag', to: 'posts#index', as: :tag
