@@ -24,6 +24,7 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             <% if user_signed_in? and (current_user.author? or current_user.admin?) %>
+              <li><%= nav_link "Dashboard", user_root_path %></li>
               <li class="dropdown">
                 <%= link_to '#', "data-toggle" => "dropdown", :class => "dropdown-toggle"  do %>
                   <span>Blog</span>
@@ -35,10 +36,6 @@
                   <li><%= nav_link "New Post", new_post_path %></li>
                 </ul>
               </li>
-            <% else %>
-              <li><%= nav_link "Blog", posts_path, /\Ablog/ %></li>
-            <% end %>
-            <% if user_signed_in? %>
               <li class="divider-vertical"></li>
               <li id="nav-user" class="dropdown">
                 <%= link_to '#', "data-toggle" => "dropdown", :class => "dropdown-toggle"  do %>
@@ -52,6 +49,8 @@
                   <li><%= link_to raw('<i class="icon-off"></i> Sign Out'), destroy_user_session_path, :method => :delete %></li>
                 </ul>
               </li>
+            <% else %>
+              <li><%= nav_link "Blog", posts_path, /\Ablog/ %></li>
             <% end %>
           </ul>
         </div><!-- .nav-collapse collapse -->
