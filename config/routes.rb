@@ -8,6 +8,7 @@ Blog::Application.routes.draw do
   end
 
   scope :module => "admins" do
+    resources :comments
     resources :users
   end
 
@@ -20,7 +21,7 @@ Blog::Application.routes.draw do
   scope "blog" do
     get 'tags/:tag', to: 'posts#index', as: :tag
     resources :posts do
-      resources :comments
+      resources :comments, only: [:create, :new]
     end
   end
 
