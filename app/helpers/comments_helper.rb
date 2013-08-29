@@ -7,10 +7,10 @@ module CommentsHelper
   def button_for(comment)
     if comment.approved?
       link_to raw("<i class='mini-ico-thumbs-down mini-white'></i>"), reject_comment_path(comment), class: "btn btn-small btn-danger",
-        confirm: "Are you sure you want to mark the comment as spam?", method: :put, title: "Reject comment."
+        data: { confirm: "Are you sure you want to mark the comment as spam?" }, method: :put, title: "Reject comment."
     else
       link_to raw("<i class='mini-ico-thumbs-up'></i>"), approve_comment_path(comment), class: "btn btn-small",
-        confirm: "Are you sure you want to approve the comment?", method: :put, title: "Approve comment."
+        data: { confirm: "Are you sure you want to approve the comment?" }, method: :put, title: "Approve comment."
     end
   end
 
