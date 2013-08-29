@@ -8,8 +8,15 @@ Blog::Application.routes.draw do
   end
 
   scope :module => "admin" do
-    resources :comments
-    delete '/comments/destroy_batch' => "comments#destroy_batch", as: "destroy_batch_comments"
+    resources :comments, except: [:create, :new] do
+      collection do
+        delete 'destroy-batch' => "comments#destroy_batch", as: "destroy_batch"
+      end
+      member do
+        put 'approve'
+        put 'reject'
+      end
+    end
     resources :users
   end
 

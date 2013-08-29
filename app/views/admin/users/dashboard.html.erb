@@ -34,7 +34,8 @@
               </td>
               <td><%= comment.approved %></td>
               <td>
-
+                <%= button_for(comment) %>
+                <%= link_to raw("<i class='mini-ico-edit'></i>"), edit_comment_path(comment), class: "btn btn-small", title: "Edit comment" %>
               </td>
             </tr>
           <% end %>

@@ -58,4 +58,7 @@ describe "Blog Comments" do
     end
   end
 
+  context "Reply to Comment" do
+    pending "it notifies relevent commenters"
+  end
 end

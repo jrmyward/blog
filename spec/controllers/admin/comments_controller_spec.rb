@@ -19,141 +19,131 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe Admin::CommentsController do
+  let(:valid_attributes) { FactoryGirl.attributes_for(:comment, commentable_id: 1, commentable_type: "Post") }
+  let(:valid_user) { FactoryGirl.attributes_for(:user) }
+  let(:admin) { User.create(valid_user.merge({role: "admin"})) }
 
-  # This should return the minimal set of attributes required to create a valid
-  # Admin::Comment. As you add validations to Admin::Comment, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # Admin::CommentsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  before(:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in admin
+  end
 
   describe "GET index" do
-    it "assigns all admin_comments as @admin_comments" do
-      comment = Admin::Comment.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:admin_comments).should eq([comment])
+    it "assigns all comments as @comments" do
+      comment = Comment.create! valid_attributes
+      get :index, {}
+      assigns(:comments).should eq([comment])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested admin_comment as @admin_comment" do
-      comment = Admin::Comment.create! valid_attributes
-      get :show, {:id => comment.to_param}, valid_session
-      assigns(:admin_comment).should eq(comment)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new admin_comment as @admin_comment" do
-      get :new, {}, valid_session
-      assigns(:admin_comment).should be_a_new(Admin::Comment)
+    it "assigns the requested comment as @comment" do
+      comment = Comment.create! valid_attributes
+      get :show, {:id => comment.id}
+      assigns(:comment).should eq(comment)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested admin_comment as @admin_comment" do
-      comment = Admin::Comment.create! valid_attributes
-      get :edit, {:id => comment.to_param}, valid_session
-      assigns(:admin_comment).should eq(comment)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Admin::Comment" do
-        expect {
-          post :create, {:admin_comment => valid_attributes}, valid_session
-        }.to change(Admin::Comment, :count).by(1)
-      end
-
-      it "assigns a newly created admin_comment as @admin_comment" do
-        post :create, {:admin_comment => valid_attributes}, valid_session
-        assigns(:admin_comment).should be_a(Admin::Comment)
-        assigns(:admin_comment).should be_persisted
-      end
-
-      it "redirects to the created admin_comment" do
-        post :create, {:admin_comment => valid_attributes}, valid_session
-        response.should redirect_to(Admin::Comment.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved admin_comment as @admin_comment" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Comment.any_instance.stub(:save).and_return(false)
-        post :create, {:admin_comment => {  }}, valid_session
-        assigns(:admin_comment).should be_a_new(Admin::Comment)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Comment.any_instance.stub(:save).and_return(false)
-        post :create, {:admin_comment => {  }}, valid_session
-        response.should render_template("new")
-      end
+    it "assigns the requested comment as @comment" do
+      comment = Comment.create! valid_attributes
+      get :edit, {:id => comment.id}
+      assigns(:comment).should eq(comment)
     end
   end
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested admin_comment" do
-        comment = Admin::Comment.create! valid_attributes
-        # Assuming there are no other admin_comments in the database, this
-        # specifies that the Admin::Comment created on the previous line
+      it "updates the requested comment" do
+        comment = Comment.create! valid_attributes
+        # Assuming there are no other comments in the database, this
+        # specifies that the Comment created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Admin::Comment.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => comment.to_param, :admin_comment => { "these" => "params" }}, valid_session
+        Comment.any_instance.should_receive(:update).with({ "these" => "params" })
+        put :update, {:id => comment.id, :comment => { "these" => "params" }}
       end
 
-      it "assigns the requested admin_comment as @admin_comment" do
-        comment = Admin::Comment.create! valid_attributes
-        put :update, {:id => comment.to_param, :admin_comment => valid_attributes}, valid_session
-        assigns(:admin_comment).should eq(comment)
+      it "assigns the requested comment as @comment" do
+        comment = Comment.create! valid_attributes
+        put :update, {:id => comment.id, :comment => valid_attributes}
+        assigns(:comment).should eq(comment)
       end
 
-      it "redirects to the admin_comment" do
-        comment = Admin::Comment.create! valid_attributes
-        put :update, {:id => comment.to_param, :admin_comment => valid_attributes}, valid_session
+      it "redirects to the comment" do
+        comment = Comment.create! valid_attributes
+        put :update, {:id => comment.id, :comment => valid_attributes}
         response.should redirect_to(comment)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the admin_comment as @admin_comment" do
-        comment = Admin::Comment.create! valid_attributes
+      it "assigns the comment as @comment" do
+        comment = Comment.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Comment.any_instance.stub(:save).and_return(false)
-        put :update, {:id => comment.to_param, :admin_comment => {  }}, valid_session
-        assigns(:admin_comment).should eq(comment)
+        Comment.any_instance.stub(:save).and_return(false)
+        put :update, {:id => comment.id, :comment => {  }}
+        assigns(:comment).should eq(comment)
       end
 
       it "re-renders the 'edit' template" do
-        comment = Admin::Comment.create! valid_attributes
+        comment = Comment.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Comment.any_instance.stub(:save).and_return(false)
-        put :update, {:id => comment.to_param, :admin_comment => {  }}, valid_session
+        Comment.any_instance.stub(:save).and_return(false)
+        put :update, {:id => comment.id, :comment => {  }}
         response.should render_template("edit")
       end
     end
   end
 
+  describe "PUT approve" do
+    it "marks approved to true" do
+      comment = Comment.create! valid_attributes.merge(approved: false)
+      put :approve, { id: comment.id }
+      comment.reload.approved.should be_true
+    end
+  end
+
+  describe "PUT reject" do
+    it "marks sets approved to false" do
+      comment = Comment.create! valid_attributes.merge(approved: true)
+      put :reject, { id: comment.id }
+      comment.reload.approved.should be_false
+    end
+  end
+
   describe "DELETE destroy" do
-    it "destroys the requested admin_comment" do
-      comment = Admin::Comment.create! valid_attributes
+    it "destroys the requested comment" do
+      comment = Comment.create! valid_attributes
       expect {
-        delete :destroy, {:id => comment.to_param}, valid_session
-      }.to change(Admin::Comment, :count).by(-1)
+        delete :destroy, {:id => comment.id}
+      }.to change(Comment, :count).by(-1)
     end
 
-    it "redirects to the admin_comments list" do
-      comment = Admin::Comment.create! valid_attributes
-      delete :destroy, {:id => comment.to_param}, valid_session
-      response.should redirect_to(admin_comments_url)
+    it "redirects to the admin dashboard" do
+      comment = Comment.create! valid_attributes
+      delete :destroy, {:id => comment.id}
+      response.should redirect_to(user_root_path)
+    end
+  end
+
+  describe "DELETE destroy_batch" do
+    before(:each) do
+      comment1 = Comment.create! valid_attributes
+      comment2 = Comment.create! valid_attributes
+      comment3 = Comment.create! valid_attributes
+      @destroy_comment_ids = [comment1.id, comment3.id]
+    end
+
+    it "destroys the checked comments" do
+      expect {
+        delete :destroy_batch, { comment_ids: @destroy_comment_ids }
+      }.to change(Comment, :count).by(-2)
+    end
+
+    it "redirects to the admin dashboard" do
+      delete :destroy_batch, { comment_ids: @destroy_comment_ids }
+      response.should redirect_to(user_root_path)
     end
   end
 
