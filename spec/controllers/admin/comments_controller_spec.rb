@@ -73,7 +73,7 @@ describe Admin::CommentsController do
       it "redirects to the comment" do
         comment = Comment.create! valid_attributes
         put :update, {:id => comment.id, :comment => valid_attributes}
-        response.should redirect_to(comment)
+        response.should redirect_to(user_root_path)
       end
     end
 
