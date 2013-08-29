@@ -29,6 +29,15 @@ describe "Blog Comments" do
       click_on "Submit Comment"
       page.should have_content("Oh Snap")
     end
+
+    it "should work from the new action" do
+      visit new_post_comment_path(post)
+      fill_in "Name", with: "Jon Test"
+      fill_in "Email", with: "jd@example.com"
+      fill_in "Comment", with: "Great Job! I learned a lot."
+      click_on "Submit Comment"
+      page.should have_content("Great Job! I learned a lot.")
+    end
   end
 
   context "With JavaScript" do
@@ -58,4 +67,7 @@ describe "Blog Comments" do
     end
   end
 
+  context "Reply to Comment" do
+    pending "it notifies relevent commenters"
+  end
 end

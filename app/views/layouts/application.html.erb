@@ -8,6 +8,7 @@
     <title><%= content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller" %></title>
     <meta name="author" content="<%= content_for?(:meta_author) ? "#{yield(:meta_author)}" : "Jeremy Ward" %>" />
     <meta name="description" content="<%= content_for?(:description) ? "#{yield(:description)}" : ""  %>" />
+    <%= auto_discovery_link_tag(:atom, posts_url(format: "atom")) %>
     <!-- end: Meta -->
 
     <!-- start: Mobile Specific -->
