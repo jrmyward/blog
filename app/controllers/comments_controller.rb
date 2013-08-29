@@ -1,17 +1,12 @@
 class CommentsController < ApplicationController
   prepend_before_action :merge_params, only: [:create, :update]
   prepend_before_action :load_commentable, only: [:new, :create, :edit, :update]
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   prepend_before_action :authenticate_user!, :except => [:index, :new, :create]
 
   # GET /comments/new
   def new
     @comment = Comment.new(parent_id: params[:parent_id])
   end
-
-  # # GET /comments/1/edit
-  # def edit
-  # end
 
   # POST /comments
   def create
@@ -39,26 +34,6 @@ class CommentsController < ApplicationController
 
   end
 
-  # # PATCH/PUT /comments/1
-  # def update
-  #   if @comment.update(comment_params)
-  #     redirect_to @comment, notice: 'Comment was successfully updated.'
-  #   else
-  #     render action: 'edit'
-  #   end
-  # end
-
-  # # DELETE /comments/1
-  # def destroy
-  #   @comment.destroy
-  #   redirect_to comments_url, notice: 'Comment was successfully destroyed.'
-  # end
-
-  # def destroy_multiple
-  #   Comment.destroy(params[:comment_ids])
-  #   redirect_to user_root_path, notice: "Successfully destroyed comments."
-  # end
-
   private
 
     def merge_params
@@ -77,8 +52,4 @@ class CommentsController < ApplicationController
       @commentable = resource.singularize.classify.constantize.friendly.find(id)
     end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 end
