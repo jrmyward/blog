@@ -4,6 +4,16 @@ module CommentsHelper
     render(comment) + content_tag(:div, "", :class => "nested_comments")
   end
 
+  def button_for(comment)
+    if comment.approved?
+      link_to raw("<i class='mini-ico-thumbs-down mini-white'></i>"), reject_comment_path(comment), class: "btn btn-small btn-danger",
+        data: { confirm: "Are you sure you want to mark the comment as spam?" }, method: :put, title: "Reject comment."
+    else
+      link_to raw("<i class='mini-ico-thumbs-up'></i>"), approve_comment_path(comment), class: "btn btn-small",
+        data: { confirm: "Are you sure you want to approve the comment?" }, method: :put, title: "Approve comment."
+    end
+  end
+
   def fix_url(url)
     if url =~ /^https?\:\/\//
       url

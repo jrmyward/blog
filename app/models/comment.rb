@@ -17,6 +17,16 @@ class Comment < ActiveRecord::Base
 
   before_create :check_for_spam
 
+  def mark_as_ham!
+    update_attribute(:approved, true)
+    self.ham!
+  end
+
+  def mark_as_spam!
+    update_attribute(:approved, false)
+    self.spam!
+  end
+
   private
 
   def check_for_spam
