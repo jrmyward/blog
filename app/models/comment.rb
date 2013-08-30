@@ -17,20 +17,25 @@ class Comment < ActiveRecord::Base
 
   before_create :check_for_spam
 
+  def mark_as_ham!
+    update_attribute(:approved, true)
+    self.ham!
+  end
+
+  def mark_as_spam!
+    update_attribute(:approved, false)
+    self.spam!
+  end
+
+  def notify_other_commenters
+    Mailer.notify_admin_and_author(self.id).deliver
+    Mailer.comment_response(self.id, parent.id).deliver if parent
+  end
+
   private
 
   def check_for_spam
     self.approved = !self.spam?
     true
   end
-
-  # def notify_other_commenters
-  #   users_to_notify.each do |user|
-  #     Mailer.comment_response(self, user).deliver
-  #   end
-  # end
-
-  # def users_to_notify
-  #   ancestors.map(&:user).compact.select { |u| u.email.present? && u.email_on_reply? && u != user }
-  # end
 end

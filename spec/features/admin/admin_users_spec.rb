@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Admins::Users" do
+describe "Admin::Users" do
 
   context "When admin edits profile" do
     let(:valid_user) { FactoryGirl.attributes_for(:user) }

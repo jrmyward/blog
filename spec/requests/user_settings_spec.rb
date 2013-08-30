@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Admins::Users" do
+describe "Admin::Users" do
   let(:valid_user) { FactoryGirl.attributes_for(:user) }
   let(:admin) { User.create(valid_user.merge({role: "admin"})) }
   let(:author) { User.create(valid_user.merge({role: "author"})) }
