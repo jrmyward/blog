@@ -29,7 +29,7 @@ class Comment < ActiveRecord::Base
 
   def notify_other_commenters
     Mailer.notify_admin_and_author(self.id).deliver
-    Mailer.comment_response(self.id, parent.id).deliver if parent
+    Mailer.comment_response(self.id, parent.id).deliver if parent && self.approved?
   end
 
   private
