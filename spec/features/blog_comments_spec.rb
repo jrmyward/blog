@@ -68,6 +68,30 @@ describe "Blog Comments" do
   end
 
   context "Reply to Comment" do
-    pending "it notifies relevent commenters"
+    it "should not notify the commenter of a spammy reply" do
+      comment = create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Peter", email: "parker@marvel.com")
+      visit post_path(post)
+      click_link "Reply"
+      fill_in "Name", with: "Jon Test"
+      fill_in "Email", with: "jd@example.com"
+      fill_in "Site url", with: "eroticbeauties.net"
+      fill_in "Comment", with: "Porn with Viagra is awesome!"
+      click_on "Submit Comment"
+      email_count.should eq(1)
+      last_email.to.should include("jrmy.ward@gmail.com")
+    end
+
+    it "should notify the commenter of a reply" do
+      comment = create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Peter", email: "parker@marvel.com")
+      visit post_path(post)
+      click_link "Reply"
+      fill_in "Name", with: "Jon Test"
+      fill_in "Email", with: "jd@example.com"
+      fill_in "Site url", with: "jontest.com"
+      fill_in "Comment", with: "Great Job! I learned a lot."
+      click_on "Submit Comment"
+      email_count.should eq(2)
+      last_email.to.should include(comment.email)
+    end
   end
 end
