@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :comment do
-    name "Doctor Doom"
+    name Faker::Name.name
     email Faker::Internet.email
     body "Hello World"
     site_url 'example.com'

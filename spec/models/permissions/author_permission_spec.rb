@@ -39,11 +39,11 @@ describe Permissions::AuthorPermission do
 
 
   it "allows users" do
-    should_not authorize("admins/users", :new)
-    should_not authorize("admins/users", :create)
-    should authorize("admins/users", :edit)
-    should authorize("admins/users", :update)
-    should_not authorize("admins/users", :destroy)
+    should_not authorize("admin/users", :new)
+    should_not authorize("admin/users", :create)
+    should authorize("admin/users", :edit)
+    should authorize("admin/users", :update)
+    should_not authorize("admin/users", :destroy)
     should_not allow_param(:user, :role)
   end
 end

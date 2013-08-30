@@ -1,0 +1,9 @@
+Someone has responded to your comment on jrmyward.com. Here is the response.
+
+---
+From: <%= raw @comment.name %>
+
+<%= raw @comment.body %>
+---
+
+To view the full comment: <%= post_url(@comment.commentable_id) %>
