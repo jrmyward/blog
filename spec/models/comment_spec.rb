@@ -31,6 +31,27 @@ describe Comment do
     end
   end
 
+  describe "notify_other_commenters" do
+    let(:post) { create(:post) }
+    let(:c1)  { create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Peter", email: "parker@marvel.com") }
+    let(:c2)  { create(:comment, commentable_id: post.id, commentable_type: "Post", :parent => c1, name: "Steve" , email: "rogers@marvel.com" ) }
+    let(:c1a) { create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Tony", email: "stark@marvel.com") }
+
+    it "should notify the commenter of a reply" do
+      c2.notify_other_commenters
+      email_count.should eq(2)
+      last_email.to.should include(c1.email)
+    end
+
+    context "without parent" do
+      it "should only notify the admin" do
+        c1a.notify_other_commenters
+        email_count.should eq(1)
+        last_email.to.should include("jrmy.ward@gmail.com")
+      end
+    end
+  end
+
   describe "Validation" do |variable|
     [:body, :email, :name].each do |attr|
       it "#{attr} must have a value" do
