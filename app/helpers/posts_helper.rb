@@ -8,11 +8,6 @@ module PostsHelper
     end
   end
 
-  def marked_as_spam(comment)
-    content_tag(:div, class: "alert alert-block alert-warn") do
-      content_tag(:h4, "Unfortunately this comment is considered spam by Akismet. ", class: "alert-heading") +
-      content_tag(:p, "It will show up once it has been approved by the administrator.")
-    end
-  end
+
 
 end
