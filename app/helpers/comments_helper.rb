@@ -34,6 +34,13 @@ module CommentsHelper
     end.join("\n")
   end
 
+  def marked_as_spam(comment)
+    content_tag(:div, class: "alert alert-block alert-warn") do
+      content_tag(:h4, "Unfortunately this comment is considered spam by Akismet. ", class: "alert-heading") +
+      content_tag(:p, "It will show up once it has been approved by the administrator.")
+    end
+  end
+
   def nested_comments(comments)
     comments.map do |comment, sub_comments|
       render(comment) + content_tag(:div, nested_comments(sub_comments), :class => "nested_comments")
