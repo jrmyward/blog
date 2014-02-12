@@ -15,6 +15,7 @@
  *= require theme/icons-color
  *= require theme/social-icons
  *= require theme/fancybox
+ *= require pygments
  *= require theme/style
  *= require jrmy
  *= require posts

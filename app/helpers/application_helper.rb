@@ -21,6 +21,15 @@ module ApplicationHelper
     end
   end
 
+  class HTMLwithPygments < Redcarpet::Render::HTML
+    def block_code(code, language)
+      sha = Digest::SHA1.hexdigest(code)
+      Rails.cache.fetch ["code", language, sha].join('-') do
+        Pygments.highlight(code, lexer: language)
+      end
+    end
+  end
+
   def gravatar_url(user, size = 26)
     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     "https://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
@@ -47,9 +56,16 @@ module ApplicationHelper
   end
 
   def markdown
-    renderer    = Redcarpet::Render::HTML.new(:hard_wrap => true)
-    extensions  = {:autolink => true, :no_intra_emphasis => true}
-    @markdown ||= Redcarpet::Markdown.new(renderer, extensions)
+    renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: true)
+    options = {
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      lax_html_blocks: true,
+      strikethrough: true,
+      superscript: true
+    }
+    @markdown ||= Redcarpet::Markdown.new(renderer, options)
   end
 
   def markdown_render(text)
