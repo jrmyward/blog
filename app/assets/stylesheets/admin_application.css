@@ -1,0 +1,19 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require ocd_theme_admin_genius/bootstrap
+ *= require font-awesome
+ *= require ocd_theme_admin_genius/jquery-ui-1.10.3.custom.min
+ *= require ocd_theme_admin_genius/import_css
+ *= require ocd_theme_admin_genius/style
+ *= require ocd_theme_admin_genius/retina
+ *= require admin_customized
+ */

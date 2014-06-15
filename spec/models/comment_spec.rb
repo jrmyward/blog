@@ -14,40 +14,48 @@ describe Comment do
     let(:request) { OpenStruct.new(remote_ip: '127.0.0.1', env: { 'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/20100101 Firefox/17.0', 'HTTP_REFERER' => 'http://jrmyward.dev/blog/posts/hello-world' }) }
 
     it "should identify spam" do
-      comment = FactoryGirl.build(:comment, name: "Porn Master", site_url: "http://pornmasters.com", body: "Porn plus Viagra is awesome!",
-                                  user_ip: request.remote_ip, user_agent: request.env['HTTP_USER_AGENT'],
-                                  referrer: request.env['HTTP_REFERER'])
-      comment.spam?.should be_true
-      comment.save
-      comment.approved.should be_false
+      VCR.use_cassette "akismet/comment_spam" do
+        comment = FactoryGirl.build(:comment, name: "Porn Master", site_url: "http://pornmasters.com", body: "Porn plus Viagra is awesome!",
+                                    user_ip: request.remote_ip, user_agent: request.env['HTTP_USER_AGENT'],
+                                    referrer: request.env['HTTP_REFERER'])
+        expect(comment.spam?).to be true
+        comment.save
+        expect(comment.approved).to be false
+      end
     end
 
     it "should identify ham" do
-      comment = FactoryGirl.build(:comment, user_ip: request.remote_id, user_ip: request.remote_ip,
-                                  user_agent: request.env['HTTP_USER_AGENT'], referrer: request.env['HTTP_REFERER'])
-      comment.spam?.should be_false
-      comment.save
-      comment.approved.should be_true
+      VCR.use_cassette "akismet/comment_ham" do
+        comment = FactoryGirl.build(:comment, user_ip: request.remote_id, user_ip: request.remote_ip,
+                                    user_agent: request.env['HTTP_USER_AGENT'], referrer: request.env['HTTP_REFERER'])
+        expect(comment.spam?).to be false
+        comment.save
+        expect(comment.approved).to be true
+      end
     end
   end
 
   describe "notify_other_commenters" do
     let(:post) { create(:post) }
-    let(:c1)  { create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Peter", email: "parker@marvel.com") }
-    let(:c2)  { create(:comment, commentable_id: post.id, commentable_type: "Post", :parent => c1, name: "Steve" , email: "rogers@marvel.com" ) }
-    let(:c1a) { create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Tony", email: "stark@marvel.com") }
+
+    before(:each) do
+      allow_any_instance_of(Comment).to receive(:spam?).and_return(false)
+      @c1   = create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Peter", email: "parker@marvel.com")
+      @c2   = create(:comment, commentable_id: post.id, commentable_type: "Post", :parent => @c1, name: "Steve" , email: "rogers@marvel.com" )
+      @c1a  = create(:comment, commentable_id: post.id, commentable_type: "Post", name: "Tony", email: "stark@marvel.com")
+    end
 
     it "should notify the commenter of a reply" do
-      c2.notify_other_commenters
-      email_count.should eq(2)
-      last_email.to.should include(c1.email)
+      @c2.notify_other_commenters
+      expect(email_count).to eq(2)
+      expect(last_email.to).to include(@c1.email)
     end
 
     context "without parent" do
       it "should only notify the admin" do
-        c1a.notify_other_commenters
-        email_count.should eq(1)
-        last_email.to.should include("jrmy.ward@gmail.com")
+        @c1a.notify_other_commenters
+        expect(email_count).to eq(1)
+        expect(last_email.to).to include("jrmy.ward@gmail.com")
       end
     end
   end
@@ -56,8 +64,8 @@ describe Comment do
     [:body, :email, :name].each do |attr|
       it "#{attr} must have a value" do
         comment = FactoryGirl.build(:comment, attr => nil)
-        comment.should_not be_valid
-        comment.errors[attr].should_not be_nil
+        expect(comment).to_not be_valid
+        expect(comment.errors[attr]).to_not be nil
       end
     end
 
@@ -65,8 +73,8 @@ describe Comment do
       bad_emails = %w[user@foo,com user_at_foo.org example.user@foo.]
       bad_emails.each do |bad_email|
         comment_with_invalid_email = FactoryGirl.build(:comment, email: bad_email)
-        comment_with_invalid_email.should_not be_valid
-        comment_with_invalid_email.errors[:email].should_not be_nil
+        expect(comment_with_invalid_email).to_not be_valid
+        expect(comment_with_invalid_email.errors[:email]).to_not be nil
       end
     end
   end

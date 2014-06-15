@@ -19,11 +19,12 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe Admin::CommentsController do
-  let(:valid_attributes) { FactoryGirl.attributes_for(:comment, commentable_id: 1, commentable_type: "Post") }
-  let(:valid_user) { FactoryGirl.attributes_for(:user) }
+  let(:valid_attributes) { attributes_for(:comment, commentable_id: 1, commentable_type: "Post") }
+  let(:valid_user) { attributes_for(:user) }
   let(:admin) { User.create(valid_user.merge({role: "admin"})) }
 
   before(:each) do
+    allow_any_instance_of(Comment).to receive(:spam?).and_return(false)
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in admin
   end
@@ -32,15 +33,7 @@ describe Admin::CommentsController do
     it "assigns all comments as @comments" do
       comment = Comment.create! valid_attributes
       get :index, {}
-      assigns(:comments).should eq([comment])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested comment as @comment" do
-      comment = Comment.create! valid_attributes
-      get :show, {:id => comment.id}
-      assigns(:comment).should eq(comment)
+      expect(assigns(:comments)).to eq([comment])
     end
   end
 
@@ -48,7 +41,7 @@ describe Admin::CommentsController do
     it "assigns the requested comment as @comment" do
       comment = Comment.create! valid_attributes
       get :edit, {:id => comment.id}
-      assigns(:comment).should eq(comment)
+      expect(assigns(:comment)).to eq(comment)
     end
   end
 
@@ -56,59 +49,55 @@ describe Admin::CommentsController do
     describe "with valid params" do
       it "updates the requested comment" do
         comment = Comment.create! valid_attributes
-        # Assuming there are no other comments in the database, this
-        # specifies that the Comment created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Comment.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => comment.id, :comment => { "these" => "params" }}
+        expect_any_instance_of(Comment).to receive(:update).with({ "body" => "Some text." })
+        put :update, {:id => comment.id, :comment => { "body" => "Some text." }}
       end
 
       it "assigns the requested comment as @comment" do
         comment = Comment.create! valid_attributes
         put :update, {:id => comment.id, :comment => valid_attributes}
-        assigns(:comment).should eq(comment)
+        expect(assigns(:comment)).to eq(comment)
       end
 
       it "redirects to the comment" do
         comment = Comment.create! valid_attributes
         put :update, {:id => comment.id, :comment => valid_attributes}
-        response.should redirect_to(user_root_path)
+        expect(response).to redirect_to(admin_comments_path)
       end
     end
 
     describe "with invalid params" do
       it "assigns the comment as @comment" do
         comment = Comment.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Comment).to receive(:save).and_return(false)
         put :update, {:id => comment.id, :comment => {  }}
-        assigns(:comment).should eq(comment)
+        expect(assigns(:comment)).to eq(comment)
       end
 
       it "re-renders the 'edit' template" do
         comment = Comment.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
+        expect_any_instance_of(Comment).to receive(:save).and_return(false)
         put :update, {:id => comment.id, :comment => {  }}
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
 
   describe "PUT approve" do
     it "marks approved to true" do
+      expect_any_instance_of(Comment).to receive(:ham!).and_return(true)
       comment = Comment.create! valid_attributes.merge(approved: false)
       put :approve, { id: comment.id }
-      comment.reload.approved.should be_true
+      expect(comment.reload.approved).to be true
     end
   end
 
   describe "PUT reject" do
     it "marks sets approved to false" do
+      expect_any_instance_of(Comment).to receive(:spam!).and_return(true)
       comment = Comment.create! valid_attributes.merge(approved: true)
       put :reject, { id: comment.id }
-      comment.reload.approved.should be_false
+      expect(comment.reload.approved).to be false
     end
   end
 
@@ -123,7 +112,7 @@ describe Admin::CommentsController do
     it "redirects to the admin dashboard" do
       comment = Comment.create! valid_attributes
       delete :destroy, {:id => comment.id}
-      response.should redirect_to(user_root_path)
+      expect(response).to redirect_to(admin_comments_path)
     end
   end
 
@@ -143,7 +132,7 @@ describe Admin::CommentsController do
 
     it "redirects to the admin dashboard" do
       delete :destroy_batch, { comment_ids: @destroy_comment_ids }
-      response.should redirect_to(user_root_path)
+      expect(response).to redirect_to(admin_comments_path)
     end
   end
 

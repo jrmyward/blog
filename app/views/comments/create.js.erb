@@ -5,7 +5,6 @@
   var form_container    = $("#comments");
   var comment_container = $("#comments .comments");
 <% end %>
-
 <% if @comment.errors.present? %>
   $(".alert.alert-block.alert-error").remove();
   form_container.find("form").prepend("<%= j error_messages_for(@comment) %>");

@@ -1,0 +1,10 @@
+= admin_link_to("Dashboard", admin_root_path, "fa fa-bar-chart-o")
+
+- if current_user.admin?
+  %li
+    = admin_link_to_dropdown "Blog", "glyphicons blog"
+    %ul
+      = admin_link_to("Posts", admin_posts_path, "glyphicons blog", "submenu")
+      = admin_link_to("New Post", new_admin_post_path, "glyphicons blog", "submenu")
+  %li
+    = admin_link_to("Comments", admin_comments_path, "icon-comments")

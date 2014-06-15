@@ -1,0 +1,20 @@
+- content_for :title,  "Edit Post"
+= render partial: "shared/admin_page_title", locals: { :title => "Edit Post" }
+
+.row
+  .col-lg-12
+    .box
+      .box-header
+        %h2
+          %i.icon-edit
+          Edit Post
+      .box-content.clearfix
+        = simple_form_for @post, url: admin_post_path(@post), html: { role: "form", class: "form-horizontal" } do |f|
+          %fieldset.col-sm-12
+            = render :partial => 'form', :locals => {:f => f, :post => @post}
+            %hr.divider
+            .form-group
+              .col-lg-offset-2.col-lg-10
+                = f.submit "Save Post", class: "btn btn-primary"
+                = link_to 'Back', admin_posts_path, class: "btn"
+

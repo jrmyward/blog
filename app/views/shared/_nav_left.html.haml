@@ -1,0 +1,6 @@
+#sidebar-left.col-lg-2.col-sm-1
+  .sidebar-nav.nav-collapse.collapse.navbar-collapse
+    %ul.nav.main-menu
+      = render 'shared/nav_left_users'
+
+  = link_to raw("<i class='fa fa-angle-double-left'></i>"), "#", id: "main-menu-min", class: "full visible-md visible-lg"
