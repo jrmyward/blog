@@ -1,0 +1,36 @@
+- content_for :title,  "Dashboard"
+= render :partial => "shared/page_title", :locals => {:title => "Dashboard", :icon_class => "ico-dashboard"}
+.content.clearfix
+  .span11
+    = form_for destroy_batch_comments_path, method: :delete do
+      %table.table.table-condensed
+        %thead
+          %tr
+            %th
+            %th Commenter
+            %th Comment
+            %th User Info
+            %th Approved?
+            %th Actions
+        %tbody
+          - @comments.each do |comment|
+            %tr{class: comment.approved? ? '' : 'error'}
+              %td= check_box_tag "comment_ids[]", comment.id
+              %td
+                = comment.name
+                %br/
+                = comment.email
+                %br/
+                = comment.site_url
+              %td= comment.body
+              %td
+                = comment.user_ip
+                %br/
+                = comment.user_agent
+                %br/
+                = comment.referrer
+              %td= comment.approved
+              %td
+                = button_for(comment)
+      %p= submit_tag "Destroy Checked", class: 'btn'
+%section= page_navigation_links(@comments)

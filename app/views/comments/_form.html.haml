@@ -1,0 +1,13 @@
+= simple_form_for [@commentable, @comment], :html => { id: nil, class: 'well form-horizontal', remote: true } do |f|
+  - if @comment.errors.any?
+    .alert.alert-block.alert-error
+      %a.close{"data-dismiss" => "alert"} ×
+      %h4.alert-heading Oh Snap!
+      We found #{pluralize(@comment.errors.count, "problem")} with the form:
+  = f.hidden_field :parent_id
+  = f.input :name, :required => true
+  = f.input :email, :required => true, :hint => 'Not published'
+  = f.input :site_url
+  = f.input :body, :label => "Comment", :as => :text, :input_html => {:class => 'span6', :rows => 10}
+  .form-actions
+    = f.submit "Submit Comment", :class => "btn btn-primary"

@@ -1,0 +1,17 @@
+- content_for :content_top do
+  = image_tag("hero/kayak.jpg", alt: "Lonely Kayak", class: "hero-image" )
+- content_for :description, "My name is Jeremy Ward. I'm an adventure-seeking, problem solver living outside of Portland, Oregon."
+%hr/
+.content.clearfix
+  .span11
+    .row
+      .span7
+        .title
+          %h2 Hello!
+        %p
+          My name is Jeremy Ward. I'm an adventure-seeking, problem solver living outside of Portland, Oregon. I'm currently working as a Software Engineer on the Server Team at #{link_to "CrowdCompass", "http://crowdcompass.com/", title: "CrowdCompass by Cvent"}. Most of my days are spent writing code – mostly Ruby.
+        %p I grew up in Alger, Ohio. I became a volunteer Emergency Medical Technician (EMT) at the age of 19. I rang-in 2003 in Oberhof, Germany with World Cup skiiers from around the world. I married an amazing woman; the love of my life. I've been successful in business and also failed. I've travled from East to West and back again. I've experienced the wind in my hair sailing on azure seas. I understand life is about the moments and the connections you make along the way.
+        %p Thank you for reading!
+      .span4
+        = image_tag("old_salmon_creek_trail.jpg", alt: "Old Salmon Creed Trail", class: "img-polaroid" )
+%hr/

@@ -4,8 +4,8 @@ describe ApplicationHelper do
 
   describe "is_active_link?" do
     it "should match the current link" do
-      helper.stub(:current_page?).and_return(true)
       link_path = "/somepage"
+      helper.request.stub(:path).and_return(link_path)
       helper.is_active_link?(link_path).should be_true
     end
 

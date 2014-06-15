@@ -139,6 +139,13 @@ GEM
     guard-rspec (3.0.2)
       guard (>= 1.8)
       rspec (~> 2.13)
+    haml (4.0.5)
+      tilt
+    haml-rails (0.5.1)
+      actionpack (~> 4.0.0)
+      activesupport (~> 4.0.0)
+      haml (>= 3.1, < 5.0)
+      railties (~> 4.0.0)
     highline (1.6.19)
     hike (1.2.3)
     hirb (0.7.1)
@@ -319,6 +326,8 @@ DEPENDENCIES
   friendly_id!
   guard
   guard-rspec
+  haml
+  haml-rails
   hirb
   jquery-rails
   launchy
