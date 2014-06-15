@@ -1,0 +1,32 @@
+!!!
+%html{lang: "en", xmlns: "http://www.w3.org/1999/xhtml", "xmlns:fb" => "https://www.facebook.com/2008/fbml", "xmlns:og" => "http://ogp.me/ns#"}
+  %head
+    = render "shared/layout_meta"
+    / start: CSS
+    = stylesheet_link_tag "admin_application", media: "all", "data-turbolinks-track" => true
+    / end: CSS
+    / start: Java Script
+    = javascript_include_tag "admin_application", "data-turbolinks-track" => true, type: "text/javascript"
+    / end: Java Script
+    = yield(:head)
+  %body
+    = render "shared/header_admin"
+
+    .container
+      .row
+        = render "shared/nav_left"
+        #content.col-lg-10.col-sm-11
+          = yield(:breadcrumb) if content_for?(:breadcrumb)
+          - if flash.count > 0
+            - flash.each do |name, msg|
+              %div{:class => "alert alert-#{name == "notice" ? "success" : "danger"}"}
+                %button.close{"data-dismiss" => "alert", :href => "#"} &times;
+                =msg
+          = yield
+    = yield(:modals) if content_for?(:modals)
+    .clearfix
+    %footer
+      %p
+        %small{style: "text-align:left;float:left"}
+          &copy; 2014 &ndash; Jeremy Ward, All Rights Reserved.
+

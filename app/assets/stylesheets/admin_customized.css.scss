@@ -1,0 +1,55 @@
+/*
+ *  Template Name : genius
+ *  Author : Jeremy S. Ward
+ *  Author URI : http://oc-digital.co
+ *  -----------------------------------------------------------
+ *
+ */
+
+.nav.main-menu > li > a > i.glyphicons,
+.nav.main-menu > li > ul > li > a > i.glyphicons {
+  color: inherit;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-left: 0px;
+  vertical-align: middle;
+}
+
+.nav.main-menu > li > a > i.glyphicons:before,
+.nav.main-menu > li > ul > li > a > i.glyphicons:before {
+  color: inherit;
+  font: 16px/1em 'Glyphicons Regular';
+  font-style: normal;
+  font-weight: normal;
+  margin: -5px 0 0;
+  padding-left: 0px;
+  position: relative;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+form{
+  legend {
+    small {
+      color:#999;
+      font-size: 60%;
+    }
+  }
+  input[type="radio"], input[type="checkbox"] {
+    margin-top: 0px;
+    width: 35px
+  }
+}
+
+.form-horizontal .radio,
+.form-horizontal .checkbox {
+  min-height: 35px;
+  padding-top: 0px;
+  label {
+    display: inline-block;
+    margin-bottom: 0px;
+    padding-top: 8px;
+  }
+}

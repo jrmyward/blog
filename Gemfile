@@ -1,15 +1,17 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.0'
 
 # assets
-gem 'sass-rails', '~> 4.0.0'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer',  platforms: :ruby
+gem 'less-rails'
+gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # authentication
-gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
+gem 'devise'
 
 # blog
 gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git'
@@ -19,82 +21,93 @@ gem 'pygments.rb'
 gem 'rakismet'
 gem 'redcarpet'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # database
 gem 'pg'
 gem 'sanitize'
 
 # deployment
-gem 'capistrano', group: :development
 gem 'unicorn'
 
-# configuration
-gem 'figaro'
-
-# cron
-gem 'whenever', :require => false
-
-# forms
-gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
-
 # image manipulation
-gem 'rmagick'
-gem 'carrierwave'
+gem 'mini_magick'
+gem 'carrierwave', git: 'git@github.com:carrierwaveuploader/carrierwave.git', branch: 'master'
 
 # javascript
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'jquery-turbolinks'
 gem 'turbolinks'
-
-# json
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.0'
+# bundle exec rake doc:rails generates the API under doc/api.
+
+# mailchimp
+gem 'gibbon'
+
+# querying
+gem 'pg_search'
+# gem "squeel"
+
+# queque
+# gem 'sidekiq'
 
 # sitemap
 gem 'sitemap_generator'
 
+# themes
+gem 'ocd_theme_magnus', path: '/Users/jrmyward/code/opensource/ocd_theme_magnus'
+gem 'ocd_theme_admin_genius', git: 'git@github.com:oc-digital/ocd_theme_admin_genius.git', tag: 'v2.0.1'
+
 # views
-gem 'browser', :git => 'git://github.com/fnando/browser'
+gem 'browser', git: 'git://github.com/fnando/browser'
+gem "font-awesome-rails", '~> 3.2.1.3'
 gem 'haml'
 gem 'haml-rails'
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git', branch: 'v3.0'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   # gem 'sdoc', require: false
   gem 'yard'
 end
 
-gem 'hirb'
+# Tools
+gem 'pry'
+gem 'pry-debugger'
 
 group :development do
   gem 'bullet'
-  gem 'guard'
-  gem 'guard-rspec'
+  # gem 'capistrano', '~> 3.1.0'
+  # gem 'capistrano-rails',   '~> 1.1', require: false
+  # gem 'capistrano-bundler', '~> 1.1', require: false
+  # gem 'capistrano-rbenv', '~> 2.0', require: false
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
 end
 
-group :test, :development do
-  # gem 'spork-rails'
-  gem 'rspec-rails', '~> 2.0'
-  gem 'capybara'
-  gem 'database_cleaner'
+group :development, :test do
   gem 'launchy'
-  gem 'pry'
-  gem 'pry-debugger'
-  gem 'rack-mini-profiler'
-  gem 'rb-fsevent'
+  gem 'rack-mini-profiler', require: false
+  gem 'rspec', '~> 3.0.0.beta2'
+  gem 'rspec-rails'
+  gem 'guard-rspec', '4.2.7'
+  gem 'guard-livereload'
+  gem 'spork-rails', github: 'sporkrb/spork-rails' # rubygems version not rails 4 compatible
+  gem 'guard-spork'
+  gem 'childprocess'
 end
 
 group :test do
-  # gem 'guard-spork'
-  gem 'shoulda-matchers'
-  gem 'selenium-webdriver'
-  gem 'capybara-webkit'
-  gem 'poltergeist'
+  gem 'capybara', git: 'git@github.com:jnicklas/capybara.git', branch: 'master'
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'timecop'
+  gem 'poltergeist'
+  gem 'shoulda-matchers'
   gem 'simplecov', '>=0.4.2', :require => false
+  gem 'stripe-ruby-mock', '>= 1.8.7.4'
+  gem 'timecop'
   gem 'turn', :require => false
+  gem 'vcr'
+  gem 'webmock'
 end

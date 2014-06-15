@@ -5,9 +5,21 @@
       %h4.alert-heading Oh Snap!
       We found #{pluralize(@comment.errors.count, "problem")} with the form:
   = f.hidden_field :parent_id
-  = f.input :name, :required => true
-  = f.input :email, :required => true, :hint => 'Not published'
-  = f.input :site_url
-  = f.input :body, :label => "Comment", :as => :text, :input_html => {:class => 'span6', :rows => 10}
+  .control-group.required
+    = f.label :name, required: true
+    .controls
+      = f.input_field :name
+  .control-group.required
+    = f.label :email, required: true
+    .controls
+      = f.input_field :email, hint: 'Not published'
+  .control-group
+    = f.label :site_url
+    .controls
+      = f.input_field :site_url
+  .control-group
+    = f.label :body, label: "Comment"
+    .controls
+      = f.input_field :body, as: :text, class: 'span6', rows: 10
   .form-actions
     = f.submit "Submit Comment", :class => "btn btn-primary"

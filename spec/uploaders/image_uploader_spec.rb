@@ -19,27 +19,27 @@ describe ImageUploader do
 
   context 'the lage version' do
     it "should scale down a landscape image to fit within 800 by 800 pixels" do
-      @uploader.large.should be_no_wider_than(800)
-      @uploader.large.should be_no_taller_than(800)
+      expect(@uploader.large).to be_no_wider_than(800)
+      expect(@uploader.large).to be_no_taller_than(800)
     end
   end
 
   context 'the medium version' do
     it "should scale down a landscape image to fit within 300 by 300 pixels" do
-      @uploader.medium.should be_no_wider_than(300)
-      @uploader.medium.should be_no_taller_than(300)
+      expect(@uploader.medium).to be_no_wider_than(300)
+      expect(@uploader.medium).to be_no_taller_than(300)
     end
   end
 
   context 'the small version' do
     it "should scale down a landscape image to fit within 100 by 100 pixels" do
-      @uploader.small.should be_no_wider_than(100)
-      @uploader.small.should be_no_taller_than(100)
+      expect(@uploader.small).to be_no_wider_than(100)
+      expect(@uploader.small).to be_no_taller_than(100)
     end
   end
 
   it "should make the image readable and writable only to the owner and not executable" do
-    @uploader.should have_permissions(0644)
+    expect(@uploader).to have_permissions(0644)
   end
 
 end

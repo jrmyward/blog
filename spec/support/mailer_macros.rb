@@ -1,4 +1,9 @@
 module MailerMacros
+
+  def email_count
+    ActionMailer::Base.deliveries.size
+  end
+
   def last_email
     ActionMailer::Base.deliveries.last
   end
@@ -7,7 +12,4 @@ module MailerMacros
     ActionMailer::Base.deliveries = []
   end
 
-  def email_count
-    ActionMailer::Base.deliveries.size
-  end
 end

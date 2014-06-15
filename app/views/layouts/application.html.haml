@@ -1,34 +1,7 @@
 !!!
 %html{lang: "en"}
   %head
-    / start: Meta
-    %meta{charset: "utf-8"}/
-    = csrf_meta_tags
-    %title= content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller"
-    %meta{content: content_for?(:meta_author) ? "#{yield(:meta_author)}" : "Jeremy Ward", name: "author"}/
-    %meta{content: content_for?(:description) ? "#{yield(:description)}" : "", name: "description"}/
-    = auto_discovery_link_tag(:atom, posts_url(format: "atom"))
-    / end: Meta
-    / start: Mobile Specific
-    %meta{content: "width=device-width, initial-scale=1, maximum-scale=1", name: "viewport"}/
-    / end: Mobile Specific
-    / start: Facebook Open Graph
-    %meta{content: content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller", property: "og:title"}/
-    %meta{content: content_for?(:description) ? "#{yield(:description)}" : "", property: "og:description"}/
-    %meta{content: content_for?(:og_type) ? "#{yield(:og_type)}" : "", property: "og:type"}/
-    %meta{content: "Jeremy Ward | The Wayward Traveller", property: "og:site_name"}/
-    %meta{content: content_for?(:og_url) ? "#{yield(:og_url)}" : "http://jrmyward.com", property: "og:url"}/
-    %meta{content: content_for?(:og_image) ? "#{yield(:og_image)}" : "#{image_url 'old_salmon_creek_trail.jpg'}", property: "og:image"}/
-    / end: Facebook Open Graph
-    / start: Twitter Card
-    %meta{content: "summary", name: "twitter:card"}/
-    %meta{content: "@jrmyward", name: "twitter:site"}/
-    %meta{content: content_for?(:title) ? "#{yield(:title)} | The Wayward Traveller" : "Jeremy Ward | The Wayward Traveller", name: "twitter:title"}/
-    %meta{content: content_for?(:description) ? "#{yield(:description)}" : "", name: "twitter:description"}/
-    %meta{content: content_for?(:og_image) ? "#{yield(:og_image)}" : "#{image_url 'old_salmon_creek_trail.jpg'}", name: "twitter:image:src"}/
-    %meta{content: content_for?(:meta_twitter_creator) ? "#{yield(:meta_twitter_creator)}" : "@jrmyward", name: "twitter:creator"}/
-    / end: Twitter Card
-    %link{href: content_for?(:canonical) ? "#{yield(:canonical)}" : "#{request.original_url}", rel: "canonical"}/
+    = render "shared/layout_meta"
     / start: CSS
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     %link{href: "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", rel: "stylesheet", type: "text/css"}/
@@ -40,16 +13,17 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     / AddThis Smart Layers
     %script{src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=jrmyward", type: "text/javascript"}
-    :javascript
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-42612993-1']);
-      _gaq.push(['_trackPageview']);
+    - if Rails.env.production?
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-42612993-1']);
+        _gaq.push(['_trackPageview']);
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
     :javascript
       var addthis_config = {
         data_ga_property: 'UA-42612993-1'

@@ -16,7 +16,7 @@ describe User do
     describe "full_name" do
       it "should return a concatination of a user's first and last names" do
         user = FactoryGirl.create(:user)
-        user.full_name.should == "#{user.first_name} #{user.last_name}"
+        expect(user.full_name).to eq "#{user.first_name} #{user.last_name}"
       end
     end
 
@@ -24,23 +24,23 @@ describe User do
       it "should allow valid roles" do
         %w(admin author).each do |valid_role|
           user_with_valid_role = FactoryGirl.build(:user, role: valid_role)
-          user_with_valid_role.should be_valid
-          user_with_valid_role.errors[:role].should == []
+          expect(user_with_valid_role).to be_valid
+          expect(user_with_valid_role.errors[:role]).to eq []
         end
       end
 
       it "should not allow false roles" do
         bad_role = FactoryGirl.build(:user, role: "invalid")
-        bad_role.should_not be_valid
-        bad_role.errors[:role].should_not be_nil
+        expect(bad_role).to_not be_valid
+        expect(bad_role.errors[:role]).to_not be_nil
       end
     end
 
     context "twitter handle" do
       it "should start with an @ symbol" do
         bad_twitter_handle = FactoryGirl.build(:user, twitter_handle: "someone.somewhere")
-        bad_twitter_handle.should_not be_valid
-        bad_twitter_handle.errors[:twitter_handle].should_not be_nil
+        expect(bad_twitter_handle).to_not be_valid
+        expect(bad_twitter_handle.errors[:twitter_handle]).to_not be_nil
       end
     end
   end
