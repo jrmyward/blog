@@ -1,0 +1,13 @@
+.headline
+  - if comment.new_record?
+    %span.position New comment as
+  %span.name
+    - if comment.site_url
+      = link_to comment.name, fix_url(comment.site_url), :rel => "nofollow"
+    - else
+      = comment.name
+    - if params[:controller] != "posts"
+      on #{link_to comment.commentable.title, posts_path(comment.commentable, :view => "comments", :anchor => "comment_#{comment.id}")}
+  %span.pull-right
+    = time_ago_in_words comment.created_at
+    ago

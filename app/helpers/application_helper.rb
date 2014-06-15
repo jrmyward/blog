@@ -51,7 +51,7 @@ module ApplicationHelper
     when Regexp
       !request.fullpath.match(condition).blank?
     else
-      current_page?(link_path)
+      request.path == link_path
     end
   end
 
