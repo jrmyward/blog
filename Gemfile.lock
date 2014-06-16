@@ -53,6 +53,13 @@ GIT
       rails (~> 4.1.0)
 
 GIT
+  remote: git@github.com:oc-digital/ocd_theme_magnus.git
+  revision: 3e88b6688505cbf840ddb8648c3028af5c2d2c1a
+  specs:
+    ocd_theme_magnus (1.0.0)
+      rails (>= 4.0.0)
+
+GIT
   remote: https://github.com/FriendlyId/friendly_id
   revision: aade1af81cb3c3a3a088489ecd1f7b2f64d15950
   specs:
@@ -65,12 +72,6 @@ GIT
   specs:
     acts-as-taggable-on (3.2.6)
       activerecord (>= 3, < 5)
-
-PATH
-  remote: /Users/jrmyward/code/opensource/ocd_theme_magnus
-  specs:
-    ocd_theme_magnus (1.0.0)
-      rails (>= 4.0.0)
 
 GEM
   remote: https://rubygems.org/
