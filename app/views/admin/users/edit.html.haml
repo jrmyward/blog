@@ -1,0 +1,17 @@
+- content_for :title,  'Account Settings'
+
+.row
+  .col-lg-12
+    .box
+      .box-header
+        %h2
+          %i.icon-edit
+          Account Details
+      .box-content.clearfix
+        = simple_form_for @user, url: admin_user_path, :html => { role: 'form', class: 'form-horizontal',  } do |f|
+          %fieldset.col-sm-12
+            = render :partial => 'form', :locals => {:f => f, :user => @user}
+            %hr.divider
+            .form-actions
+              .col-lg-offset-2.col-lg-10
+                = f.submit "Save Changes", class: "btn btn-primary"

@@ -1,0 +1,49 @@
+- content_for :title,  "Comments"
+
+.row
+  .col-lg-12
+    .box
+      .box-header
+        %h2
+          %i.fa.fa-pencil
+          = succeed "Blog Comments" do
+            %span.break
+        .box-icon
+      .box-content.clearfix
+        = form_for destroy_batch_admin_comments_path, method: :delete do
+          %table.table.table-striped.table-bordered.bootstrap-datatable.datatable
+            %thead
+              %tr
+                %th
+                %th Commenter
+                %th Comment
+                %th User Info
+                %th Approved?
+                %th Actions
+            %tbody
+              - @comments.each do |comment|
+                %tr{:class => comment.approved? ? '' : 'error'}
+                  %td= check_box_tag "comment_ids[]", comment.id
+                  %td
+                    = comment.name
+                    %br/
+                    = comment.email
+                    %br/
+                    = comment.site_url
+                  %td= format_comment(comment)
+                  %td
+                    = comment.user_ip
+                    %br/
+                    = comment.user_agent
+                    %br/
+                    = comment.referrer
+                  %td= comment.approved
+                  %td{width:"10%"}
+                    .btn-group
+                      = button_for(comment)
+                      = link_to raw("<i class='icon-pencil'></i>"), edit_admin_comment_path(comment), class: "btn btn-sm btn-default"
+                      = link_to raw("<i class='icon-trash icon-white'></i>"), admin_comment_path(comment), class: "btn btn-sm btn-danger",
+          data: { confirm: "Are you sure you want to perminately delete the comment?" }, method: :delete, title: "Delete comment."
+        %p= submit_tag "Destroy Checked", class: 'btn btn-danger'
+        %section
+          = paginate(@comments)

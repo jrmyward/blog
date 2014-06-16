@@ -3,7 +3,7 @@ module Permissions
     def initialize(user)
       allow "devise/sessions", [:new, :create, :destroy]
       allow :content, [:index]
-      allow "admin/users", [:edit, :update]
+      allow "admin/users", [:dashboard, :edit, :update]
       allow_param :user, :first_name
       allow_param :user, :last_name
       allow_param :user, :email

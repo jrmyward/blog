@@ -1,0 +1,46 @@
+- content_for :title,  "Blog Posts"
+
+.row
+  .col-lg-12
+    .box
+      .box-header
+        %h2
+          %i.fa.fa-pencil
+          = succeed "Blog Posts" do
+            %span.break
+        .box-icon
+          = link_to raw("<i class='icon-plus'></i>"), new_admin_post_path, class: "", title: "Create a new post"
+      .box-content
+        .col-lg-4.col-lg-offset-8
+          = form_tag admin_posts_path, method: 'get', id: "exercises_search", class: "form-horizontal" do
+            = hidden_field_tag :direction, params[:direction]
+            = hidden_field_tag :sort, params[:sort]
+            = hidden_field_tag :relation, params[:relation]
+            .form-group
+              .controls
+                .input-group
+                  = search_field_tag :search, params[:search], class: "form-control"
+                  %span.input-group-btn
+                    = button_tag "Search", name: nil, class: "submit btn"
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= sortable_relation "title", "Title"
+              %th= sortable_relation "published_at", "Publish Date"
+              %th Status
+              %th Actions
+          %tbody
+            - @posts.each do |post|
+              %tr
+                %td= post.title.titleize
+                %td= post.published_date
+                %td
+                  - if post.published_status == "draft"
+                    %span.label.label-default= post.published_status
+                  - elsif post.published_status == "published"
+                    %span.label.label-success= post.published_status
+                  - elsif post.published_status == "scheduled"
+                    %span.label.label-info= post.published_status
+                %td
+                  = button_link_to(edit_admin_post_path(post), "fa fa-edit", "btn-info")
+                  = button_link_to_destroy(admin_post_path(post), "Are you sure you want to permanently delete #{post.title.titleize}? ")

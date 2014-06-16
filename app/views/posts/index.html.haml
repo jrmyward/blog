@@ -1,0 +1,11 @@
+- content_for :title,  "Blog"
+= render :partial => "shared/page_title", locals: {title: "Blog", icon_class: "ico-pencil"}
+- if user_signed_in? and (current_user.author? or current_user.admin?)
+  .row
+    .span12
+      = link_to raw('<i class="icon-plus icon-white"></i> New Post'), new_post_path, class: "btn btn-primary pull-left"
+  %hr/
+.row
+  .span9
+    = render @posts
+    %section= page_navigation_links(@posts)

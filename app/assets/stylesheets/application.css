@@ -9,15 +9,15 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require theme/bootstrap
- *= require theme/bootstrap-responsive
- *= require theme/icons
- *= require theme/icons-color
- *= require theme/social-icons
- *= require theme/fancybox
+ *= require ocd_theme_magnus/bootstrap
+ *= require ocd_theme_magnus/bootstrap-responsive
+ *= require ocd_theme_magnus/icons
+ *= require ocd_theme_magnus/icons-color
+ *= require ocd_theme_magnus/social-icons
+ *= require ocd_theme_magnus/fancybox
  *= require pygments
- *= require theme/style
- *= require jrmy
+ *= require ocd_theme_magnus/style
+ *= require ocd_theme_magnus/responsive
+ *= require custom
  *= require posts
- *= require responsive
  */

@@ -7,7 +7,10 @@ Blog::Application.routes.draw do
     delete 'signout' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  scope :module => "admin" do
+  scope 'a', module: 'admin', as: 'admin' do
+    scope "blog" do
+      resources :posts, except: [:show]
+    end
     resources :comments, except: [:create, :new] do
       collection do
         delete 'destroy-batch' => "comments#destroy_batch", as: "destroy_batch"
@@ -17,7 +20,8 @@ Blog::Application.routes.draw do
         put 'reject'
       end
     end
-    resources :users
+    resources :users, except: [:index, :new, :create, :destroy]
+    get 'dashboard' => 'users#dashboard', as: 'root'
   end
 
   scope "/settings" do
@@ -28,7 +32,7 @@ Blog::Application.routes.draw do
 
   scope "blog" do
     get 'tags/:tag', to: 'posts#index', as: :tag
-    resources :posts do
+    resources :posts, only: [:index, :show] do
       resources :comments, only: [:create, :new]
     end
   end

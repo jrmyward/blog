@@ -12,12 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require isotope
-//= require jquery.imagesloaded
-//= require bootstrap.js
+//= require ocd_theme_magnus/isotope
+//= require ocd_theme_magnus/jquery.imagesloaded
+//= require ocd_theme_magnus/bootstrap.js
 //= require css_browser_selector
-//= require flexslider.js
-//= require carousel.js
-//= require slider.js
-//= require fancybox.js
-//= require custom.js
+//= require ocd_theme_magnus/flexslider.js
+//= require ocd_theme_magnus/carousel.js
+//= require ocd_theme_magnus/slider.js
+//= require ocd_theme_magnus/fancybox.js
+//= require ocd_theme_magnus/custom.js

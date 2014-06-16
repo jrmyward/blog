@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong Body:
+  = @comment.body
+%p
+  %strong Email:
+  = @comment.email
+%p
+  %strong Site url:
+  = @comment.site_url
+%p
+  %strong User ip:
+  = @comment.user_ip
+%p
+  %strong User agent:
+  = @comment.user_agent
+%p
+  %strong Referrer:
+  = @comment.referrer
+%p
+  %strong Approved:
+  = @comment.approved
+= link_to 'Edit', edit_comment_path(@comment)
+|
+\#{link_to 'Back', comments_path}

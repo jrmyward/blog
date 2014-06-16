@@ -1,0 +1,27 @@
+- if post.errors.any?
+  .alert.alert-block.alert-danger
+    %h4.alert-heading Oh Snap!
+    We found #{pluralize(post.errors.count, "problem")} with the form:
+= f.input :title, label_html: { class: "col-sm-2" }, wrapper: :horizontal_10
+= f.input :description, :as => :text, :input_html => {:rows => 5}, label_html: { class: "col-sm-2" }, wrapper: :horizontal_10
+= f.input :abstract, :as => :text, :input_html => {:rows => 5}, label_html: { class: "col-sm-2" }, wrapper: :horizontal_10
+= f.input :body, :as => :text, :input_html => {:rows => 20}, label_html: { class: "col-sm-2" }, wrapper: :horizontal_10
+= f.input :tag_list, :hint => 'seperated by commas (example: foo, bar)', label_html: { class: "col-sm-2" }, wrapper: :horizontal_10
+.form-group
+  = f.label :image, "Post image", class: "col-sm-2 control-label"
+  .col-sm-10
+    = image_tag  post.image.small, class: "img-responsive post-thumbnail", alt: "#{post.title.titleize}" if post.image?
+    = f.file_field :image
+    = f.hidden_field :image_cache
+.form-group
+  %label.col-sm-2.control-label
+    / %abbr{:title => "required"} *
+    Published at
+  .col-sm-10.date
+    = f.text_field :published_at_string, class: "form-control date-picker", data: {"date-format" => "mm/dd/yyyy"}, value: "#{post.published_at_formatted}"
+/ # = f.input :published_at, as: :datetime, required: true, ampm: true, order: [:month, :day, :year],  start_year: Time.now.year, end_year: Time.now.year - 6, default: Time.now.localtime
+- if current_user.admin?
+  = f.association :author, label_method: :full_name, value_method: :id, label_html: { class: "col-sm-2" }, wrapper: :horizontal_10
+- elsif current_user.author?
+  = f.hidden_field :author_id, value: current_user.id
+= f.input :is_commentable, :label => "Commentable?", :hint => "check to allow comments", label_html: { class: "col-sm-2" }, wrapper: :horizontal_10

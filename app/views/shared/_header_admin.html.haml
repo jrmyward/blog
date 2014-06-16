@@ -1,0 +1,14 @@
+%header.navbar
+  .container
+    %button.navbar-toggle{"data-target" => ".sidebar-nav.nav-collapse", "data-toggle" => "collapse", type: "button"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a#main-menu-toggle.hidden-xs.open
+      %i.fa.fa-bars
+    = link_to admin_root_path, title: "Reflections and Duty", class: "navbar-brand col-md-2 col-sm-1 col-xs-2" do
+      Traveller
+    .nav-no-collapse.header-nav
+      %ul.nav.navbar-nav.pull-right
+        - if current_user
+          = render "shared/user_links"

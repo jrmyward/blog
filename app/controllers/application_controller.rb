@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def after_sign_in_path_for(resource)
+    if current_user.admin? or current_user.author?
+      admin_root_path
+    end
+  end
+
   def authorize
     if current_permission.allow?(params[:controller], params[:action], current_resource)
       current_permission.permit_params! params
