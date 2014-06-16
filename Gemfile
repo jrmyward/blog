@@ -23,11 +23,15 @@ gem 'redcarpet'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+# cron
+gem 'whenever', '~> 0.8', :require => false
+
 # database
 gem 'pg'
 gem 'sanitize'
 
 # deployment
+gem 'capistrano', '~> 2.15'
 gem 'unicorn'
 
 # image manipulation
