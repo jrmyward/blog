@@ -76,8 +76,7 @@ group :doc do
 end
 
 # Tools
-gem 'pry'
-gem 'pry-debugger'
+
 
 group :development do
   gem 'bullet'
@@ -99,6 +98,8 @@ group :development, :test do
   gem 'spork-rails', github: 'sporkrb/spork-rails' # rubygems version not rails 4 compatible
   gem 'guard-spork'
   gem 'childprocess'
+  gem 'pry'
+  gem 'pry-debugger'
 end
 
 group :test do
