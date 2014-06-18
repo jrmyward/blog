@@ -31,7 +31,6 @@ gem 'pg'
 gem 'sanitize'
 
 # deployment
-gem 'capistrano', '~> 2.15'
 gem 'unicorn'
 
 # image manipulation
@@ -54,7 +53,7 @@ gem 'pg_search'
 # gem "squeel"
 
 # queque
-# gem 'sidekiq'
+gem 'sidekiq'
 
 # sitemap
 gem 'sitemap_generator'
@@ -80,6 +79,11 @@ end
 
 group :development do
   gem 'bullet'
+  gem 'capistrano'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq', require: false
   # gem 'capistrano', '~> 3.1.0'
   # gem 'capistrano-rails',   '~> 1.1', require: false
   # gem 'capistrano-bundler', '~> 1.1', require: false
