@@ -54,10 +54,10 @@ GIT
 
 GIT
   remote: git@github.com:oc-digital/ocd_theme_admin_genius.git
-  revision: dfb158d84dda4e5c6f9b5fb71b61ebedd56ba32c
-  tag: v2.0.1
+  revision: 7a8639f98fd4f7a2baa67f1eb874e6e19451a5bf
+  tag: v2.0.2
   specs:
-    ocd_theme_admin_genius (2.0.1)
+    ocd_theme_admin_genius (2.0.2)
       rails (~> 4.1.0)
 
 GIT
