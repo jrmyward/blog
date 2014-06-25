@@ -2,7 +2,7 @@
   - if post.image?
     .post-img.picture
       = link_to post_path(post) do
-        = image_tag post.image
+        = image_tag post.image.large
         .image-overlay-link
   / TODO: post icon should be moved to a helper
   %span.post-icon.standard

@@ -18,7 +18,7 @@
             By #{link_to_author(@post.author)}
       - if @post.image?
         .post-img.picture
-          = image_tag @post.image
+          = image_tag @post.image.large
       / TODO: post-icon should be a helper
       %span.post-icon.standard
         %i.ico-pen.circle
