@@ -30,6 +30,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+table.table thead > tr > th {padding-right: 0px}
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc {
+  display: block;
+}
+
 form{
   legend {
     small {

@@ -55,11 +55,11 @@ class Admin::PostsController < AdminController
 
   def sort_column
     sort      = Sanitize.clean(params[:sort])
-    Post.column_names.include?(sort) ? sort : "title"
+    Post.column_names.include?(sort) ? sort : "published_at"
   end
 
   def sort_direction
     direction = Sanitize.clean(params[:direction])
-    %w[asc desc].include?(direction) ? direction : "asc"
+    %w[asc desc].include?(direction) ? direction : "desc"
   end
 end
