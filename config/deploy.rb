@@ -1,51 +1,58 @@
-# setup bundler
-require "bundler/capistrano"
+# config valid only for Capistrano 3.1
+lock '3.2.1'
 
-# cap -T to see available commands
-load "config/recipes/base"
-load "config/recipes/nginx"
-load "config/recipes/unicorn"
-load "config/recipes/postgresql"
-load "config/recipes/nodejs"
-load "config/recipes/rbenv"
-load "config/recipes/check"
+SSHKit.config.command_map[:rake] = "bundle exec rake"
+SSHKit.config.command_map[:whenever] = "bundle exec whenever"
 
-# setup whenever to execute cron
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
+set :rbenv_type, :system
+set :rbenv_custom_path, '/opt/rbenv'
+set :rbenv_ruby, '2.1.2'
 
-server "198.199.64.159", :web, :app, :db, primary: true
-set :port, '30007'
-set :application, "blog"
-set :user, "jrmy"
-set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
+set :user, "ocd"
+set :application, 'jrmyward'
+set :repo_url, 'git@github.com:jrmyward/blog.git'
+set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 
-set :scm, "git"
-set :repository, "git@github.com:jrmyward/blog.git"
-set :branch, "master"
+# Default branch is :master
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+set :ssh_options, {
+  forward_agent: true,
+  port: 30007
+}
 
-after "deploy", "deploy:cleanup" # keep only the last 5 releases
+set :log_level, :debug
+
+# Default value for :pty is false
+# set :pty, true
+
+set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
+
+set :rails_env, 'production'
+set :sidekiq_pid, File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
+
+set :keep_releases, 3
 
 namespace :deploy do
 
-  task :refresh_sitemaps do
-    run "cd #{release_path} && bundle exec rake sitemap:refresh RAILS_ENV=#{rails_env}"
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
+    end
   end
-  after 'deploy:update_code', 'deploy:refresh_sitemaps'
 
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_config"
+  after :publishing, :restart
 
-  task :symlink_uploads do
-    run "ln -nfs #{shared_path}/uploads  #{release_path}/public/"
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
   end
-  after 'deploy:update_code', 'deploy:symlink_uploads'
 
 end
