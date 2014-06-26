@@ -11,10 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615053156) do
+ActiveRecord::Schema.define(version: 20140626174645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
+  enable_extension "pg_trgm"
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id"
@@ -35,6 +37,20 @@ ActiveRecord::Schema.define(version: 20140615053156) do
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+
+  create_table "list_subscribers", force: true do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "postal_code"
+    t.boolean  "confirmed",   default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "list_subscribers", ["confirmed"], name: "index_list_subscribers_on_confirmed", using: :btree
+  add_index "list_subscribers", ["email"], name: "index_list_subscribers_on_email", unique: true, using: :btree
+  add_index "list_subscribers", ["postal_code"], name: "index_list_subscribers_on_postal_code", using: :btree
 
   create_table "posts", force: true do |t|
     t.integer  "author_id"

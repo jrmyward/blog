@@ -1,0 +1,10 @@
+= form_for @list_subscriber do |f|
+  - if @list_subscriber.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@list_subscriber.errors.count, "error")} prohibited this list_subscriber from being saved:"
+      %ul
+        - @list_subscriber.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
