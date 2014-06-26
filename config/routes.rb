@@ -1,5 +1,7 @@
 Blog::Application.routes.draw do
 
+  resources :list_subscribers
+
   devise_for :users, :skip => [:sessions, :registrations]
   as :user do
     get 'signin' => 'devise/sessions#new', as: :new_user_session
@@ -34,6 +36,13 @@ Blog::Application.routes.draw do
     get 'tags/:tag', to: 'posts#index', as: :tag
     resources :posts, only: [:index, :show] do
       resources :comments, only: [:create, :new]
+    end
+  end
+
+  resources :list_subscribers, path: '/subscribers', only: [:create, :new] do
+    collection do
+      post 'confirm'
+      get 'confirm' # used by MailChimp to confirm
     end
   end
 
