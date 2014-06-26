@@ -1,5 +1,5 @@
 - content_for :title,  "Blog"
-= render :partial => "shared/page_title", locals: {title: "Blog", icon_class: "ico-pencil"}
+= render partial: "shared/page_title", locals: {title: "Blog", icon_class: "ico-pencil"}
 - if user_signed_in? and (current_user.author? or current_user.admin?)
   .row
     .span12
@@ -9,3 +9,8 @@
   .span9
     = render @posts
     %section= page_navigation_links(@posts)
+  .span3
+    .widget.first
+      .title
+        %h3 Keep Me Updated!
+    = render "tag_cloud"
