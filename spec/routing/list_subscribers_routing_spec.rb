@@ -11,5 +11,9 @@ describe ListSubscribersController do
       expect(post("/subscribers")).to route_to("list_subscribers#create")
     end
 
+    it "accepts a POST to confirm" do
+      expect(post("/subscribers/confirm")).to route_to("list_subscribers#confirm")
+    end
+
   end
 end

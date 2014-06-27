@@ -48,4 +48,66 @@ describe ListSubscribersController do
     end
   end
 
+  describe "POST confirm" do
+    let(:list_subscriber) { create(:list_subscriber) }
+
+    describe "with valid params" do
+      it "Confirms the subscriber" do
+        post :confirm, set_mailchimp_params(list_subscriber)
+        expect(list_subscriber.reload.confirmed).to be true
+      end
+
+      it "Returns a 202" do
+        post :confirm, set_mailchimp_params(list_subscriber)
+        expect(response.status).to eq 202
+      end
+    end
+
+    describe "with invalid params" do
+      context "When the webhook is wrong" do
+        it "returns a 412" do
+          post :confirm, { ocd: "invalid" }
+          expect(response.status).to eq 412
+        end
+      end
+
+      context "When data is missing" do
+        it "returns a 417" do
+          post :confirm, { ocd: Rails.application.secrets.mail_chimp_webhook_token }
+          expect(response.status).to eq 417
+        end
+      end
+
+      context "When a subscriber is not found" do
+        it "returns a 422" do
+          post :confirm, set_mailchimp_params(build(:list_subscriber))
+          expect(response.status).to eq 422
+        end
+      end
+
+    end
+  end
+
 end
+
+def set_mailchimp_params(subscriber)
+  {
+    "ocd"       => Rails.application.secrets.mail_chimp_webhook_token,
+    "type"      => "subscribe",
+    "fired_at"  => "2014-06-27 06:09:38",
+    "data" => {
+      "id"          => "693b7aef55",
+      "email"       => subscriber.email,
+      "email_type"  => "html",
+      "ip_opt"      => "162.243.138.96",
+      "web_id"      => "184238353",
+      "merges" => {
+        "EMAIL" => subscriber.email,
+        "FNAME" => subscriber.first_name,
+        "LNAME" => subscriber.last_name
+      },
+      "list_id"=>"117fb7096a"
+    }
+  }
+end
+
