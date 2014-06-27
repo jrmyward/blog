@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_posts, only: [:index]
   before_action :set_post, only: [:show]
+  before_action :set_list_subscriber, only: [:index, :show]
   before_action :set_tags, only: [:index, :show]
 
   # GET /posts
@@ -14,7 +15,10 @@ class PostsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+  def set_list_subscriber
+    @list_subscriber = ListSubscriber.new
+  end
+
   def set_post
     @post = Post.friendly.find(params[:id])
   end

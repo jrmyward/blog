@@ -1,5 +1,5 @@
 class ListSubscribersController < ApplicationController
-  # before_action :set_list_subscriber, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js
 
   # GET /subscribers/new
   def new
@@ -9,25 +9,14 @@ class ListSubscribersController < ApplicationController
   # POST /subscribers/confirm
   def create
     @list_subscriber = ListSubscriber.new(params[:list_subscriber])
-
-    respond_to do |format|
-      if @list_subscriber.save
-        @list_subscriber.subscribe_to_list
-        flash["notice"] = 'Thank you for signing up for the Fitrme Newsletter.'
-        format.html do
-          redirect_to posts_path
-        end
-        format.js
-      else
-        format.html do
-          render action: 'new'
-        end
-        format.js
-      end
+    if @list_subscriber.save
+      ListSubscriberWorker.perform_async(@list_subscriber.id)
+      flash[:notice] = 'Thank you for signing up for The Wayward Traveler Newsletter.'
     end
+    respond_with @list_subscriber, location: posts_path
   end
 
-  # POST /subsribers/confirm?ocd=
+  # POST /subscribers/confirm?ocd=
   def confirm
     if request.post?
       if params["ocd"] == Rails.application.secrets.mail_chimp_webhook_token

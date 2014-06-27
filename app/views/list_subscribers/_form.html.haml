@@ -1,10 +1,10 @@
-= form_for @list_subscriber do |f|
+= simple_form_for @list_subscriber, url: subscribers_path, html: { class: '', remote: true } do |f|
   - if @list_subscriber.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@list_subscriber.errors.count, "error")} prohibited this list_subscriber from being saved:"
-      %ul
-        - @list_subscriber.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+    .alert.alert-block.alert-danger
+      %a.close{"data-dismiss" => "alert"} ×
+      %h4.alert-heading Oh Snap!
+      We found #{pluralize(@list_subscriber.errors.count, "problem")} with the form:
+  = f.input :first_name, required: true
+  = f.input :email, required: true
+  .form-actions
+    = f.submit "Keep Me Updated!", class: "btn btn-primary btn-block"

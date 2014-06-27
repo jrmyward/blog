@@ -42,8 +42,7 @@ describe ListSubscribersController do
       end
 
       it "re-renders the 'new' template" do
-        allow_any_instance_of(ListSubscriber).to receive(:save).and_return(false)
-        post :create, {:list_subscriber => { "email" => "invalid value" }}
+        post :create, {:list_subscriber => { "email" => "" }}
         expect(response).to render_template("new")
       end
     end
