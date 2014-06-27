@@ -1,6 +1,7 @@
 .bundle
 brakeman.html
 config/database.yml
+config/secrets.yml
 coverage/*
 coverage.data
 db/*.sqlite3*
