@@ -1,6 +1,6 @@
 class ListSubscribersController < ApplicationController
-  skip_before_filter  :verify_authenticity_token, only: [:confirm]
-  respond_to :html, :js
+  skip_before_action :verify_authenticity_token, only: [ :confirm ]
+  respond_to :html, :js, :json
 
   # GET /subscribers/new
   def new
