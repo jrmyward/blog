@@ -14,9 +14,6 @@ tmp/
 .idea
 .project
 .DS_Store
-public/audio
-public/videos
-public/uploads
 public/sitemap*
 vendor/bundle
 .yard*
