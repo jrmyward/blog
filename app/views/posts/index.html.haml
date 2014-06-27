@@ -10,7 +10,5 @@
     = render @posts
     %section= page_navigation_links(@posts)
   .span3
-    .widget.first
-      .title
-        %h3 Keep Me Updated!
+    = render "newsletter_signup"
     = render "tag_cloud"

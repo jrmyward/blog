@@ -1,0 +1,7 @@
+<% if @list_subscriber.errors.present? %>
+  $(".alert.alert-block.alert-danger").remove();
+  $('#new_list_subscriber').prepend("<%= j error_messages_for(@list_subscriber) %>");
+<% else %>
+  $('#new_list_subscriber').parent().append("<%= j success_messages_for(@list_subscriber) %>");
+  $('#new_list_subscriber').remove();
+<% end %>

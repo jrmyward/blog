@@ -63,7 +63,6 @@ form {
   }
 }
 
-
 .signin_container {
   margin: 0 auto;
   width: 300px;
@@ -90,5 +89,15 @@ form {
 .comments {
   .alert.alert-block {
     margin:20px;
+  }
+}
+
+.widget.newsletter {
+  form {
+    margin: 20px 10px 0 10px;
+    .form-actions {
+      background: none;
+      margin-bottom: 0px;
+    }
   }
 }
