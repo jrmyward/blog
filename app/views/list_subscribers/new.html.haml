@@ -1,0 +1,5 @@
+- content_for :title,  "Newsletter Subscription"
+= render :partial => "shared/page_title", locals: {title: "Subscribe to the Newsletter", icon_class: "ico-pencil"} |
+.row
+  .span3.newsletter.well
+    = render 'form'
