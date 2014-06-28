@@ -7,7 +7,7 @@ SitemapGenerator::Sitemap.create do
 
   # Blog
   add posts_path
-  Post.find_each do |post|
+  Post.published do |post|
     add post_path(post), :lastmod => post.updated_at
   end
   Post.tag_counts.map { |t| t.name.parameterize }.each do |tag|

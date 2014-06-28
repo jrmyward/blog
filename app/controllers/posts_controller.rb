@@ -27,9 +27,9 @@ class PostsController < ApplicationController
     page   = Sanitize.clean(params[:page])
     if params[:tag]
       set_tag
-      @posts = Post.tagged_with(@tag).paginate(:page => page, :per_page => 10).order("published_at desc")
+      @posts = Post.tagged_with(@tag).paginate(:page => page, :per_page => 10).published.order("published_at desc")
     else
-      @posts = Post.paginate(:page => page, :per_page => 10).order("published_at desc")
+      @posts = Post.paginate(:page => page, :per_page => 10).published.order("published_at desc")
     end
   end
 
