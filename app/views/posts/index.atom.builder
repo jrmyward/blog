@@ -1,6 +1,6 @@
 atom_feed do |feed|
-  feed.title "Superhero Articles"
-  feed.updated @posts.maximum(:updated_at)
+  feed.title "Wayward Traveler Posts"
+  feed.updated @posts.maximum(:published_at)
 
   @posts.each do |post|
     feed.entry post, published: post.published_at do |entry|
