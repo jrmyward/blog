@@ -1,8 +1,14 @@
+
 div.at-share-open-control-left.ats-dark,
 div.at-share-open-control-right.ats-dark,
 .at-vertical-menu.ats-dark a,
 .at-vertical-menu.ats-dark div.at-share-close-control {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
+}
+
+p {
+  font-size: 15px;
+  line-height: 2em;
 }
 
 .navbar {
@@ -23,8 +29,24 @@ div.at-share-open-control-right.ats-dark,
   margin-top: -90px;
 }
 
+#page-title.page-title-hero {
+  margin-top: 0px;
+  min-height: 0px;
+  padding-top: 0px;
+  #page-title-inner {
+    padding: 25px 0;
+  }
+}
+
 /* Footer */
 .footer {
+  #footer {
+    p {
+      a {
+        color: #f16529 !important;
+      }
+    }
+  }
   #footer-menu-logo {
     a.brand {
       font-size: 22px !important;
@@ -38,14 +60,13 @@ div.at-share-open-control-right.ats-dark,
   }
 }
 
-form {
-  .control-group.measurement {
-    .controls {
-      input, select {width:auto;}
-      span {padding:0 5px 0 0px;}
-      span.option {padding:0 10px 0 5px;}
-    }
+.title {
+  h2 {
+    font-size: 26px;
   }
+}
+
+form {
   label.boolean.control-label {padding-top:0px;}
   label.radio {
     strong {color:#555;}
@@ -53,6 +74,11 @@ form {
   }
   select.date, select.datetime, select.time {
     width:auto;
+  }
+  .form-group {
+    input {
+      width: 95%;
+    }
   }
 }
 
