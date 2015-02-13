@@ -1,27 +1,32 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.2.0'
+
+gem 'responders', '~> 2.0'
 
 # assets
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 
 # authentication
-gem 'devise'
+gem 'devise', '~> 3.4'
 
 # blog
-gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git'
+gem 'acts-as-taggable-on'
 gem 'ancestry'
-gem 'friendly_id', git: 'https://github.com/FriendlyId/friendly_id'
+gem 'friendly_id'
 gem 'pygments.rb'
 gem 'rakismet'
 gem 'redcarpet'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+# caching
+gem 'dalli'
 
 # cron
 gem 'whenever', '~> 0.8', :require => false
@@ -50,7 +55,6 @@ gem 'gibbon'
 
 # querying
 gem 'pg_search'
-# gem "squeel"
 
 # queque
 gem 'sidekiq'
@@ -60,14 +64,15 @@ gem 'sitemap_generator'
 
 # themes
 gem 'ocd_theme_magnus', git: 'git@github.com:oc-digital/ocd_theme_magnus.git'
-gem 'ocd_theme_admin_genius', git: 'git@github.com:oc-digital/ocd_theme_admin_genius.git', tag: 'v2.0.2'
+gem 'ocd_theme_admin_genius', git: 'git@github.com:oc-digital/ocd_theme_admin_genius.git', tag: 'v2.0.3'
 
 # views
-gem 'browser', git: 'git://github.com/fnando/browser'
+gem 'browser'
 gem "font-awesome-rails", '~> 3.2.1.3'
+gem 'draper', '~> 1.3'
 gem 'haml'
 gem 'haml-rails'
-gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git', branch: 'v3.0'
+gem 'simple_form'
 
 group :doc do
   # gem 'sdoc', require: false
@@ -75,41 +80,48 @@ group :doc do
 end
 
 # Tools
-gem 'pry'
+gem 'pry-rails'
 
 group :development do
   gem 'bullet'
-  gem 'capistrano'
+  gem 'capistrano', '3.2.1'
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rbenv', require: false
-  gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq', require: false
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'capistrano-sidekiq', '0.3.6', require: false
+  gem 'letter_opener'
 end
 
 group :development, :test do
+  gem 'byebug'
   gem 'launchy'
   gem 'rack-mini-profiler', require: false
-  gem 'rspec', '~> 3.0.0.beta2'
+  gem 'rspec', '~> 3.0'
   gem 'rspec-rails'
   gem 'guard-rspec', '4.2.7'
   gem 'guard-livereload'
-  gem 'spork-rails', github: 'sporkrb/spork-rails' # rubygems version not rails 4 compatible
+  gem 'spork-rails'
   gem 'guard-spork'
   gem 'childprocess'
-  # gem 'pry-debugger'
+  gem 'pry-byebug'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do
-  gem 'capybara', git: 'git@github.com:jnicklas/capybara.git', branch: 'master'
+  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'fuubar'
   gem 'poltergeist'
+  gem 'puffing-billy', git: "https://github.com/oesmith/puffing-billy"
+  gem 'rspec-sidekiq'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', '>=0.4.2', :require => false
-  gem 'stripe-ruby-mock', '>= 1.8.7.4'
   gem 'timecop'
   gem 'turn', :require => false
   gem 'vcr'
