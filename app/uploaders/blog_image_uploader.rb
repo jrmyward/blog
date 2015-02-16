@@ -1,14 +1,13 @@
 # encoding: utf-8
 
-class ImageUploader < CarrierWave::Uploader::Base
+class BlogImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  include CarrierWave::MimeTypes
+  process :set_content_type
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -26,15 +25,15 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :large do
-    resize_to_limit(800, 800)
+    resize_to_limit(1200, 400)
   end
 
   version :medium do
-    resize_to_limit(300, 300)
+    resize_to_limit(900, 300)
   end
 
   version :small do
-    resize_to_limit(100, 100)
+    resize_to_limit(300, 100)
   end
 
   # Process files as they are uploaded:
