@@ -2,13 +2,12 @@
 %html{lang: "en"}
   %head
     = render "shared/layout_meta"
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag "application", media: "all"
     %link{href: "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", rel: "stylesheet", type: "text/css"}/
     %link{href: "http://fonts.googleapis.com/css?family=Droid+Serif", rel: "stylesheet", type: "text/css"}/
     %link{href: "http://fonts.googleapis.com/css?family=Boogaloo", rel: "stylesheet", type: "text/css"}/
     %link{href: "http://fonts.googleapis.com/css?family=Economica:700,400italic", rel: "stylesheet", type: "text/css"}/
-    = javascript_include_tag "application", "data-turbolinks-track" => true
-
+    = javascript_include_tag "application"
     - if Rails.env.production?
       :javascript
         var _gaq = _gaq || [];
@@ -39,3 +38,6 @@
     %footer.footer
       = render("shared/footer_top")
       = render("shared/footer_bottom")
+
+    - if Rails.env.production? || Rails.env.development?
+      = javascript_include_tag "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54e259980d83f095", async: '1'

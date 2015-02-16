@@ -1,5 +1,5 @@
 class Admin::PostsController < AdminController
-  prepend_before_filter :authenticate_user!
+  before_action :load_post, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
   respond_to :html, :json
 

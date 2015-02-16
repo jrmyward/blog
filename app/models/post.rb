@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, BlogImageUploader
 
   before_validation :format_published_at
   validates_presence_of :abstract, :body, :description, :title
@@ -76,7 +76,9 @@ class Post < ActiveRecord::Base
   private
 
   def format_published_at
-    unless self.published_at_string.nil? or self.published_at_string.empty? or (published_at_formatted == published_at_string)
+    return true if self.published_at
+    return self.published_at = nil if self.published_at_string.nil? || self.published_at_string.empty?
+    unless (published_at_formatted == published_at_string)
       date_string = "#{self.published_at_string} 06:00 -0700"
       self.published_at = DateTime.strptime(date_string, '%m/%d/%Y %H:%M %z')
     end
