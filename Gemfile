@@ -4,6 +4,9 @@ gem 'rails', '4.2.0'
 
 gem 'responders', '~> 2.0'
 
+# amazon
+gem 'fog'
+
 # assets
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  platforms: :ruby
