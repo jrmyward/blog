@@ -1,0 +1,33 @@
+---
+:scope: 
+:url: http://fonts.googleapis.com/css?family=Economica%3A700%2C400italic
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Content-Type: text/css
+  Timing-Allow-Origin: "*"
+  Expires: Tue, 17 Feb 2015 00:07:29 GMT
+  Date: Tue, 17 Feb 2015 00:07:29 GMT
+  Cache-Control: private, max-age=86400
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  Server: GSE
+  Alternate-Protocol: 80:quic,p=0.08
+  Accept-Ranges: none
+  Vary: Accept-Encoding
+  Connection: close
+:content: |
+  @font-face {
+    font-family: 'Economica';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Economica Bold'), local('Economica-Bold'), url(http://fonts.gstatic.com/s/economica/v4/UK4l2VEpwjv3gdcwbwXE9JS3E-kSBmtLoNJPDtbj2Pk.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Economica';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Economica Italic'), local('Economica-Italic'), url(http://fonts.gstatic.com/s/economica/v4/bzOVz_30ksVskVYQI1-p8iwlidHJgAgmTjOEEzwu1L8.ttf) format('truetype');
+  }

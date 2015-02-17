@@ -5,33 +5,30 @@ http_interactions:
     uri: https://us8.api.mailchimp.com/2.0/lists/subscribe
     body:
       encoding: UTF-8
-      string: "{\"apikey\":\"d5c9b280e031b8f2a1370314181646a2-us8\",\"id\":\"a8455a14af\",\"email\":{\"email\":\"jd@example.com\"},\"merge_vars\":{\"FNAME\":\"Jon\"},\"double_optin\":true}"
+      string: '{"apikey":"78e80bbc41f2ee62f1cadc17f0a9a52b-us8","id":"c0dfcf27d4","email":{"email":"eileen@goldnerbins.info"},"merge_vars":{"FNAME":"Alvera"},"double_optin":true}'
     headers: {}
   response:
     status:
-      code: 500
-      message: Internal Server Error
+      code: 200
+      message: OK
     headers:
       Server:
       - nginx
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '141'
-      X-Mailchimp-Api-Error-Code:
-      - "-100"
+      - '74'
+      Vary:
+      - Accept-Encoding
       Date:
-      - Sat, 07 Jun 2014 05:41:41 GMT
+      - Tue, 17 Feb 2015 01:35:58 GMT
       Connection:
-      - close
+      - keep-alive
       Set-Cookie:
       - _AVESTA_ENVIRONMENT=prod; path=/
-      X-N:
-      - S
     body:
       encoding: UTF-8
-      string: "{\"status\":\"error\",\"code\":-100,\"name\":\"ValidationError\",\"error\":\"This
-        email address looks fake or invalid. Please enter a real email address\"}"
+      string: '{"email":"eileen@goldnerbins.info","euid":"edf4eeb5b2","leid":"250640577"}'
     http_version: 
-  recorded_at: Sat, 07 Jun 2014 05:41:42 GMT
-recorded_with: VCR 2.9.0
+  recorded_at: Tue, 17 Feb 2015 01:35:58 GMT
+recorded_with: VCR 2.9.3

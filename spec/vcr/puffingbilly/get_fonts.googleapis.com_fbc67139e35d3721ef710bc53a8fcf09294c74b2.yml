@@ -1,0 +1,33 @@
+---
+:scope: 
+:url: http://fonts.googleapis.com/css?family=Droid+Sans%3A400%2C700
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Content-Type: text/css
+  Timing-Allow-Origin: "*"
+  Expires: Tue, 17 Feb 2015 00:07:29 GMT
+  Date: Tue, 17 Feb 2015 00:07:29 GMT
+  Cache-Control: private, max-age=86400
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  Server: GSE
+  Alternate-Protocol: 80:quic,p=0.08
+  Accept-Ranges: none
+  Vary: Accept-Encoding
+  Connection: close
+:content: |
+  @font-face {
+    font-family: 'Droid Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Droid Sans'), local('DroidSans'), url(http://fonts.gstatic.com/s/droidsans/v6/s-BiyweUPV0v-yRb-cjciMDdSZkkecOE1hvV7ZHvhyU.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Droid Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(http://fonts.gstatic.com/s/droidsans/v6/EFpQQyG9GqCrobXxL-KRMcBaWKZ57bY3RXgXH6dOjZ0.ttf) format('truetype');
+  }

@@ -1,16 +1,12 @@
 class Admin::PostsController < AdminController
-  prepend_before_filter :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :load_post, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
-  respond_to :html
+  respond_to :html, :json
 
   # GET /a/blog/posts
   # GET /a/blog/posts.json
   def index
-    query       = Sanitize.clean(params[:search])
-    page        = Sanitize.clean(params[:page])
-    sort_order  = Sanitize.clean(sort_column + " " + sort_direction)
-    @posts      = Post.text_search(query).paginate(page: page, per_page: 20).reorder(sort_order)
+    load_posts
   end
 
   # GET /a/blog/posts/new
@@ -28,6 +24,7 @@ class Admin::PostsController < AdminController
     @post = Post.new(params[:post])
     flash[:notice] = "Post was successfully created." if @post.save
     respond_with @post, location: admin_posts_path
+
   end
 
   # PATCH/PUT /a/blog/posts/1
@@ -49,17 +46,28 @@ class Admin::PostsController < AdminController
 
   private
 
-  def set_post
-    @post = Post.friendly.find(params[:id])
+  def load_post
+    @post ||= post_scope.friendly.find(params[:id]).decorate
+  end
+
+  def load_posts
+    query         = params[:search]
+    page          = params[:page] || 1
+    sort_order    = [sort_column, sort_direction].join(" ")
+    @posts ||= post_scope.text_search(query).paginate(page: page, per_page: 20).reorder(sort_order).decorate
+  end
+
+  def post_scope
+    Post.all
   end
 
   def sort_column
-    sort      = Sanitize.clean(params[:sort])
+    sort      = params[:sort]
     Post.column_names.include?(sort) ? sort : "published_at"
   end
 
   def sort_direction
-    direction = Sanitize.clean(params[:direction])
+    direction = params[:direction]
     %w[asc desc].include?(direction) ? direction : "desc"
   end
 end

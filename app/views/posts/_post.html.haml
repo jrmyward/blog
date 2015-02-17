@@ -16,11 +16,11 @@
     .post-meta.clearfix
       %ul.post-meta-items.clearfix
         %li
-          %i.mini-ico-calendar>
-          On #{post.published_at.strftime("%d %B, %Y")}
-        %li
           %i.mini-ico-user>
           By #{link_to_author(post.author)}
+        %li
+          %i.mini-ico-calendar>
+          On #{post.published_at.strftime("%d %B, %Y")}
         - if post.is_commentable?
           %li
             %i.mini-ico-comment>

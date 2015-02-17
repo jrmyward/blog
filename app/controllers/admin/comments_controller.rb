@@ -1,11 +1,10 @@
 class Admin::CommentsController < AdminController
-  prepend_before_filter :authenticate_user!
-  before_action :set_comment, except: [:destroy_batch, :index]
+  before_action :load_comment, except: [:destroy_batch, :index]
+  helper_method :sort_column, :sort_direction
 
   # GET /a/comments
   def index
-    page      = Sanitize.clean(params[:page])
-    @comments = Comment.paginate(:page => page, :per_page => 10).order("created_at desc")
+    load_comments
   end
 
   # GET /a/comments/1/edit
@@ -45,8 +44,29 @@ class Admin::CommentsController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+
+  def load_comment
+    @comment ||= comment_scope.find(params[:id])
+  end
+
+  def load_comments
+    query         = Sanitize.clean(params[:search])
+    page          = params[:page] || 1
+    sort_order    = Sanitize.clean(sort_column + " " + sort_direction)
+    @comments ||= comment_scope.paginate(:page => page, :per_page => 10).reorder(sort_order)
+  end
+
+  def comment_scope
+    Comment.all
+  end
+
+  def sort_column
+    sort      = Sanitize.clean(params[:sort])
+    Comment.column_names.include?(sort) ? sort : "created_at"
+  end
+
+  def sort_direction
+    direction = Sanitize.clean(params[:direction])
+    %w[asc desc].include?(direction) ? direction : "desc"
+  end
 end

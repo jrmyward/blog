@@ -1,40 +1,48 @@
 - content_for :title,  @post.title
 - content_for :description, @post.description
 - content_for :og_url, request.original_url
-- content_for :og_image, "#{image_url @post.image}" if @post.image?
+- content_for :og_image, "#{image_url @post.image.medium}" if @post.image?
 - content_for :meta_author, @post.author.full_name
 - content_for :meta_twitter_creator, @post.author.twitter_handle
-= render partial: "shared/page_title", locals: {title: @post.title, icon_class: "ico-pencil"}
+
+/ = render partial: "shared/page_title", locals: {title: @post.title, icon_class: "ico-pencil"}
+- content_for :content_top do
+  #page-title.page-title-hero
+    .hero-image.post-hero{style: "background-image: url(#{@post.image.large});"}
+    #page-title-inner
+      .container
+        %h1.text-center
+          = @post.title
 .row
-  .span9
+  .span8
     .post.post-page
       .post-meta.clearfix
         %ul.post-meta-items.clearfix
           %li
-            %i.mini-ico-calendar>
-            On #{@post.published_at.strftime("%d %B, %Y")}
-          %li
             %i.mini-ico-user>
             By #{link_to_author(@post.author)}
-      - if @post.image?
-        .post-img.picture
-          = image_tag @post.image.large
-      / TODO: post-icon should be a helper
+          %li
+            %i.mini-ico-calendar>
+            On #{@post.published_at.strftime("%d %B, %Y")}
+        .post-social.share-top
+          .addthis_responsive_sharing
       %span.post-icon.standard
         %i.ico-pen.circle
       .post-content
-        .post-title
-          %h2= @post.title.titleize
+        / .post-title
+        /   %h2= @post.title.titleize
         .post-description
           = markdown_render(@post.body)
         .post-meta.clearfix
+          .post-social.share-bottom
+            .addthis_responsive_sharing
           %ul.post-meta-items.clearfix
-            %li
-              %i.mini-ico-calendar>
-              On #{@post.published_at.strftime("%d %B, %Y")}
             %li
               %i.mini-ico-user>
               By #{link_to_author(@post.author)}
+            %li
+              %i.mini-ico-calendar>
+              On #{@post.published_at.strftime("%d %B, %Y")}
             - if @post.tag_list.count > 0
               %li
                 %i.mini-ico-tags
@@ -58,6 +66,6 @@
           %h3 Leave a Comment
         #comment_form_prime
           = render "comments/form"
-  .span3
+  .span4
     = render "newsletter_signup"
     = render "tag_cloud"

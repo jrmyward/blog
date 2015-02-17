@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "Blog" do
+describe "Blog", type: :feature do
   let(:valid_user) { attributes_for(:user) }
   let(:author) { User.create(valid_user.merge({role: "author"})) }
   let(:admin) { create(:user, role: "admin") }

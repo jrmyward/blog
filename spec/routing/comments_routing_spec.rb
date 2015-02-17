@@ -1,6 +1,6 @@
-require "spec_helper"
+require "rails_helper"
 
-describe CommentsController do
+describe CommentsController, type: :routing do
   describe "routing" do
 
     it "routes to #new" do
