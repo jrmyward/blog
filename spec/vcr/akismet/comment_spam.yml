@@ -5,10 +5,10 @@ http_interactions:
     uri: http://980ffb14cfd8.rest.akismet.com/1.1/comment-check
     body:
       encoding: US-ASCII
-      string: comment_author=Jon+Test&comment_author_url=eroticbeauties.net&comment_author_email=jd%40example.com&user_ip=127.0.0.1&referrer=http%3A%2F%2Fwww.example.com%2Fblog%2Fposts%2Fhello-world&author_ip=127.0.0.1&HTTP_REFERER=http%3A%2F%2Fwww.example.com%2Fblog%2Fposts%2Fhello-world&HTTP_HOST=www.example.com&comment_type=comment&blog=http%3A%2F%2Fjrmyward.com%2F&is_test=1
+      string: comment_author=Jon+Test&comment_author_url=eroticbeauties.net&comment_author_email=jd%40example.com&user_ip=127.0.0.1&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X%29+AppleWebKit%2F534.34+%28KHTML%2C+like+Gecko%29+PhantomJS%2F1.9.2+Safari%2F534.34&referrer=http%3A%2F%2F127.0.0.1%3A62393%2Fblog%2Fposts%2Fhello-world&author_ip=127.0.0.1&HTTP_ORIGIN=http%3A%2F%2F127.0.0.1%3A62393&HTTP_X_REQUESTED_WITH=XMLHttpRequest&HTTP_USER_AGENT=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X%29+AppleWebKit%2F534.34+%28KHTML%2C+like+Gecko%29+PhantomJS%2F1.9.2+Safari%2F534.34&HTTP_ACCEPT=%2A%2F%2A%3Bq%3D0.5%2C+text%2Fjavascript%2C+application%2Fjavascript%2C+application%2Fecmascript%2C+application%2Fx-ecmascript&HTTP_REFERER=http%3A%2F%2F127.0.0.1%3A62393%2Fblog%2Fposts%2Fhello-world&HTTP_CONNECTION=Keep-Alive&HTTP_ACCEPT_ENCODING=gzip&HTTP_ACCEPT_LANGUAGE=en-US%2C%2A&HTTP_HOST=127.0.0.1%3A62393&HTTP_VERSION=HTTP%2F1.1&comment_type=comment&blog=http%3A%2F%2Fjrmyward.com%2F&is_test=1
     headers:
       User-Agent:
-      - Rails/4.1.0 | Rakismet/1.5.0
+      - Rails/4.2.0 | Rakismet/1.5.0
       Content-Type:
       - application/x-www-form-urlencoded
       Accept-Encoding:
@@ -23,20 +23,20 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 16 Jun 2014 01:40:55 GMT
+      - Tue, 17 Feb 2015 00:28:40 GMT
       Content-Type:
       - text/plain; charset=utf-8
       Content-Length:
       - '4'
       Connection:
-      - close
+      - keep-alive
       X-Akismet-Server:
-      - 192.168.6.133
+      - 10.4.64.75
       X-Akismet-Guid:
-      - db20ea9f04a388277af984c8f504febb
+      - c3bf309228473aa5fc1c0784fe1fe5a8
     body:
       encoding: UTF-8
       string: 'true'
     http_version: 
-  recorded_at: Mon, 16 Jun 2014 01:40:55 GMT
-recorded_with: VCR 2.9.2
+  recorded_at: Tue, 17 Feb 2015 00:28:40 GMT
+recorded_with: VCR 2.9.3

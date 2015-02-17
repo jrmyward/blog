@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ApplicationHelper do
+describe ApplicationHelper, type: :helper do
 
   describe "admin_link_to" do
     it "returns an admin formatted link" do
@@ -26,7 +26,7 @@ describe ApplicationHelper do
   describe "button_link_to_destroy" do
     it "returns a bootstrapped formatted destroy link button" do
       destroy_link_button = helper.button_link_to_destroy("/destory")
-      expect(destroy_link_button).to eq("<a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" data-method=\"delete\" href=\"/destory\" rel=\"nofollow\"><i class=\"icon-trash\"></i></a>")
+      expect(destroy_link_button).to eq("<a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" rel=\"nofollow\" data-method=\"delete\" href=\"/destory\"><i class=\"icon-trash\"></i></a>")
     end
   end
 

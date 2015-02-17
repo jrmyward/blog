@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ListSubscribersController do
+describe ListSubscribersController, type: :controller do
   let(:valid_attributes) { attributes_for(:list_subscriber) }
 
   describe "GET new" do

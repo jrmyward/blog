@@ -1,6 +1,6 @@
-require "spec_helper"
+require "rails_helper"
 
-describe Permissions::AuthorPermission do
+describe Permissions::AuthorPermission, type: :model do
   let(:user) { build(:user, role: "author") }
   let(:user_post) { build(:post, author_id: user.id) }
   let(:other_post) { build(:post, author_id: 357) }

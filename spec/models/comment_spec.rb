@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require "ostruct"
 
-describe Comment do
+describe Comment, type: :model do
   it { should respond_to(:body) }
   it { should respond_to(:email) }
   it { should respond_to(:site_url) }

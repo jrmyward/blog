@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "Admin::Users" do
+describe "Admin::Users", type: :feature do
 
   context "When admin edits profile" do
     let(:valid_user) { attributes_for(:user) }

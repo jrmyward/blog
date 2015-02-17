@@ -1,6 +1,6 @@
-require "spec_helper"
+require "rails_helper"
 
-describe Permissions::GuestPermission do
+describe Permissions::GuestPermission, type: :model do
   subject { Permissions.permission_for(nil) }
 
   it "allows comments" do

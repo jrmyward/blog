@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
 # the PostsHelper. For example:
@@ -10,7 +10,7 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe PostsHelper do
+describe PostsHelper, type: :helper do
 
   describe "link_to_author" do
     before(:each) do
@@ -20,7 +20,7 @@ describe PostsHelper do
     describe "when they have a google plus page" do |variable|
       it "links to an author's google plus page" do
         @author.update_attribute(:gplus, '12345')
-        expect(helper.link_to_author(@author)).to eq "<a href=\"https://plus.google.com/#{@author.gplus}?rel=author\" target=\"_blank\">#{@author.full_name}</a>"
+        expect(helper.link_to_author(@author)).to eq "<a target=\"_blank\" href=\"https://plus.google.com/#{@author.gplus}?rel=author\">#{@author.full_name}</a>"
       end
     end
 

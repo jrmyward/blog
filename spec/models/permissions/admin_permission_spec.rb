@@ -1,6 +1,6 @@
-require "spec_helper"
+require "rails_helper"
 
-describe Permissions::AdminPermission do
+describe Permissions::AdminPermission, type: :model do
   subject { Permissions.permission_for(build(:user, role: "admin")) }
 
   it "allows anything" do

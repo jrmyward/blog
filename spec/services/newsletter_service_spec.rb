@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'ostruct'
 
-describe NewsletterService do
+RSpec.describe NewsletterService, type: :model do
   let(:subscriber) { create(:list_subscriber) }
   let(:non_subscriber) { OpenStruct.new(email: '', first_name: '') }
 
@@ -10,9 +10,7 @@ describe NewsletterService do
       it "will return true" do
         VCR.use_cassette "newsletter/subscribe_success" do
           newsletter_service = NewsletterService.new
-          expect {
-            newsletter_service.subscribe(subscriber)
-          }.to_not be nil
+          expect(newsletter_service.subscribe(subscriber)).to_not be nil
         end
       end
     end

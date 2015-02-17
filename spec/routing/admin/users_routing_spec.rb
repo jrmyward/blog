@@ -1,6 +1,6 @@
-require "spec_helper"
+require "rails_helper"
 
-describe Admin::UsersController do
+describe Admin::UsersController, type: :routing do
   let (:user) { FactoryGirl.create(:user) }
 
   describe "routing" do

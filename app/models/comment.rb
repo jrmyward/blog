@@ -2,10 +2,10 @@ class Comment < ActiveRecord::Base
   include Rakismet::Model
   has_ancestry
 
-  belongs_to :commentable, polymorphic: true
+  belongs_to :commentable, polymorphic: true, touch: true
 
-  scope :published, lambda { where(:approved => true) }
-  scope :unapproved, lambda { where(:approved => false) }
+  scope :published, -> { where(approved: true) }
+  scope :unapproved, -> { where(approved: false) }
 
   rakismet_attrs :author => :name, :author_email => :email, :author_url => :site_url, :author_ip => :user_ip
 
@@ -28,8 +28,8 @@ class Comment < ActiveRecord::Base
   end
 
   def notify_other_commenters
-    Mailer.notify_admin_and_author(self.id).deliver
-    Mailer.comment_response(self.id, parent.id).deliver if parent && self.approved?
+    Mailer.notify_admin_and_author(self).deliver_now
+    Mailer.comment_response(self, parent).deliver_now if !!parent && self.approved?
   end
 
   private

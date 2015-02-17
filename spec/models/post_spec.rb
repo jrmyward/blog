@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Post do
+describe Post, type: :model do
   it { should respond_to(:abstract) }
   it { should respond_to(:author_id) }
   it { should respond_to(:body) }
@@ -91,7 +91,7 @@ describe Post do
     end
 
     it "returns a formated date string" do
-      published_post = create(:post, published_at_string: "07/04/2013")
+      published_post = create(:post, published_at_string: "07/04/2013", published_at: nil)
       expect(published_post.published_date).to eq "04 Jul 2013"
     end
   end
