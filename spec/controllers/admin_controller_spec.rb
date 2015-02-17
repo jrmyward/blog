@@ -1,5 +1,5 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe AdminController do
+describe AdminController, type: :controller do
 
 end

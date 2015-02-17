@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
 # the CommentsHelper. For example:
@@ -10,7 +10,7 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe CommentsHelper do
+describe CommentsHelper, type: :helper do
 
   describe "button_for" do
     before(:each) do
@@ -20,14 +20,14 @@ describe CommentsHelper do
 
     context "approved comment" do
       it "should render a reject button" do
-        expect(helper.button_for(@comment)).to eq "<a class=\"btn btn-sm btn-danger\" data-confirm=\"Are you sure you want to mark the comment as spam?\" data-method=\"put\" href=\"/a/comments/1/reject\" rel=\"nofollow\" title=\"Reject comment.\"><i class='icon-thumbs-down icon-white'></i></a>"
+        expect(helper.button_for(@comment)).to eq "<a class=\"btn btn-sm btn-danger\" data-confirm=\"Are you sure you want to mark the comment as spam?\" title=\"Reject comment.\" rel=\"nofollow\" data-method=\"put\" href=\"/a/comments/1/reject\"><i class='icon-thumbs-down icon-white'></i></a>"
       end
     end
 
     context "rejected comment" do
       it "should render an apporve button" do
         @comment.update_attribute(:approved, false)
-        expect(helper.button_for(@comment)).to eq "<a class=\"btn btn-sm btn-default\" data-confirm=\"Are you sure you want to approve the comment?\" data-method=\"put\" href=\"/a/comments/1/approve\" rel=\"nofollow\" title=\"Approve comment.\"><i class='icon-thumbs-up'></i></a>"
+        expect(helper.button_for(@comment)).to eq "<a class=\"btn btn-sm btn-default\" data-confirm=\"Are you sure you want to approve the comment?\" title=\"Approve comment.\" rel=\"nofollow\" data-method=\"put\" href=\"/a/comments/1/approve\"><i class='icon-thumbs-up'></i></a>"
       end
     end
   end

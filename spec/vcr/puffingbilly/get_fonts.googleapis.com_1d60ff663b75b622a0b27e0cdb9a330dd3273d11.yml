@@ -1,0 +1,26 @@
+---
+:scope: 
+:url: http://fonts.googleapis.com/css?family=Droid+Serif
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Content-Type: text/css
+  Timing-Allow-Origin: "*"
+  Expires: Tue, 17 Feb 2015 00:07:29 GMT
+  Date: Tue, 17 Feb 2015 00:07:29 GMT
+  Cache-Control: private, max-age=86400
+  Content-Length: '251'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  Server: GSE
+  Alternate-Protocol: 80:quic,p=0.08
+  Connection: close
+:content: |
+  @font-face {
+    font-family: 'Droid Serif';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Droid Serif'), local('DroidSerif'), url(http://fonts.gstatic.com/s/droidserif/v6/0AKsP294HTD-nvJgucYTaCwlidHJgAgmTjOEEzwu1L8.ttf) format('truetype');
+  }

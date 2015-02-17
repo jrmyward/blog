@@ -10,14 +10,13 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(params[:comment].to_h)
+    @comment = Comment.new(params[:comment])
 
     if @comment.save
       unless @comment.approved?
         flash[:error] = "Unfortunately this comment is considered spam by Akismet. " +
                       "It will show up once it has been approved by the administrator."
       end
-      @comment.notify_other_commenters
     end
 
     respond_to do |format|

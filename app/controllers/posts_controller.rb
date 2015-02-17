@@ -1,41 +1,38 @@
 class PostsController < ApplicationController
-  before_action :set_posts, only: [:index]
-  before_action :set_post, only: [:show]
-  before_action :set_list_subscriber, only: [:index, :show]
   before_action :set_tags, only: [:index, :show]
 
-  # GET /posts
+  # GET /blog/posts
   def index
+    load_posts
   end
 
-  # GET /posts/1
+  # GET /blog/posts/1
   def show
+    load_post
     @commentable = @post
     @comment = Comment.new
   end
 
   private
-  def set_list_subscriber
-    @list_subscriber = ListSubscriber.new
+
+  def load_post
+    @post = Post.friendly.find(params[:id]).decorate
   end
 
-  def set_post
-    @post = Post.friendly.find(params[:id])
-  end
-
-  def set_posts
-    page   = Sanitize.clean(params[:page])
+  def load_posts
+    page = params[:page] || 1
     if params[:tag]
       set_tag
-      @posts = Post.tagged_with(@tag).paginate(:page => page, :per_page => 10).published.order("published_at desc")
+      posts = Post.tagged_with(@tag).paginate(page: page, per_page: 10).published.order("published_at desc")
     else
-      @posts = Post.paginate(:page => page, :per_page => 10).published.order("published_at desc")
+      posts = Post.paginate(page: page, per_page: 10).published.order("published_at desc")
     end
+    @posts = PostDecorator.decorate_collection(posts)
   end
 
   def set_tag
     unclean_tag = (params[:tag].include? "-") ? params[:tag].gsub!('-', ' ') : params[:tag]
-    @tag   = Sanitize.clean(unclean_tag)
+    @tag   = unclean_tag
   end
 
   def set_tags
@@ -43,11 +40,3 @@ class PostsController < ApplicationController
   end
 
 end
-
-
-
-
-
-
-
-

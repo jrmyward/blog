@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.post-hero {
+  background: url(asset-path("hero/blog_hero_road.jpg")) repeat scroll center center / cover  rgba(0, 0, 0, 0);
+  height: 400px;
+  width:auto;
+}
+
 .pagination {
   margin:20px 0;
   li {
@@ -23,6 +29,16 @@
         float: left;
         margin-right: 10px;
       }
+    }
+    .post-social {
+      clear: both;
+      display: block;
+    }
+    .share-top {
+      padding-top: 15px;
+    }
+    .share-bottom {
+      padding-bottom: 10px;
     }
   }
   .picture {
@@ -112,3 +128,38 @@
   border-top:none;
   padding-top: 0px;
 }
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px){
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px){
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px){
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px){
+  .post-hero {
+    height: 220px;
+  }
+
+  .page-title-hero {
+    #page-title-inner {
+      padding: 10px 0;
+    }
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px){
+}
+

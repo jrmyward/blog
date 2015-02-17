@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "Admin::Users" do
+describe "Admin::Users", type: :request do
   let(:valid_user) { attributes_for(:user) }
   let(:admin) { User.create(valid_user.merge({role: "admin"})) }
   let(:author) { User.create(valid_user.merge({role: "author"})) }
